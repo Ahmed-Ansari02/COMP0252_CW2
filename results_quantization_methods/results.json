@@ -222,5 +222,35 @@
         "quantization_time_s": 1.692
       }
     }
+  },
+  "facebook/opt-6.7b": {
+    "uniform_4bit_gptq": {
+      "perplexity": 11.216464042663574,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6442450944,
+        "outlier_weights": 0,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.389,
+        "effective_size_mb": 3484.03,
+        "fp16_size_mb": 12700.03,
+        "hessian_time_s": 270.45,
+        "quantization_time_s": 144.309,
+        "total_time_s": 638.604
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.885176658630371,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 5.203
+      }
+    }
   }
 }

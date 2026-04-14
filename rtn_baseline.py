@@ -34,7 +34,7 @@ def load_model(model_name: str):
     original_weights = {}
     for name, module in model.named_modules():
         if isinstance(module, torch.nn.Linear):
-            original_weights[name] = module.weight.data.clone()
+            original_weights[name] = module.weight.data.clone().cpu()
     return model, original_weights
 
 
