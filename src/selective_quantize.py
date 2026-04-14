@@ -50,6 +50,7 @@ def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
         "kurtosis": "kurtosis",
         "outlier_fraction": "outlier_fraction_3sigma",
         "range_sigma": "range_sigma_ratio",
+        "variance": "variance",
     }
 
     if scoring not in metric_map:
@@ -142,6 +143,7 @@ def quantize_model_selective(model, original_weights, profile: dict,
                     "kurtosis": layer_stats.get("kurtosis", 0),
                     "outlier_fraction": layer_stats.get("outlier_fraction_3sigma", 0),
                     "range_sigma": layer_stats.get("range_sigma_ratio", 0),
+                    "variance": layer_stats.get("variance", 0),
                 })
 
     # Count unquantized params (biases, embeddings, layernorms)
@@ -218,7 +220,7 @@ def main():
     parser.add_argument("--topk", type=int, required=True,
                         help="Number of layers to protect")
     parser.add_argument("--scoring", type=str, default="kurtosis",
-                        choices=["kurtosis", "outlier_fraction", "range_sigma"])
+                        choices=["kurtosis", "outlier_fraction", "range_sigma", "variance"])
     parser.add_argument("--outlier_percentile", type=float, default=1.0)
     parser.add_argument("--output", type=str, default="results/selective_results.json")
     args = parser.parse_args()
