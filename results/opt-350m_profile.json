@@ -1,0 +1,3685 @@
+{
+  "model_name": "facebook/opt-350m",
+  "total_linear_layers": 147,
+  "total_linear_params": 328777728,
+  "total_model_params": 331196416,
+  "layer_names": [
+    "model.decoder.project_out",
+    "model.decoder.project_in",
+    "model.decoder.layers.0.self_attn.k_proj",
+    "model.decoder.layers.0.self_attn.v_proj",
+    "model.decoder.layers.0.self_attn.q_proj",
+    "model.decoder.layers.0.self_attn.out_proj",
+    "model.decoder.layers.0.fc1",
+    "model.decoder.layers.0.fc2",
+    "model.decoder.layers.1.self_attn.k_proj",
+    "model.decoder.layers.1.self_attn.v_proj",
+    "model.decoder.layers.1.self_attn.q_proj",
+    "model.decoder.layers.1.self_attn.out_proj",
+    "model.decoder.layers.1.fc1",
+    "model.decoder.layers.1.fc2",
+    "model.decoder.layers.2.self_attn.k_proj",
+    "model.decoder.layers.2.self_attn.v_proj",
+    "model.decoder.layers.2.self_attn.q_proj",
+    "model.decoder.layers.2.self_attn.out_proj",
+    "model.decoder.layers.2.fc1",
+    "model.decoder.layers.2.fc2",
+    "model.decoder.layers.3.self_attn.k_proj",
+    "model.decoder.layers.3.self_attn.v_proj",
+    "model.decoder.layers.3.self_attn.q_proj",
+    "model.decoder.layers.3.self_attn.out_proj",
+    "model.decoder.layers.3.fc1",
+    "model.decoder.layers.3.fc2",
+    "model.decoder.layers.4.self_attn.k_proj",
+    "model.decoder.layers.4.self_attn.v_proj",
+    "model.decoder.layers.4.self_attn.q_proj",
+    "model.decoder.layers.4.self_attn.out_proj",
+    "model.decoder.layers.4.fc1",
+    "model.decoder.layers.4.fc2",
+    "model.decoder.layers.5.self_attn.k_proj",
+    "model.decoder.layers.5.self_attn.v_proj",
+    "model.decoder.layers.5.self_attn.q_proj",
+    "model.decoder.layers.5.self_attn.out_proj",
+    "model.decoder.layers.5.fc1",
+    "model.decoder.layers.5.fc2",
+    "model.decoder.layers.6.self_attn.k_proj",
+    "model.decoder.layers.6.self_attn.v_proj",
+    "model.decoder.layers.6.self_attn.q_proj",
+    "model.decoder.layers.6.self_attn.out_proj",
+    "model.decoder.layers.6.fc1",
+    "model.decoder.layers.6.fc2",
+    "model.decoder.layers.7.self_attn.k_proj",
+    "model.decoder.layers.7.self_attn.v_proj",
+    "model.decoder.layers.7.self_attn.q_proj",
+    "model.decoder.layers.7.self_attn.out_proj",
+    "model.decoder.layers.7.fc1",
+    "model.decoder.layers.7.fc2",
+    "model.decoder.layers.8.self_attn.k_proj",
+    "model.decoder.layers.8.self_attn.v_proj",
+    "model.decoder.layers.8.self_attn.q_proj",
+    "model.decoder.layers.8.self_attn.out_proj",
+    "model.decoder.layers.8.fc1",
+    "model.decoder.layers.8.fc2",
+    "model.decoder.layers.9.self_attn.k_proj",
+    "model.decoder.layers.9.self_attn.v_proj",
+    "model.decoder.layers.9.self_attn.q_proj",
+    "model.decoder.layers.9.self_attn.out_proj",
+    "model.decoder.layers.9.fc1",
+    "model.decoder.layers.9.fc2",
+    "model.decoder.layers.10.self_attn.k_proj",
+    "model.decoder.layers.10.self_attn.v_proj",
+    "model.decoder.layers.10.self_attn.q_proj",
+    "model.decoder.layers.10.self_attn.out_proj",
+    "model.decoder.layers.10.fc1",
+    "model.decoder.layers.10.fc2",
+    "model.decoder.layers.11.self_attn.k_proj",
+    "model.decoder.layers.11.self_attn.v_proj",
+    "model.decoder.layers.11.self_attn.q_proj",
+    "model.decoder.layers.11.self_attn.out_proj",
+    "model.decoder.layers.11.fc1",
+    "model.decoder.layers.11.fc2",
+    "model.decoder.layers.12.self_attn.k_proj",
+    "model.decoder.layers.12.self_attn.v_proj",
+    "model.decoder.layers.12.self_attn.q_proj",
+    "model.decoder.layers.12.self_attn.out_proj",
+    "model.decoder.layers.12.fc1",
+    "model.decoder.layers.12.fc2",
+    "model.decoder.layers.13.self_attn.k_proj",
+    "model.decoder.layers.13.self_attn.v_proj",
+    "model.decoder.layers.13.self_attn.q_proj",
+    "model.decoder.layers.13.self_attn.out_proj",
+    "model.decoder.layers.13.fc1",
+    "model.decoder.layers.13.fc2",
+    "model.decoder.layers.14.self_attn.k_proj",
+    "model.decoder.layers.14.self_attn.v_proj",
+    "model.decoder.layers.14.self_attn.q_proj",
+    "model.decoder.layers.14.self_attn.out_proj",
+    "model.decoder.layers.14.fc1",
+    "model.decoder.layers.14.fc2",
+    "model.decoder.layers.15.self_attn.k_proj",
+    "model.decoder.layers.15.self_attn.v_proj",
+    "model.decoder.layers.15.self_attn.q_proj",
+    "model.decoder.layers.15.self_attn.out_proj",
+    "model.decoder.layers.15.fc1",
+    "model.decoder.layers.15.fc2",
+    "model.decoder.layers.16.self_attn.k_proj",
+    "model.decoder.layers.16.self_attn.v_proj",
+    "model.decoder.layers.16.self_attn.q_proj",
+    "model.decoder.layers.16.self_attn.out_proj",
+    "model.decoder.layers.16.fc1",
+    "model.decoder.layers.16.fc2",
+    "model.decoder.layers.17.self_attn.k_proj",
+    "model.decoder.layers.17.self_attn.v_proj",
+    "model.decoder.layers.17.self_attn.q_proj",
+    "model.decoder.layers.17.self_attn.out_proj",
+    "model.decoder.layers.17.fc1",
+    "model.decoder.layers.17.fc2",
+    "model.decoder.layers.18.self_attn.k_proj",
+    "model.decoder.layers.18.self_attn.v_proj",
+    "model.decoder.layers.18.self_attn.q_proj",
+    "model.decoder.layers.18.self_attn.out_proj",
+    "model.decoder.layers.18.fc1",
+    "model.decoder.layers.18.fc2",
+    "model.decoder.layers.19.self_attn.k_proj",
+    "model.decoder.layers.19.self_attn.v_proj",
+    "model.decoder.layers.19.self_attn.q_proj",
+    "model.decoder.layers.19.self_attn.out_proj",
+    "model.decoder.layers.19.fc1",
+    "model.decoder.layers.19.fc2",
+    "model.decoder.layers.20.self_attn.k_proj",
+    "model.decoder.layers.20.self_attn.v_proj",
+    "model.decoder.layers.20.self_attn.q_proj",
+    "model.decoder.layers.20.self_attn.out_proj",
+    "model.decoder.layers.20.fc1",
+    "model.decoder.layers.20.fc2",
+    "model.decoder.layers.21.self_attn.k_proj",
+    "model.decoder.layers.21.self_attn.v_proj",
+    "model.decoder.layers.21.self_attn.q_proj",
+    "model.decoder.layers.21.self_attn.out_proj",
+    "model.decoder.layers.21.fc1",
+    "model.decoder.layers.21.fc2",
+    "model.decoder.layers.22.self_attn.k_proj",
+    "model.decoder.layers.22.self_attn.v_proj",
+    "model.decoder.layers.22.self_attn.q_proj",
+    "model.decoder.layers.22.self_attn.out_proj",
+    "model.decoder.layers.22.fc1",
+    "model.decoder.layers.22.fc2",
+    "model.decoder.layers.23.self_attn.k_proj",
+    "model.decoder.layers.23.self_attn.v_proj",
+    "model.decoder.layers.23.self_attn.q_proj",
+    "model.decoder.layers.23.self_attn.out_proj",
+    "model.decoder.layers.23.fc1",
+    "model.decoder.layers.23.fc2",
+    "lm_head"
+  ],
+  "layer_stats": {
+    "model.decoder.project_out": {
+      "num_params": 524288,
+      "mean": 8.706e-05,
+      "std": 0.07680096,
+      "variance": 0.0058983881,
+      "kurtosis": 1.704704,
+      "excess_kurtosis": -1.295296,
+      "outlier_count_3sigma": 0,
+      "outlier_fraction_3sigma": 0.0,
+      "max_abs": 0.13757324,
+      "min": -0.13757324,
+      "max": 0.1373291,
+      "range_sigma_ratio": 3.579413,
+      "scores": {
+        "kurtosis": 0.032115,
+        "outlier_fraction": 0.0,
+        "range_sigma": 0.015126
+      },
+      "ranks": {
+        "kurtosis": 146,
+        "outlier_fraction": 144,
+        "range_sigma": 146
+      }
+    },
+    "model.decoder.project_in": {
+      "num_params": 524288,
+      "mean": 3.482e-05,
+      "std": 0.0511744,
+      "variance": 0.002618819,
+      "kurtosis": 2.369085,
+      "excess_kurtosis": -0.630915,
+      "outlier_count_3sigma": 0,
+      "outlier_fraction_3sigma": 0.0,
+      "max_abs": 0.13183594,
+      "min": -0.13183594,
+      "max": 0.13049316,
+      "range_sigma_ratio": 5.126179,
+      "scores": {
+        "kurtosis": 0.131662,
+        "outlier_fraction": 0.0,
+        "range_sigma": 0.082443
+      },
+      "ranks": {
+        "kurtosis": 144,
+        "outlier_fraction": 145,
+        "range_sigma": 144
+      }
+    },
+    "model.decoder.layers.0.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -4.626e-05,
+      "std": 0.07773246,
+      "variance": 0.0060423352,
+      "kurtosis": 1.490372,
+      "excess_kurtosis": -1.509628,
+      "outlier_count_3sigma": 0,
+      "outlier_fraction_3sigma": 0.0,
+      "max_abs": 0.12561035,
+      "min": -0.12561035,
+      "max": 0.12561035,
+      "range_sigma_ratio": 3.231864,
+      "scores": {
+        "kurtosis": 0.0,
+        "outlier_fraction": 0.0,
+        "range_sigma": 0.0
+      },
+      "ranks": {
+        "kurtosis": 147,
+        "outlier_fraction": 146,
+        "range_sigma": 147
+      }
+    },
+    "model.decoder.layers.0.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.92e-06,
+      "std": 0.01860517,
+      "variance": 0.0003461525,
+      "kurtosis": 3.13798,
+      "excess_kurtosis": 0.13798,
+      "outlier_count_3sigma": 4198,
+      "outlier_fraction_3sigma": 0.00400352,
+      "max_abs": 0.08795166,
+      "min": -0.08508301,
+      "max": 0.08795166,
+      "range_sigma_ratio": 9.300352,
+      "scores": {
+        "kurtosis": 0.24687,
+        "outlier_fraction": 0.416509,
+        "range_sigma": 0.264109
+      },
+      "ranks": {
+        "kurtosis": 61,
+        "outlier_fraction": 39,
+        "range_sigma": 54
+      }
+    },
+    "model.decoder.layers.0.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -5.663e-05,
+      "std": 0.06652049,
+      "variance": 0.0044249762,
+      "kurtosis": 2.01813,
+      "excess_kurtosis": -0.98187,
+      "outlier_count_3sigma": 0,
+      "outlier_fraction_3sigma": 0.0,
+      "max_abs": 0.12670898,
+      "min": -0.12670898,
+      "max": 0.12670898,
+      "range_sigma_ratio": 3.809623,
+      "scores": {
+        "kurtosis": 0.079077,
+        "outlier_fraction": 0.0,
+        "range_sigma": 0.025145
+      },
+      "ranks": {
+        "kurtosis": 145,
+        "outlier_fraction": 147,
+        "range_sigma": 145
+      }
+    },
+    "model.decoder.layers.0.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -6.18e-06,
+      "std": 0.01166705,
+      "variance": 0.00013612,
+      "kurtosis": 8.164357,
+      "excess_kurtosis": 5.164357,
+      "outlier_count_3sigma": 10079,
+      "outlier_fraction_3sigma": 0.00961208,
+      "max_abs": 0.1295166,
+      "min": -0.1295166,
+      "max": 0.1282959,
+      "range_sigma_ratio": 22.097491,
+      "scores": {
+        "kurtosis": 1.0,
+        "outlier_fraction": 1.0,
+        "range_sigma": 0.821058
+      },
+      "ranks": {
+        "kurtosis": 1,
+        "outlier_fraction": 1,
+        "range_sigma": 2
+      }
+    },
+    "model.decoder.layers.0.fc1": {
+      "num_params": 4194304,
+      "mean": 0.0001667,
+      "std": 0.03187802,
+      "variance": 0.0010162083,
+      "kurtosis": 2.82066,
+      "excess_kurtosis": -0.17934,
+      "outlier_count_3sigma": 5699,
+      "outlier_fraction_3sigma": 0.00135875,
+      "max_abs": 0.12512207,
+      "min": -0.12512207,
+      "max": 0.125,
+      "range_sigma_ratio": 7.846222,
+      "scores": {
+        "kurtosis": 0.199324,
+        "outlier_fraction": 0.141359,
+        "range_sigma": 0.200823
+      },
+      "ranks": {
+        "kurtosis": 128,
+        "outlier_fraction": 136,
+        "range_sigma": 96
+      }
+    },
+    "model.decoder.layers.0.fc2": {
+      "num_params": 4194304,
+      "mean": 5.36e-06,
+      "std": 0.0273471,
+      "variance": 0.0007478641,
+      "kurtosis": 2.934234,
+      "excess_kurtosis": -0.065766,
+      "outlier_count_3sigma": 5812,
+      "outlier_fraction_3sigma": 0.00138569,
+      "max_abs": 0.14477539,
+      "min": -0.14477539,
+      "max": 0.13305664,
+      "range_sigma_ratio": 10.159468,
+      "scores": {
+        "kurtosis": 0.216342,
+        "outlier_fraction": 0.144161,
+        "range_sigma": 0.301499
+      },
+      "ranks": {
+        "kurtosis": 100,
+        "outlier_fraction": 134,
+        "range_sigma": 45
+      }
+    },
+    "model.decoder.layers.1.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -1.284e-05,
+      "std": 0.03222239,
+      "variance": 0.0010382826,
+      "kurtosis": 3.154977,
+      "excess_kurtosis": 0.154977,
+      "outlier_count_3sigma": 3935,
+      "outlier_fraction_3sigma": 0.00375271,
+      "max_abs": 0.12719727,
+      "min": -0.12719727,
+      "max": 0.12658691,
+      "range_sigma_ratio": 7.876019,
+      "scores": {
+        "kurtosis": 0.249417,
+        "outlier_fraction": 0.390416,
+        "range_sigma": 0.20212
+      },
+      "ranks": {
+        "kurtosis": 58,
+        "outlier_fraction": 46,
+        "range_sigma": 94
+      }
+    },
+    "model.decoder.layers.1.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.417e-05,
+      "std": 0.02253786,
+      "variance": 0.0005079552,
+      "kurtosis": 3.136758,
+      "excess_kurtosis": 0.136758,
+      "outlier_count_3sigma": 2737,
+      "outlier_fraction_3sigma": 0.00261021,
+      "max_abs": 0.10919189,
+      "min": -0.10699463,
+      "max": 0.10919189,
+      "range_sigma_ratio": 9.592149,
+      "scores": {
+        "kurtosis": 0.246687,
+        "outlier_fraction": 0.271555,
+        "range_sigma": 0.276808
+      },
+      "ranks": {
+        "kurtosis": 62,
+        "outlier_fraction": 67,
+        "range_sigma": 49
+      }
+    },
+    "model.decoder.layers.1.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -3.561e-05,
+      "std": 0.03331837,
+      "variance": 0.0011101138,
+      "kurtosis": 2.83966,
+      "excess_kurtosis": -0.16034,
+      "outlier_count_3sigma": 1903,
+      "outlier_fraction_3sigma": 0.00181484,
+      "max_abs": 0.12597656,
+      "min": -0.12597656,
+      "max": 0.12561035,
+      "range_sigma_ratio": 7.550997,
+      "scores": {
+        "kurtosis": 0.202171,
+        "outlier_fraction": 0.188808,
+        "range_sigma": 0.187975
+      },
+      "ranks": {
+        "kurtosis": 122,
+        "outlier_fraction": 104,
+        "range_sigma": 107
+      }
+    },
+    "model.decoder.layers.1.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1.68e-06,
+      "std": 0.01773195,
+      "variance": 0.0003144222,
+      "kurtosis": 4.03662,
+      "excess_kurtosis": 1.03662,
+      "outlier_count_3sigma": 5103,
+      "outlier_fraction_3sigma": 0.0048666,
+      "max_abs": 0.12719727,
+      "min": -0.12719727,
+      "max": 0.12658691,
+      "range_sigma_ratio": 14.312252,
+      "scores": {
+        "kurtosis": 0.381518,
+        "outlier_fraction": 0.5063,
+        "range_sigma": 0.482234
+      },
+      "ranks": {
+        "kurtosis": 5,
+        "outlier_fraction": 20,
+        "range_sigma": 24
+      }
+    },
+    "model.decoder.layers.1.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00018498,
+      "std": 0.03251208,
+      "variance": 0.0010570351,
+      "kurtosis": 2.812691,
+      "excess_kurtosis": -0.187309,
+      "outlier_count_3sigma": 5614,
+      "outlier_fraction_3sigma": 0.00133848,
+      "max_abs": 0.12609863,
+      "min": -0.12609863,
+      "max": 0.12536621,
+      "range_sigma_ratio": 7.734506,
+      "scores": {
+        "kurtosis": 0.19813,
+        "outlier_fraction": 0.13925,
+        "range_sigma": 0.195961
+      },
+      "ranks": {
+        "kurtosis": 129,
+        "outlier_fraction": 137,
+        "range_sigma": 102
+      }
+    },
+    "model.decoder.layers.1.fc2": {
+      "num_params": 4194304,
+      "mean": -2.47e-06,
+      "std": 0.02701813,
+      "variance": 0.0007299792,
+      "kurtosis": 2.97744,
+      "excess_kurtosis": -0.02256,
+      "outlier_count_3sigma": 6380,
+      "outlier_fraction_3sigma": 0.00152111,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.13208008,
+      "range_sigma_ratio": 14.141619,
+      "scores": {
+        "kurtosis": 0.222816,
+        "outlier_fraction": 0.15825,
+        "range_sigma": 0.474808
+      },
+      "ranks": {
+        "kurtosis": 93,
+        "outlier_fraction": 125,
+        "range_sigma": 25
+      }
+    },
+    "model.decoder.layers.2.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 2.489e-05,
+      "std": 0.03704718,
+      "variance": 0.0013724936,
+      "kurtosis": 2.744572,
+      "excess_kurtosis": -0.255428,
+      "outlier_count_3sigma": 2032,
+      "outlier_fraction_3sigma": 0.00193787,
+      "max_abs": 0.12915039,
+      "min": -0.12646484,
+      "max": 0.12915039,
+      "range_sigma_ratio": 6.899722,
+      "scores": {
+        "kurtosis": 0.187924,
+        "outlier_fraction": 0.201608,
+        "range_sigma": 0.15963
+      },
+      "ranks": {
+        "kurtosis": 139,
+        "outlier_fraction": 101,
+        "range_sigma": 134
+      }
+    },
+    "model.decoder.layers.2.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 3.971e-05,
+      "std": 0.02579732,
+      "variance": 0.0006655018,
+      "kurtosis": 3.002043,
+      "excess_kurtosis": 0.002043,
+      "outlier_count_3sigma": 1694,
+      "outlier_fraction_3sigma": 0.00161552,
+      "max_abs": 0.12341309,
+      "min": -0.11706543,
+      "max": 0.12341309,
+      "range_sigma_ratio": 9.32184,
+      "scores": {
+        "kurtosis": 0.226502,
+        "outlier_fraction": 0.168072,
+        "range_sigma": 0.265044
+      },
+      "ranks": {
+        "kurtosis": 89,
+        "outlier_fraction": 118,
+        "range_sigma": 52
+      }
+    },
+    "model.decoder.layers.2.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 1.202e-05,
+      "std": 0.03783776,
+      "variance": 0.0014316962,
+      "kurtosis": 2.699599,
+      "excess_kurtosis": -0.300401,
+      "outlier_count_3sigma": 1552,
+      "outlier_fraction_3sigma": 0.0014801,
+      "max_abs": 0.1270752,
+      "min": -0.1270752,
+      "max": 0.12573242,
+      "range_sigma_ratio": 6.681357,
+      "scores": {
+        "kurtosis": 0.181185,
+        "outlier_fraction": 0.153983,
+        "range_sigma": 0.150127
+      },
+      "ranks": {
+        "kurtosis": 143,
+        "outlier_fraction": 130,
+        "range_sigma": 139
+      }
+    },
+    "model.decoder.layers.2.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -6.5e-06,
+      "std": 0.01970288,
+      "variance": 0.0003882035,
+      "kurtosis": 3.832422,
+      "excess_kurtosis": 0.832422,
+      "outlier_count_3sigma": 5210,
+      "outlier_fraction_3sigma": 0.00496864,
+      "max_abs": 0.13171387,
+      "min": -0.1282959,
+      "max": 0.13171387,
+      "range_sigma_ratio": 13.196536,
+      "scores": {
+        "kurtosis": 0.350922,
+        "outlier_fraction": 0.516916,
+        "range_sigma": 0.433676
+      },
+      "ranks": {
+        "kurtosis": 8,
+        "outlier_fraction": 18,
+        "range_sigma": 29
+      }
+    },
+    "model.decoder.layers.2.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00023344,
+      "std": 0.03246926,
+      "variance": 0.0010542527,
+      "kurtosis": 2.823715,
+      "excess_kurtosis": -0.176285,
+      "outlier_count_3sigma": 5726,
+      "outlier_fraction_3sigma": 0.00136518,
+      "max_abs": 0.12548828,
+      "min": -0.12548828,
+      "max": 0.125,
+      "range_sigma_ratio": 7.714629,
+      "scores": {
+        "kurtosis": 0.199782,
+        "outlier_fraction": 0.142028,
+        "range_sigma": 0.195096
+      },
+      "ranks": {
+        "kurtosis": 127,
+        "outlier_fraction": 135,
+        "range_sigma": 103
+      }
+    },
+    "model.decoder.layers.2.fc2": {
+      "num_params": 4194304,
+      "mean": -1.69e-06,
+      "std": 0.02598949,
+      "variance": 0.0006754536,
+      "kurtosis": 3.08724,
+      "excess_kurtosis": 0.08724,
+      "outlier_count_3sigma": 8022,
+      "outlier_fraction_3sigma": 0.00191259,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12939453,
+      "range_sigma_ratio": 14.597997,
+      "scores": {
+        "kurtosis": 0.239268,
+        "outlier_fraction": 0.198978,
+        "range_sigma": 0.49467
+      },
+      "ranks": {
+        "kurtosis": 70,
+        "outlier_fraction": 102,
+        "range_sigma": 19
+      }
+    },
+    "model.decoder.layers.3.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -1.901e-05,
+      "std": 0.03776909,
+      "variance": 0.0014265042,
+      "kurtosis": 2.726668,
+      "excess_kurtosis": -0.273332,
+      "outlier_count_3sigma": 1719,
+      "outlier_fraction_3sigma": 0.00163937,
+      "max_abs": 0.12658691,
+      "min": -0.12658691,
+      "max": 0.12658691,
+      "range_sigma_ratio": 6.703202,
+      "scores": {
+        "kurtosis": 0.185241,
+        "outlier_fraction": 0.170553,
+        "range_sigma": 0.151077
+      },
+      "ranks": {
+        "kurtosis": 142,
+        "outlier_fraction": 116,
+        "range_sigma": 138
+      }
+    },
+    "model.decoder.layers.3.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -9.011e-05,
+      "std": 0.0275606,
+      "variance": 0.0007595869,
+      "kurtosis": 2.911723,
+      "excess_kurtosis": -0.088277,
+      "outlier_count_3sigma": 1380,
+      "outlier_fraction_3sigma": 0.00131607,
+      "max_abs": 0.12158203,
+      "min": -0.12042236,
+      "max": 0.12158203,
+      "range_sigma_ratio": 8.780809,
+      "scores": {
+        "kurtosis": 0.212969,
+        "outlier_fraction": 0.136918,
+        "range_sigma": 0.241498
+      },
+      "ranks": {
+        "kurtosis": 107,
+        "outlier_fraction": 138,
+        "range_sigma": 66
+      }
+    },
+    "model.decoder.layers.3.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -1.642e-05,
+      "std": 0.03876207,
+      "variance": 0.0015024983,
+      "kurtosis": 2.732256,
+      "excess_kurtosis": -0.267744,
+      "outlier_count_3sigma": 1600,
+      "outlier_fraction_3sigma": 0.00152588,
+      "max_abs": 0.12658691,
+      "min": -0.12658691,
+      "max": 0.12658691,
+      "range_sigma_ratio": 6.531483,
+      "scores": {
+        "kurtosis": 0.186078,
+        "outlier_fraction": 0.158746,
+        "range_sigma": 0.143604
+      },
+      "ranks": {
+        "kurtosis": 141,
+        "outlier_fraction": 124,
+        "range_sigma": 142
+      }
+    },
+    "model.decoder.layers.3.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.6e-06,
+      "std": 0.02133761,
+      "variance": 0.0004552935,
+      "kurtosis": 3.810581,
+      "excess_kurtosis": 0.810581,
+      "outlier_count_3sigma": 4216,
+      "outlier_fraction_3sigma": 0.00402069,
+      "max_abs": 0.1763916,
+      "min": -0.16137695,
+      "max": 0.1763916,
+      "range_sigma_ratio": 15.829729,
+      "scores": {
+        "kurtosis": 0.34765,
+        "outlier_fraction": 0.418296,
+        "range_sigma": 0.548276
+      },
+      "ranks": {
+        "kurtosis": 10,
+        "outlier_fraction": 38,
+        "range_sigma": 14
+      }
+    },
+    "model.decoder.layers.3.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00013481,
+      "std": 0.03222769,
+      "variance": 0.0010386237,
+      "kurtosis": 2.853258,
+      "excess_kurtosis": -0.146742,
+      "outlier_count_3sigma": 6251,
+      "outlier_fraction_3sigma": 0.00149035,
+      "max_abs": 0.12524414,
+      "min": -0.12524414,
+      "max": 0.12512207,
+      "range_sigma_ratio": 7.768668,
+      "scores": {
+        "kurtosis": 0.204209,
+        "outlier_fraction": 0.15505,
+        "range_sigma": 0.197448
+      },
+      "ranks": {
+        "kurtosis": 120,
+        "outlier_fraction": 129,
+        "range_sigma": 100
+      }
+    },
+    "model.decoder.layers.3.fc2": {
+      "num_params": 4194304,
+      "mean": 1.86e-06,
+      "std": 0.02558282,
+      "variance": 0.0006544806,
+      "kurtosis": 3.133862,
+      "excess_kurtosis": 0.133862,
+      "outlier_count_3sigma": 9198,
+      "outlier_fraction_3sigma": 0.00219297,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12756348,
+      "range_sigma_ratio": 14.758479,
+      "scores": {
+        "kurtosis": 0.246253,
+        "outlier_fraction": 0.228147,
+        "range_sigma": 0.501654
+      },
+      "ranks": {
+        "kurtosis": 63,
+        "outlier_fraction": 94,
+        "range_sigma": 18
+      }
+    },
+    "model.decoder.layers.4.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 3.159e-05,
+      "std": 0.03784706,
+      "variance": 0.0014323998,
+      "kurtosis": 2.771474,
+      "excess_kurtosis": -0.228526,
+      "outlier_count_3sigma": 2071,
+      "outlier_fraction_3sigma": 0.00197506,
+      "max_abs": 0.12976074,
+      "min": -0.12695312,
+      "max": 0.12976074,
+      "range_sigma_ratio": 6.782927,
+      "scores": {
+        "kurtosis": 0.191955,
+        "outlier_fraction": 0.205477,
+        "range_sigma": 0.154547
+      },
+      "ranks": {
+        "kurtosis": 135,
+        "outlier_fraction": 99,
+        "range_sigma": 136
+      }
+    },
+    "model.decoder.layers.4.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 6.411e-05,
+      "std": 0.02654256,
+      "variance": 0.0007045076,
+      "kurtosis": 3.012254,
+      "excess_kurtosis": 0.012254,
+      "outlier_count_3sigma": 1833,
+      "outlier_fraction_3sigma": 0.00174809,
+      "max_abs": 0.12268066,
+      "min": -0.12268066,
+      "max": 0.1138916,
+      "range_sigma_ratio": 8.91294,
+      "scores": {
+        "kurtosis": 0.228032,
+        "outlier_fraction": 0.181864,
+        "range_sigma": 0.247248
+      },
+      "ranks": {
+        "kurtosis": 86,
+        "outlier_fraction": 109,
+        "range_sigma": 64
+      }
+    },
+    "model.decoder.layers.4.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -1.65e-06,
+      "std": 0.03884817,
+      "variance": 0.0015091805,
+      "kurtosis": 2.742888,
+      "excess_kurtosis": -0.257112,
+      "outlier_count_3sigma": 1718,
+      "outlier_fraction_3sigma": 0.00163841,
+      "max_abs": 0.12768555,
+      "min": -0.12670898,
+      "max": 0.12768555,
+      "range_sigma_ratio": 6.54843,
+      "scores": {
+        "kurtosis": 0.187671,
+        "outlier_fraction": 0.170453,
+        "range_sigma": 0.144342
+      },
+      "ranks": {
+        "kurtosis": 140,
+        "outlier_fraction": 117,
+        "range_sigma": 141
+      }
+    },
+    "model.decoder.layers.4.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 5.15e-06,
+      "std": 0.0212146,
+      "variance": 0.0004500593,
+      "kurtosis": 3.992433,
+      "excess_kurtosis": 0.992433,
+      "outlier_count_3sigma": 4421,
+      "outlier_fraction_3sigma": 0.00421619,
+      "max_abs": 0.1307373,
+      "min": -0.12963867,
+      "max": 0.1307373,
+      "range_sigma_ratio": 12.273433,
+      "scores": {
+        "kurtosis": 0.374898,
+        "outlier_fraction": 0.438635,
+        "range_sigma": 0.393502
+      },
+      "ranks": {
+        "kurtosis": 6,
+        "outlier_fraction": 34,
+        "range_sigma": 35
+      }
+    },
+    "model.decoder.layers.4.fc1": {
+      "num_params": 4194304,
+      "mean": 7.858e-05,
+      "std": 0.03211161,
+      "variance": 0.0010311559,
+      "kurtosis": 2.867874,
+      "excess_kurtosis": -0.132126,
+      "outlier_count_3sigma": 6574,
+      "outlier_fraction_3sigma": 0.00156736,
+      "max_abs": 0.12609863,
+      "min": -0.12609863,
+      "max": 0.12524414,
+      "range_sigma_ratio": 7.827161,
+      "scores": {
+        "kurtosis": 0.206399,
+        "outlier_fraction": 0.163061,
+        "range_sigma": 0.199994
+      },
+      "ranks": {
+        "kurtosis": 118,
+        "outlier_fraction": 122,
+        "range_sigma": 97
+      }
+    },
+    "model.decoder.layers.4.fc2": {
+      "num_params": 4194304,
+      "mean": 2.08e-06,
+      "std": 0.02540325,
+      "variance": 0.0006453249,
+      "kurtosis": 3.159967,
+      "excess_kurtosis": 0.159967,
+      "outlier_count_3sigma": 9608,
+      "outlier_fraction_3sigma": 0.00229073,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12805176,
+      "range_sigma_ratio": 14.882025,
+      "scores": {
+        "kurtosis": 0.250165,
+        "outlier_fraction": 0.238318,
+        "range_sigma": 0.507031
+      },
+      "ranks": {
+        "kurtosis": 56,
+        "outlier_fraction": 89,
+        "range_sigma": 17
+      }
+    },
+    "model.decoder.layers.5.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -5.184e-05,
+      "std": 0.03302015,
+      "variance": 0.0010903307,
+      "kurtosis": 3.11028,
+      "excess_kurtosis": 0.11028,
+      "outlier_count_3sigma": 3410,
+      "outlier_fraction_3sigma": 0.00325203,
+      "max_abs": 0.12634277,
+      "min": -0.12634277,
+      "max": 0.12634277,
+      "range_sigma_ratio": 7.652464,
+      "scores": {
+        "kurtosis": 0.24272,
+        "outlier_fraction": 0.338327,
+        "range_sigma": 0.192391
+      },
+      "ranks": {
+        "kurtosis": 66,
+        "outlier_fraction": 54,
+        "range_sigma": 106
+      }
+    },
+    "model.decoder.layers.5.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.019e-05,
+      "std": 0.02590787,
+      "variance": 0.000671218,
+      "kurtosis": 3.02272,
+      "excess_kurtosis": 0.02272,
+      "outlier_count_3sigma": 1726,
+      "outlier_fraction_3sigma": 0.00164604,
+      "max_abs": 0.12017822,
+      "min": -0.12017822,
+      "max": 0.1182251,
+      "range_sigma_ratio": 9.201964,
+      "scores": {
+        "kurtosis": 0.2296,
+        "outlier_fraction": 0.171247,
+        "range_sigma": 0.259827
+      },
+      "ranks": {
+        "kurtosis": 83,
+        "outlier_fraction": 113,
+        "range_sigma": 55
+      }
+    },
+    "model.decoder.layers.5.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 1.035e-05,
+      "std": 0.03406041,
+      "variance": 0.0011601113,
+      "kurtosis": 3.05888,
+      "excess_kurtosis": 0.05888,
+      "outlier_count_3sigma": 3161,
+      "outlier_fraction_3sigma": 0.00301456,
+      "max_abs": 0.12695312,
+      "min": -0.12695312,
+      "max": 0.12609863,
+      "range_sigma_ratio": 7.429499,
+      "scores": {
+        "kurtosis": 0.235018,
+        "outlier_fraction": 0.313622,
+        "range_sigma": 0.182687
+      },
+      "ranks": {
+        "kurtosis": 74,
+        "outlier_fraction": 58,
+        "range_sigma": 110
+      }
+    },
+    "model.decoder.layers.5.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 2.069e-05,
+      "std": 0.0198913,
+      "variance": 0.0003956639,
+      "kurtosis": 4.332608,
+      "excess_kurtosis": 1.332608,
+      "outlier_count_3sigma": 5325,
+      "outlier_fraction_3sigma": 0.00507832,
+      "max_abs": 0.18212891,
+      "min": -0.18212891,
+      "max": 0.15820312,
+      "range_sigma_ratio": 17.109591,
+      "scores": {
+        "kurtosis": 0.425868,
+        "outlier_fraction": 0.528327,
+        "range_sigma": 0.603978
+      },
+      "ranks": {
+        "kurtosis": 4,
+        "outlier_fraction": 17,
+        "range_sigma": 5
+      }
+    },
+    "model.decoder.layers.5.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00011054,
+      "std": 0.03218691,
+      "variance": 0.0010359968,
+      "kurtosis": 2.880311,
+      "excess_kurtosis": -0.119689,
+      "outlier_count_3sigma": 6901,
+      "outlier_fraction_3sigma": 0.00164533,
+      "max_abs": 0.12573242,
+      "min": -0.12536621,
+      "max": 0.12573242,
+      "range_sigma_ratio": 7.801266,
+      "scores": {
+        "kurtosis": 0.208262,
+        "outlier_fraction": 0.171173,
+        "range_sigma": 0.198867
+      },
+      "ranks": {
+        "kurtosis": 115,
+        "outlier_fraction": 115,
+        "range_sigma": 99
+      }
+    },
+    "model.decoder.layers.5.fc2": {
+      "num_params": 4194304,
+      "mean": 5e-07,
+      "std": 0.02603723,
+      "variance": 0.0006779372,
+      "kurtosis": 3.129473,
+      "excess_kurtosis": 0.129473,
+      "outlier_count_3sigma": 9722,
+      "outlier_fraction_3sigma": 0.00231791,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.1262207,
+      "range_sigma_ratio": 14.449338,
+      "scores": {
+        "kurtosis": 0.245596,
+        "outlier_fraction": 0.241146,
+        "range_sigma": 0.4882
+      },
+      "ranks": {
+        "kurtosis": 64,
+        "outlier_fraction": 84,
+        "range_sigma": 21
+      }
+    },
+    "model.decoder.layers.6.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 1.62e-05,
+      "std": 0.03323308,
+      "variance": 0.0011044377,
+      "kurtosis": 3.539199,
+      "excess_kurtosis": 0.539199,
+      "outlier_count_3sigma": 7130,
+      "outlier_fraction_3sigma": 0.0067997,
+      "max_abs": 0.13000488,
+      "min": -0.13000488,
+      "max": 0.13000488,
+      "range_sigma_ratio": 7.823823,
+      "scores": {
+        "kurtosis": 0.306987,
+        "outlier_fraction": 0.707412,
+        "range_sigma": 0.199848
+      },
+      "ranks": {
+        "kurtosis": 27,
+        "outlier_fraction": 5,
+        "range_sigma": 98
+      }
+    },
+    "model.decoder.layers.6.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 4.657e-05,
+      "std": 0.02395947,
+      "variance": 0.000574056,
+      "kurtosis": 3.163777,
+      "excess_kurtosis": 0.163777,
+      "outlier_count_3sigma": 2571,
+      "outlier_fraction_3sigma": 0.0024519,
+      "max_abs": 0.11895752,
+      "min": -0.11895752,
+      "max": 0.11468506,
+      "range_sigma_ratio": 9.751577,
+      "scores": {
+        "kurtosis": 0.250736,
+        "outlier_fraction": 0.255085,
+        "range_sigma": 0.283747
+      },
+      "ranks": {
+        "kurtosis": 53,
+        "outlier_fraction": 75,
+        "range_sigma": 48
+      }
+    },
+    "model.decoder.layers.6.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 4.74e-06,
+      "std": 0.03519389,
+      "variance": 0.0012386099,
+      "kurtosis": 3.164447,
+      "excess_kurtosis": 0.164447,
+      "outlier_count_3sigma": 4475,
+      "outlier_fraction_3sigma": 0.00426769,
+      "max_abs": 0.12756348,
+      "min": -0.12756348,
+      "max": 0.12719727,
+      "range_sigma_ratio": 7.238778,
+      "scores": {
+        "kurtosis": 0.250836,
+        "outlier_fraction": 0.443992,
+        "range_sigma": 0.174386
+      },
+      "ranks": {
+        "kurtosis": 52,
+        "outlier_fraction": 29,
+        "range_sigma": 118
+      }
+    },
+    "model.decoder.layers.6.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 9.42e-06,
+      "std": 0.01880886,
+      "variance": 0.0003537732,
+      "kurtosis": 4.390389,
+      "excess_kurtosis": 1.390389,
+      "outlier_count_3sigma": 5151,
+      "outlier_fraction_3sigma": 0.00491238,
+      "max_abs": 0.1340332,
+      "min": -0.13049316,
+      "max": 0.1340332,
+      "range_sigma_ratio": 14.063925,
+      "scores": {
+        "kurtosis": 0.434526,
+        "outlier_fraction": 0.511063,
+        "range_sigma": 0.471426
+      },
+      "ranks": {
+        "kurtosis": 3,
+        "outlier_fraction": 19,
+        "range_sigma": 26
+      }
+    },
+    "model.decoder.layers.6.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00014159,
+      "std": 0.03244415,
+      "variance": 0.0010526227,
+      "kurtosis": 2.896423,
+      "excess_kurtosis": -0.103577,
+      "outlier_count_3sigma": 7500,
+      "outlier_fraction_3sigma": 0.00178814,
+      "max_abs": 0.12817383,
+      "min": -0.12695312,
+      "max": 0.12817383,
+      "range_sigma_ratio": 7.863574,
+      "scores": {
+        "kurtosis": 0.210676,
+        "outlier_fraction": 0.18603,
+        "range_sigma": 0.201578
+      },
+      "ranks": {
+        "kurtosis": 112,
+        "outlier_fraction": 106,
+        "range_sigma": 95
+      }
+    },
+    "model.decoder.layers.6.fc2": {
+      "num_params": 4194304,
+      "mean": -3.2e-07,
+      "std": 0.02661968,
+      "variance": 0.0007086073,
+      "kurtosis": 3.160623,
+      "excess_kurtosis": 0.160623,
+      "outlier_count_3sigma": 10545,
+      "outlier_fraction_3sigma": 0.00251412,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.13427734,
+      "range_sigma_ratio": 14.435836,
+      "scores": {
+        "kurtosis": 0.250263,
+        "outlier_fraction": 0.261558,
+        "range_sigma": 0.487612
+      },
+      "ranks": {
+        "kurtosis": 55,
+        "outlier_fraction": 71,
+        "range_sigma": 22
+      }
+    },
+    "model.decoder.layers.7.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 1.285e-05,
+      "std": 0.03453394,
+      "variance": 0.001192593,
+      "kurtosis": 3.33435,
+      "excess_kurtosis": 0.33435,
+      "outlier_count_3sigma": 6189,
+      "outlier_fraction_3sigma": 0.00590229,
+      "max_abs": 0.13330078,
+      "min": -0.13330078,
+      "max": 0.13232422,
+      "range_sigma_ratio": 7.691708,
+      "scores": {
+        "kurtosis": 0.276293,
+        "outlier_fraction": 0.614049,
+        "range_sigma": 0.194099
+      },
+      "ranks": {
+        "kurtosis": 41,
+        "outlier_fraction": 8,
+        "range_sigma": 104
+      }
+    },
+    "model.decoder.layers.7.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -3.309e-05,
+      "std": 0.02487731,
+      "variance": 0.0006188805,
+      "kurtosis": 3.166234,
+      "excess_kurtosis": 0.166234,
+      "outlier_count_3sigma": 2582,
+      "outlier_fraction_3sigma": 0.00246239,
+      "max_abs": 0.11828613,
+      "min": -0.11743164,
+      "max": 0.11828613,
+      "range_sigma_ratio": 9.475212,
+      "scores": {
+        "kurtosis": 0.251104,
+        "outlier_fraction": 0.256177,
+        "range_sigma": 0.271719
+      },
+      "ranks": {
+        "kurtosis": 51,
+        "outlier_fraction": 74,
+        "range_sigma": 51
+      }
+    },
+    "model.decoder.layers.7.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -3.28e-06,
+      "std": 0.03648765,
+      "variance": 0.0013313482,
+      "kurtosis": 3.096388,
+      "excess_kurtosis": 0.096388,
+      "outlier_count_3sigma": 4426,
+      "outlier_fraction_3sigma": 0.00422096,
+      "max_abs": 0.12915039,
+      "min": -0.12915039,
+      "max": 0.12719727,
+      "range_sigma_ratio": 7.025601,
+      "scores": {
+        "kurtosis": 0.240638,
+        "outlier_fraction": 0.439131,
+        "range_sigma": 0.165109
+      },
+      "ranks": {
+        "kurtosis": 67,
+        "outlier_fraction": 33,
+        "range_sigma": 127
+      }
+    },
+    "model.decoder.layers.7.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.17e-06,
+      "std": 0.02020904,
+      "variance": 0.0004084054,
+      "kurtosis": 3.957967,
+      "excess_kurtosis": 0.957967,
+      "outlier_count_3sigma": 5844,
+      "outlier_fraction_3sigma": 0.00557327,
+      "max_abs": 0.1315918,
+      "min": -0.13012695,
+      "max": 0.1315918,
+      "range_sigma_ratio": 12.950575,
+      "scores": {
+        "kurtosis": 0.369733,
+        "outlier_fraction": 0.579819,
+        "range_sigma": 0.422972
+      },
+      "ranks": {
+        "kurtosis": 7,
+        "outlier_fraction": 12,
+        "range_sigma": 32
+      }
+    },
+    "model.decoder.layers.7.fc1": {
+      "num_params": 4194304,
+      "mean": 0.00018581,
+      "std": 0.03272356,
+      "variance": 0.0010708312,
+      "kurtosis": 2.929747,
+      "excess_kurtosis": -0.070253,
+      "outlier_count_3sigma": 8593,
+      "outlier_fraction_3sigma": 0.00204873,
+      "max_abs": 0.13110352,
+      "min": -0.13110352,
+      "max": 0.12841797,
+      "range_sigma_ratio": 7.930724,
+      "scores": {
+        "kurtosis": 0.215669,
+        "outlier_fraction": 0.213141,
+        "range_sigma": 0.204501
+      },
+      "ranks": {
+        "kurtosis": 103,
+        "outlier_fraction": 97,
+        "range_sigma": 92
+      }
+    },
+    "model.decoder.layers.7.fc2": {
+      "num_params": 4194304,
+      "mean": -4.6e-07,
+      "std": 0.02729573,
+      "variance": 0.0007450571,
+      "kurtosis": 3.244115,
+      "excess_kurtosis": 0.244115,
+      "outlier_count_3sigma": 12919,
+      "outlier_fraction_3sigma": 0.00308013,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.14587402,
+      "range_sigma_ratio": 14.503146,
+      "scores": {
+        "kurtosis": 0.262773,
+        "outlier_fraction": 0.320444,
+        "range_sigma": 0.490542
+      },
+      "ranks": {
+        "kurtosis": 45,
+        "outlier_fraction": 57,
+        "range_sigma": 20
+      }
+    },
+    "model.decoder.layers.8.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 8.99e-06,
+      "std": 0.03675766,
+      "variance": 0.0013511255,
+      "kurtosis": 3.23053,
+      "excess_kurtosis": 0.23053,
+      "outlier_count_3sigma": 6379,
+      "outlier_fraction_3sigma": 0.00608349,
+      "max_abs": 0.13195801,
+      "min": -0.13195801,
+      "max": 0.13183594,
+      "range_sigma_ratio": 7.176571,
+      "scores": {
+        "kurtosis": 0.260737,
+        "outlier_fraction": 0.6329,
+        "range_sigma": 0.171679
+      },
+      "ranks": {
+        "kurtosis": 46,
+        "outlier_fraction": 7,
+        "range_sigma": 119
+      }
+    },
+    "model.decoder.layers.8.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.489e-05,
+      "std": 0.02481976,
+      "variance": 0.0006160205,
+      "kurtosis": 3.188314,
+      "excess_kurtosis": 0.188314,
+      "outlier_count_3sigma": 2877,
+      "outlier_fraction_3sigma": 0.00274372,
+      "max_abs": 0.12432861,
+      "min": -0.12432861,
+      "max": 0.12420654,
+      "range_sigma_ratio": 10.0136,
+      "scores": {
+        "kurtosis": 0.254412,
+        "outlier_fraction": 0.285445,
+        "range_sigma": 0.295151
+      },
+      "ranks": {
+        "kurtosis": 49,
+        "outlier_fraction": 61,
+        "range_sigma": 47
+      }
+    },
+    "model.decoder.layers.8.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -4.2e-07,
+      "std": 0.03881202,
+      "variance": 0.0015063732,
+      "kurtosis": 2.99846,
+      "excess_kurtosis": -0.00154,
+      "outlier_count_3sigma": 4019,
+      "outlier_fraction_3sigma": 0.00383282,
+      "max_abs": 0.13110352,
+      "min": -0.12927246,
+      "max": 0.13110352,
+      "range_sigma_ratio": 6.708642,
+      "scores": {
+        "kurtosis": 0.225965,
+        "outlier_fraction": 0.39875,
+        "range_sigma": 0.151314
+      },
+      "ranks": {
+        "kurtosis": 91,
+        "outlier_fraction": 43,
+        "range_sigma": 137
+      }
+    },
+    "model.decoder.layers.8.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 6.68e-06,
+      "std": 0.02068649,
+      "variance": 0.0004279308,
+      "kurtosis": 3.769513,
+      "excess_kurtosis": 0.769513,
+      "outlier_count_3sigma": 5628,
+      "outlier_fraction_3sigma": 0.00536728,
+      "max_abs": 0.13269043,
+      "min": -0.13269043,
+      "max": 0.13061523,
+      "range_sigma_ratio": 12.72839,
+      "scores": {
+        "kurtosis": 0.341496,
+        "outlier_fraction": 0.558389,
+        "range_sigma": 0.413302
+      },
+      "ranks": {
+        "kurtosis": 13,
+        "outlier_fraction": 14,
+        "range_sigma": 33
+      }
+    },
+    "model.decoder.layers.8.fc1": {
+      "num_params": 4194304,
+      "mean": 5.06e-05,
+      "std": 0.03123576,
+      "variance": 0.0009756729,
+      "kurtosis": 2.9888,
+      "excess_kurtosis": -0.0112,
+      "outlier_count_3sigma": 9529,
+      "outlier_fraction_3sigma": 0.00227189,
+      "max_abs": 0.12780762,
+      "min": -0.1270752,
+      "max": 0.12780762,
+      "range_sigma_ratio": 8.159967,
+      "scores": {
+        "kurtosis": 0.224518,
+        "outlier_fraction": 0.236358,
+        "range_sigma": 0.214478
+      },
+      "ranks": {
+        "kurtosis": 92,
+        "outlier_fraction": 93,
+        "range_sigma": 86
+      }
+    },
+    "model.decoder.layers.8.fc2": {
+      "num_params": 4194304,
+      "mean": -4.15e-06,
+      "std": 0.02492713,
+      "variance": 0.000621362,
+      "kurtosis": 3.401051,
+      "excess_kurtosis": 0.401051,
+      "outlier_count_3sigma": 15323,
+      "outlier_fraction_3sigma": 0.00365329,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.13916016,
+      "range_sigma_ratio": 15.61191,
+      "scores": {
+        "kurtosis": 0.286288,
+        "outlier_fraction": 0.380073,
+        "range_sigma": 0.538797
+      },
+      "ranks": {
+        "kurtosis": 37,
+        "outlier_fraction": 48,
+        "range_sigma": 15
+      }
+    },
+    "model.decoder.layers.9.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 4.302e-05,
+      "std": 0.03797636,
+      "variance": 0.0014422042,
+      "kurtosis": 3.290952,
+      "excess_kurtosis": 0.290952,
+      "outlier_count_3sigma": 7598,
+      "outlier_fraction_3sigma": 0.00724602,
+      "max_abs": 0.13464355,
+      "min": -0.13464355,
+      "max": 0.13464355,
+      "range_sigma_ratio": 7.090914,
+      "scores": {
+        "kurtosis": 0.269791,
+        "outlier_fraction": 0.753845,
+        "range_sigma": 0.167951
+      },
+      "ranks": {
+        "kurtosis": 43,
+        "outlier_fraction": 4,
+        "range_sigma": 124
+      }
+    },
+    "model.decoder.layers.9.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -2.935e-05,
+      "std": 0.02486148,
+      "variance": 0.000618093,
+      "kurtosis": 3.155585,
+      "excess_kurtosis": 0.155585,
+      "outlier_count_3sigma": 2387,
+      "outlier_fraction_3sigma": 0.00227642,
+      "max_abs": 0.11828613,
+      "min": -0.11828613,
+      "max": 0.11309814,
+      "range_sigma_ratio": 9.30694,
+      "scores": {
+        "kurtosis": 0.249508,
+        "outlier_fraction": 0.236829,
+        "range_sigma": 0.264396
+      },
+      "ranks": {
+        "kurtosis": 57,
+        "outlier_fraction": 90,
+        "range_sigma": 53
+      }
+    },
+    "model.decoder.layers.9.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -1.583e-05,
+      "std": 0.04112281,
+      "variance": 0.0016910852,
+      "kurtosis": 3.21329,
+      "excess_kurtosis": 0.21329,
+      "outlier_count_3sigma": 6177,
+      "outlier_fraction_3sigma": 0.00589085,
+      "max_abs": 0.13793945,
+      "min": -0.13793945,
+      "max": 0.13439941,
+      "range_sigma_ratio": 6.622575,
+      "scores": {
+        "kurtosis": 0.258154,
+        "outlier_fraction": 0.612859,
+        "range_sigma": 0.147568
+      },
+      "ranks": {
+        "kurtosis": 47,
+        "outlier_fraction": 9,
+        "range_sigma": 140
+      }
+    },
+    "model.decoder.layers.9.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -7e-06,
+      "std": 0.02159611,
+      "variance": 0.0004663919,
+      "kurtosis": 3.778377,
+      "excess_kurtosis": 0.778377,
+      "outlier_count_3sigma": 4548,
+      "outlier_fraction_3sigma": 0.00433731,
+      "max_abs": 0.1496582,
+      "min": -0.13818359,
+      "max": 0.1496582,
+      "range_sigma_ratio": 13.328411,
+      "scores": {
+        "kurtosis": 0.342824,
+        "outlier_fraction": 0.451235,
+        "range_sigma": 0.439416
+      },
+      "ranks": {
+        "kurtosis": 12,
+        "outlier_fraction": 28,
+        "range_sigma": 28
+      }
+    },
+    "model.decoder.layers.9.fc1": {
+      "num_params": 4194304,
+      "mean": 2.51e-05,
+      "std": 0.02999304,
+      "variance": 0.0008995823,
+      "kurtosis": 3.025899,
+      "excess_kurtosis": 0.025899,
+      "outlier_count_3sigma": 10091,
+      "outlier_fraction_3sigma": 0.00240588,
+      "max_abs": 0.12646484,
+      "min": -0.12646484,
+      "max": 0.12561035,
+      "range_sigma_ratio": 8.404457,
+      "scores": {
+        "kurtosis": 0.230076,
+        "outlier_fraction": 0.250298,
+        "range_sigma": 0.225118
+      },
+      "ranks": {
+        "kurtosis": 82,
+        "outlier_fraction": 78,
+        "range_sigma": 83
+      }
+    },
+    "model.decoder.layers.9.fc2": {
+      "num_params": 4194304,
+      "mean": -3.31e-06,
+      "std": 0.02310213,
+      "variance": 0.0005337084,
+      "kurtosis": 3.489097,
+      "excess_kurtosis": 0.489097,
+      "outlier_count_3sigma": 17499,
+      "outlier_fraction_3sigma": 0.00417209,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12561035,
+      "range_sigma_ratio": 16.258689,
+      "scores": {
+        "kurtosis": 0.29948,
+        "outlier_fraction": 0.434047,
+        "range_sigma": 0.566945
+      },
+      "ranks": {
+        "kurtosis": 28,
+        "outlier_fraction": 36,
+        "range_sigma": 10
+      }
+    },
+    "model.decoder.layers.10.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -1.478e-05,
+      "std": 0.03572116,
+      "variance": 0.0012760017,
+      "kurtosis": 2.962105,
+      "excess_kurtosis": -0.037895,
+      "outlier_count_3sigma": 3093,
+      "outlier_fraction_3sigma": 0.00294971,
+      "max_abs": 0.13183594,
+      "min": -0.12854004,
+      "max": 0.13183594,
+      "range_sigma_ratio": 7.289123,
+      "scores": {
+        "kurtosis": 0.220518,
+        "outlier_fraction": 0.306875,
+        "range_sigma": 0.176578
+      },
+      "ranks": {
+        "kurtosis": 97,
+        "outlier_fraction": 59,
+        "range_sigma": 115
+      }
+    },
+    "model.decoder.layers.10.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.173e-05,
+      "std": 0.02606575,
+      "variance": 0.0006794235,
+      "kurtosis": 3.026224,
+      "excess_kurtosis": 0.026224,
+      "outlier_count_3sigma": 1882,
+      "outlier_fraction_3sigma": 0.00179482,
+      "max_abs": 0.12408447,
+      "min": -0.11523438,
+      "max": 0.12408447,
+      "range_sigma_ratio": 9.181352,
+      "scores": {
+        "kurtosis": 0.230125,
+        "outlier_fraction": 0.186725,
+        "range_sigma": 0.25893
+      },
+      "ranks": {
+        "kurtosis": 81,
+        "outlier_fraction": 105,
+        "range_sigma": 56
+      }
+    },
+    "model.decoder.layers.10.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 5.2e-06,
+      "std": 0.03684839,
+      "variance": 0.0013578039,
+      "kurtosis": 2.915676,
+      "excess_kurtosis": -0.084324,
+      "outlier_count_3sigma": 2698,
+      "outlier_fraction_3sigma": 0.00257301,
+      "max_abs": 0.13110352,
+      "min": -0.13110352,
+      "max": 0.13000488,
+      "range_sigma_ratio": 7.086019,
+      "scores": {
+        "kurtosis": 0.213561,
+        "outlier_fraction": 0.267685,
+        "range_sigma": 0.167738
+      },
+      "ranks": {
+        "kurtosis": 106,
+        "outlier_fraction": 68,
+        "range_sigma": 125
+      }
+    },
+    "model.decoder.layers.10.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1.38e-06,
+      "std": 0.02467945,
+      "variance": 0.0006090755,
+      "kurtosis": 3.351997,
+      "excess_kurtosis": 0.351997,
+      "outlier_count_3sigma": 3446,
+      "outlier_fraction_3sigma": 0.00328636,
+      "max_abs": 0.13208008,
+      "min": -0.1315918,
+      "max": 0.13208008,
+      "range_sigma_ratio": 10.683862,
+      "scores": {
+        "kurtosis": 0.278938,
+        "outlier_fraction": 0.341899,
+        "range_sigma": 0.324321
+      },
+      "ranks": {
+        "kurtosis": 39,
+        "outlier_fraction": 53,
+        "range_sigma": 43
+      }
+    },
+    "model.decoder.layers.10.fc1": {
+      "num_params": 4194304,
+      "mean": 1.603e-05,
+      "std": 0.03024419,
+      "variance": 0.0009147109,
+      "kurtosis": 2.999696,
+      "excess_kurtosis": -0.000304,
+      "outlier_count_3sigma": 9533,
+      "outlier_fraction_3sigma": 0.00227284,
+      "max_abs": 0.12963867,
+      "min": -0.12963867,
+      "max": 0.12695312,
+      "range_sigma_ratio": 8.484003,
+      "scores": {
+        "kurtosis": 0.22615,
+        "outlier_fraction": 0.236457,
+        "range_sigma": 0.22858
+      },
+      "ranks": {
+        "kurtosis": 90,
+        "outlier_fraction": 92,
+        "range_sigma": 75
+      }
+    },
+    "model.decoder.layers.10.fc2": {
+      "num_params": 4194304,
+      "mean": -1.62e-06,
+      "std": 0.02364388,
+      "variance": 0.0005590332,
+      "kurtosis": 3.473057,
+      "excess_kurtosis": 0.473057,
+      "outlier_count_3sigma": 16480,
+      "outlier_fraction_3sigma": 0.00392914,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12805176,
+      "range_sigma_ratio": 15.98941,
+      "scores": {
+        "kurtosis": 0.297077,
+        "outlier_fraction": 0.408771,
+        "range_sigma": 0.555226
+      },
+      "ranks": {
+        "kurtosis": 29,
+        "outlier_fraction": 42,
+        "range_sigma": 12
+      }
+    },
+    "model.decoder.layers.11.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 1.017e-05,
+      "std": 0.03347944,
+      "variance": 0.001120873,
+      "kurtosis": 2.972852,
+      "excess_kurtosis": -0.027148,
+      "outlier_count_3sigma": 2761,
+      "outlier_fraction_3sigma": 0.00263309,
+      "max_abs": 0.13305664,
+      "min": -0.13098145,
+      "max": 0.13305664,
+      "range_sigma_ratio": 7.886574,
+      "scores": {
+        "kurtosis": 0.222128,
+        "outlier_fraction": 0.273936,
+        "range_sigma": 0.202579
+      },
+      "ranks": {
+        "kurtosis": 95,
+        "outlier_fraction": 65,
+        "range_sigma": 93
+      }
+    },
+    "model.decoder.layers.11.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -8.525e-05,
+      "std": 0.02748363,
+      "variance": 0.0007553498,
+      "kurtosis": 2.934129,
+      "excess_kurtosis": -0.065871,
+      "outlier_count_3sigma": 1578,
+      "outlier_fraction_3sigma": 0.0015049,
+      "max_abs": 0.12335205,
+      "min": -0.11968994,
+      "max": 0.12335205,
+      "range_sigma_ratio": 8.843156,
+      "scores": {
+        "kurtosis": 0.216326,
+        "outlier_fraction": 0.156563,
+        "range_sigma": 0.244211
+      },
+      "ranks": {
+        "kurtosis": 101,
+        "outlier_fraction": 127,
+        "range_sigma": 65
+      }
+    },
+    "model.decoder.layers.11.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 5.09e-06,
+      "std": 0.03440536,
+      "variance": 0.001183729,
+      "kurtosis": 2.836871,
+      "excess_kurtosis": -0.163129,
+      "outlier_count_3sigma": 1862,
+      "outlier_fraction_3sigma": 0.00177574,
+      "max_abs": 0.12866211,
+      "min": -0.12597656,
+      "max": 0.12866211,
+      "range_sigma_ratio": 7.401133,
+      "scores": {
+        "kurtosis": 0.201753,
+        "outlier_fraction": 0.18474,
+        "range_sigma": 0.181452
+      },
+      "ranks": {
+        "kurtosis": 123,
+        "outlier_fraction": 107,
+        "range_sigma": 112
+      }
+    },
+    "model.decoder.layers.11.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1.601e-05,
+      "std": 0.0254125,
+      "variance": 0.000645795,
+      "kurtosis": 3.262832,
+      "excess_kurtosis": 0.262832,
+      "outlier_count_3sigma": 2830,
+      "outlier_fraction_3sigma": 0.0026989,
+      "max_abs": 0.16467285,
+      "min": -0.16467285,
+      "max": 0.15136719,
+      "range_sigma_ratio": 12.436403,
+      "scores": {
+        "kurtosis": 0.265577,
+        "outlier_fraction": 0.280782,
+        "range_sigma": 0.400594
+      },
+      "ranks": {
+        "kurtosis": 44,
+        "outlier_fraction": 63,
+        "range_sigma": 34
+      }
+    },
+    "model.decoder.layers.11.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00018883,
+      "std": 0.02990532,
+      "variance": 0.0008943283,
+      "kurtosis": 3.026975,
+      "excess_kurtosis": 0.026975,
+      "outlier_count_3sigma": 10074,
+      "outlier_fraction_3sigma": 0.00240183,
+      "max_abs": 0.12634277,
+      "min": -0.12634277,
+      "max": 0.12573242,
+      "range_sigma_ratio": 8.429108,
+      "scores": {
+        "kurtosis": 0.230238,
+        "outlier_fraction": 0.249876,
+        "range_sigma": 0.226191
+      },
+      "ranks": {
+        "kurtosis": 80,
+        "outlier_fraction": 81,
+        "range_sigma": 82
+      }
+    },
+    "model.decoder.layers.11.fc2": {
+      "num_params": 4194304,
+      "mean": 3.1e-07,
+      "std": 0.02334668,
+      "variance": 0.0005450676,
+      "kurtosis": 3.452712,
+      "excess_kurtosis": 0.452712,
+      "outlier_count_3sigma": 17153,
+      "outlier_fraction_3sigma": 0.00408959,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12597656,
+      "range_sigma_ratio": 16.104068,
+      "scores": {
+        "kurtosis": 0.294028,
+        "outlier_fraction": 0.425464,
+        "range_sigma": 0.560216
+      },
+      "ranks": {
+        "kurtosis": 35,
+        "outlier_fraction": 37,
+        "range_sigma": 11
+      }
+    },
+    "model.decoder.layers.12.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 2.051e-05,
+      "std": 0.03390377,
+      "variance": 0.0011494659,
+      "kurtosis": 2.940063,
+      "excess_kurtosis": -0.059937,
+      "outlier_count_3sigma": 2521,
+      "outlier_fraction_3sigma": 0.00240421,
+      "max_abs": 0.12744141,
+      "min": -0.12634277,
+      "max": 0.12744141,
+      "range_sigma_ratio": 7.485426,
+      "scores": {
+        "kurtosis": 0.217215,
+        "outlier_fraction": 0.250124,
+        "range_sigma": 0.185121
+      },
+      "ranks": {
+        "kurtosis": 99,
+        "outlier_fraction": 80,
+        "range_sigma": 109
+      }
+    },
+    "model.decoder.layers.12.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 5.265e-05,
+      "std": 0.02931029,
+      "variance": 0.0008590932,
+      "kurtosis": 2.898222,
+      "excess_kurtosis": -0.101778,
+      "outlier_count_3sigma": 1621,
+      "outlier_fraction_3sigma": 0.00154591,
+      "max_abs": 0.12512207,
+      "min": -0.12512207,
+      "max": 0.12463379,
+      "range_sigma_ratio": 8.521098,
+      "scores": {
+        "kurtosis": 0.210946,
+        "outlier_fraction": 0.16083,
+        "range_sigma": 0.230195
+      },
+      "ranks": {
+        "kurtosis": 111,
+        "outlier_fraction": 123,
+        "range_sigma": 73
+      }
+    },
+    "model.decoder.layers.12.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -4.44e-05,
+      "std": 0.03466231,
+      "variance": 0.0012014759,
+      "kurtosis": 2.878137,
+      "excess_kurtosis": -0.121863,
+      "outlier_count_3sigma": 2127,
+      "outlier_fraction_3sigma": 0.00202847,
+      "max_abs": 0.12658691,
+      "min": -0.12658691,
+      "max": 0.1262207,
+      "range_sigma_ratio": 7.293443,
+      "scores": {
+        "kurtosis": 0.207936,
+        "outlier_fraction": 0.211033,
+        "range_sigma": 0.176766
+      },
+      "ranks": {
+        "kurtosis": 116,
+        "outlier_fraction": 98,
+        "range_sigma": 114
+      }
+    },
+    "model.decoder.layers.12.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 6.46e-06,
+      "std": 0.02841266,
+      "variance": 0.0008072793,
+      "kurtosis": 3.08503,
+      "excess_kurtosis": 0.08503,
+      "outlier_count_3sigma": 2743,
+      "outlier_fraction_3sigma": 0.00261593,
+      "max_abs": 0.12731934,
+      "min": -0.12683105,
+      "max": 0.12731934,
+      "range_sigma_ratio": 8.94497,
+      "scores": {
+        "kurtosis": 0.238936,
+        "outlier_fraction": 0.27215,
+        "range_sigma": 0.248642
+      },
+      "ranks": {
+        "kurtosis": 71,
+        "outlier_fraction": 66,
+        "range_sigma": 62
+      }
+    },
+    "model.decoder.layers.12.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00022205,
+      "std": 0.03012557,
+      "variance": 0.0009075499,
+      "kurtosis": 3.002931,
+      "excess_kurtosis": 0.002931,
+      "outlier_count_3sigma": 9613,
+      "outlier_fraction_3sigma": 0.00229192,
+      "max_abs": 0.12744141,
+      "min": -0.12658691,
+      "max": 0.12744141,
+      "range_sigma_ratio": 8.432316,
+      "scores": {
+        "kurtosis": 0.226635,
+        "outlier_fraction": 0.238442,
+        "range_sigma": 0.226331
+      },
+      "ranks": {
+        "kurtosis": 88,
+        "outlier_fraction": 88,
+        "range_sigma": 81
+      }
+    },
+    "model.decoder.layers.12.fc2": {
+      "num_params": 4194304,
+      "mean": 1.1e-07,
+      "std": 0.02342232,
+      "variance": 0.0005486051,
+      "kurtosis": 3.472919,
+      "excess_kurtosis": 0.472919,
+      "outlier_count_3sigma": 16764,
+      "outlier_fraction_3sigma": 0.00399685,
+      "max_abs": 0.13928223,
+      "min": -0.13928223,
+      "max": 0.12646484,
+      "range_sigma_ratio": 11.34589,
+      "scores": {
+        "kurtosis": 0.297056,
+        "outlier_fraction": 0.415815,
+        "range_sigma": 0.353134
+      },
+      "ranks": {
+        "kurtosis": 30,
+        "outlier_fraction": 40,
+        "range_sigma": 39
+      }
+    },
+    "model.decoder.layers.13.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 3.542e-05,
+      "std": 0.03339905,
+      "variance": 0.0011154963,
+      "kurtosis": 2.973164,
+      "excess_kurtosis": -0.026836,
+      "outlier_count_3sigma": 2693,
+      "outlier_fraction_3sigma": 0.00256824,
+      "max_abs": 0.1282959,
+      "min": -0.1282959,
+      "max": 0.12805176,
+      "range_sigma_ratio": 7.675299,
+      "scores": {
+        "kurtosis": 0.222175,
+        "outlier_fraction": 0.267189,
+        "range_sigma": 0.193384
+      },
+      "ranks": {
+        "kurtosis": 94,
+        "outlier_fraction": 69,
+        "range_sigma": 105
+      }
+    },
+    "model.decoder.layers.13.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -6.461e-05,
+      "std": 0.0288871,
+      "variance": 0.0008344644,
+      "kurtosis": 2.927911,
+      "excess_kurtosis": -0.072089,
+      "outlier_count_3sigma": 1747,
+      "outlier_fraction_3sigma": 0.00166607,
+      "max_abs": 0.1262207,
+      "min": -0.12512207,
+      "max": 0.1262207,
+      "range_sigma_ratio": 8.700867,
+      "scores": {
+        "kurtosis": 0.215394,
+        "outlier_fraction": 0.173331,
+        "range_sigma": 0.238019
+      },
+      "ranks": {
+        "kurtosis": 104,
+        "outlier_fraction": 112,
+        "range_sigma": 68
+      }
+    },
+    "model.decoder.layers.13.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 3.923e-05,
+      "std": 0.03424561,
+      "variance": 0.0011727615,
+      "kurtosis": 2.869719,
+      "excess_kurtosis": -0.130281,
+      "outlier_count_3sigma": 2036,
+      "outlier_fraction_3sigma": 0.00194168,
+      "max_abs": 0.12731934,
+      "min": -0.12731934,
+      "max": 0.12646484,
+      "range_sigma_ratio": 7.410708,
+      "scores": {
+        "kurtosis": 0.206675,
+        "outlier_fraction": 0.202004,
+        "range_sigma": 0.181869
+      },
+      "ranks": {
+        "kurtosis": 117,
+        "outlier_fraction": 100,
+        "range_sigma": 111
+      }
+    },
+    "model.decoder.layers.13.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.117e-05,
+      "std": 0.02800655,
+      "variance": 0.000784367,
+      "kurtosis": 3.162453,
+      "excess_kurtosis": 0.162453,
+      "outlier_count_3sigma": 3056,
+      "outlier_fraction_3sigma": 0.00291443,
+      "max_abs": 0.12768555,
+      "min": -0.12683105,
+      "max": 0.12768555,
+      "range_sigma_ratio": 9.087752,
+      "scores": {
+        "kurtosis": 0.250537,
+        "outlier_fraction": 0.303205,
+        "range_sigma": 0.254856
+      },
+      "ranks": {
+        "kurtosis": 54,
+        "outlier_fraction": 60,
+        "range_sigma": 58
+      }
+    },
+    "model.decoder.layers.13.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00027663,
+      "std": 0.02984494,
+      "variance": 0.0008907202,
+      "kurtosis": 3.015256,
+      "excess_kurtosis": 0.015256,
+      "outlier_count_3sigma": 9766,
+      "outlier_fraction_3sigma": 0.0023284,
+      "max_abs": 0.12634277,
+      "min": -0.12609863,
+      "max": 0.12634277,
+      "range_sigma_ratio": 8.458433,
+      "scores": {
+        "kurtosis": 0.228482,
+        "outlier_fraction": 0.242237,
+        "range_sigma": 0.227468
+      },
+      "ranks": {
+        "kurtosis": 85,
+        "outlier_fraction": 83,
+        "range_sigma": 78
+      }
+    },
+    "model.decoder.layers.13.fc2": {
+      "num_params": 4194304,
+      "mean": -2.64e-06,
+      "std": 0.02305343,
+      "variance": 0.0005314604,
+      "kurtosis": 3.556231,
+      "excess_kurtosis": 0.556231,
+      "outlier_count_3sigma": 17525,
+      "outlier_fraction_3sigma": 0.00417829,
+      "max_abs": 0.17541504,
+      "min": -0.17541504,
+      "max": 0.12561035,
+      "range_sigma_ratio": 13.057729,
+      "scores": {
+        "kurtosis": 0.309539,
+        "outlier_fraction": 0.434692,
+        "range_sigma": 0.427635
+      },
+      "ranks": {
+        "kurtosis": 25,
+        "outlier_fraction": 35,
+        "range_sigma": 30
+      }
+    },
+    "model.decoder.layers.14.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 3.023e-05,
+      "std": 0.03465981,
+      "variance": 0.0012013023,
+      "kurtosis": 2.811446,
+      "excess_kurtosis": -0.188554,
+      "outlier_count_3sigma": 1726,
+      "outlier_fraction_3sigma": 0.00164604,
+      "max_abs": 0.12658691,
+      "min": -0.12658691,
+      "max": 0.12646484,
+      "range_sigma_ratio": 7.301015,
+      "scores": {
+        "kurtosis": 0.197944,
+        "outlier_fraction": 0.171247,
+        "range_sigma": 0.177095
+      },
+      "ranks": {
+        "kurtosis": 130,
+        "outlier_fraction": 114,
+        "range_sigma": 113
+      }
+    },
+    "model.decoder.layers.14.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 6.31e-06,
+      "std": 0.0303467,
+      "variance": 0.0009209223,
+      "kurtosis": 2.846392,
+      "excess_kurtosis": -0.153608,
+      "outlier_count_3sigma": 1251,
+      "outlier_fraction_3sigma": 0.00119305,
+      "max_abs": 0.12487793,
+      "min": -0.12487793,
+      "max": 0.12487793,
+      "range_sigma_ratio": 8.230083,
+      "scores": {
+        "kurtosis": 0.20318,
+        "outlier_fraction": 0.12412,
+        "range_sigma": 0.217529
+      },
+      "ranks": {
+        "kurtosis": 121,
+        "outlier_fraction": 140,
+        "range_sigma": 85
+      }
+    },
+    "model.decoder.layers.14.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 3.587e-05,
+      "std": 0.03544095,
+      "variance": 0.001256061,
+      "kurtosis": 2.757882,
+      "excess_kurtosis": -0.242118,
+      "outlier_count_3sigma": 1378,
+      "outlier_fraction_3sigma": 0.00131416,
+      "max_abs": 0.12646484,
+      "min": -0.12646484,
+      "max": 0.12634277,
+      "range_sigma_ratio": 7.133206,
+      "scores": {
+        "kurtosis": 0.189918,
+        "outlier_fraction": 0.13672,
+        "range_sigma": 0.169792
+      },
+      "ranks": {
+        "kurtosis": 138,
+        "outlier_fraction": 139,
+        "range_sigma": 120
+      }
+    },
+    "model.decoder.layers.14.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.601e-05,
+      "std": 0.02883182,
+      "variance": 0.0008312736,
+      "kurtosis": 3.172604,
+      "excess_kurtosis": 0.172604,
+      "outlier_count_3sigma": 2824,
+      "outlier_fraction_3sigma": 0.00269318,
+      "max_abs": 0.1315918,
+      "min": -0.1315918,
+      "max": 0.12915039,
+      "range_sigma_ratio": 9.043558,
+      "scores": {
+        "kurtosis": 0.252058,
+        "outlier_fraction": 0.280187,
+        "range_sigma": 0.252933
+      },
+      "ranks": {
+        "kurtosis": 50,
+        "outlier_fraction": 64,
+        "range_sigma": 60
+      }
+    },
+    "model.decoder.layers.14.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00016869,
+      "std": 0.02998348,
+      "variance": 0.0008990088,
+      "kurtosis": 3.011655,
+      "excess_kurtosis": 0.011655,
+      "outlier_count_3sigma": 9675,
+      "outlier_fraction_3sigma": 0.0023067,
+      "max_abs": 0.12609863,
+      "min": -0.12561035,
+      "max": 0.12609863,
+      "range_sigma_ratio": 8.394923,
+      "scores": {
+        "kurtosis": 0.227942,
+        "outlier_fraction": 0.239979,
+        "range_sigma": 0.224703
+      },
+      "ranks": {
+        "kurtosis": 87,
+        "outlier_fraction": 85,
+        "range_sigma": 84
+      }
+    },
+    "model.decoder.layers.14.fc2": {
+      "num_params": 4194304,
+      "mean": -1.07e-06,
+      "std": 0.02284564,
+      "variance": 0.000521923,
+      "kurtosis": 3.590673,
+      "excess_kurtosis": 0.590673,
+      "outlier_count_3sigma": 17766,
+      "outlier_fraction_3sigma": 0.00423574,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12646484,
+      "range_sigma_ratio": 16.478633,
+      "scores": {
+        "kurtosis": 0.3147,
+        "outlier_fraction": 0.440668,
+        "range_sigma": 0.576518
+      },
+      "ranks": {
+        "kurtosis": 21,
+        "outlier_fraction": 31,
+        "range_sigma": 8
+      }
+    },
+    "model.decoder.layers.15.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 3.431e-05,
+      "std": 0.03489291,
+      "variance": 0.0012175147,
+      "kurtosis": 2.827868,
+      "excess_kurtosis": -0.172132,
+      "outlier_count_3sigma": 1988,
+      "outlier_fraction_3sigma": 0.0018959,
+      "max_abs": 0.12719727,
+      "min": -0.12719727,
+      "max": 0.12585449,
+      "range_sigma_ratio": 7.252241,
+      "scores": {
+        "kurtosis": 0.200404,
+        "outlier_fraction": 0.197241,
+        "range_sigma": 0.174972
+      },
+      "ranks": {
+        "kurtosis": 126,
+        "outlier_fraction": 103,
+        "range_sigma": 116
+      }
+    },
+    "model.decoder.layers.15.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -0.00012312,
+      "std": 0.02945774,
+      "variance": 0.0008677585,
+      "kurtosis": 2.882843,
+      "excess_kurtosis": -0.117157,
+      "outlier_count_3sigma": 1515,
+      "outlier_fraction_3sigma": 0.00144482,
+      "max_abs": 0.12493896,
+      "min": -0.12493896,
+      "max": 0.12457275,
+      "range_sigma_ratio": 8.470158,
+      "scores": {
+        "kurtosis": 0.208642,
+        "outlier_fraction": 0.150313,
+        "range_sigma": 0.227978
+      },
+      "ranks": {
+        "kurtosis": 114,
+        "outlier_fraction": 132,
+        "range_sigma": 77
+      }
+    },
+    "model.decoder.layers.15.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -2.108e-05,
+      "std": 0.03577561,
+      "variance": 0.0012798939,
+      "kurtosis": 2.77008,
+      "excess_kurtosis": -0.22992,
+      "outlier_count_3sigma": 1471,
+      "outlier_fraction_3sigma": 0.00140285,
+      "max_abs": 0.1270752,
+      "min": -0.12585449,
+      "max": 0.1270752,
+      "range_sigma_ratio": 7.069893,
+      "scores": {
+        "kurtosis": 0.191746,
+        "outlier_fraction": 0.145947,
+        "range_sigma": 0.167036
+      },
+      "ranks": {
+        "kurtosis": 136,
+        "outlier_fraction": 133,
+        "range_sigma": 126
+      }
+    },
+    "model.decoder.layers.15.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1e-06,
+      "std": 0.02719044,
+      "variance": 0.0007393201,
+      "kurtosis": 3.464143,
+      "excess_kurtosis": 0.464143,
+      "outlier_count_3sigma": 3583,
+      "outlier_fraction_3sigma": 0.00341702,
+      "max_abs": 0.17980957,
+      "min": -0.17260742,
+      "max": 0.17980957,
+      "range_sigma_ratio": 12.961062,
+      "scores": {
+        "kurtosis": 0.295741,
+        "outlier_fraction": 0.355492,
+        "range_sigma": 0.423428
+      },
+      "ranks": {
+        "kurtosis": 32,
+        "outlier_fraction": 51,
+        "range_sigma": 31
+      }
+    },
+    "model.decoder.layers.15.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00020481,
+      "std": 0.0300451,
+      "variance": 0.0009027079,
+      "kurtosis": 3.016581,
+      "excess_kurtosis": 0.016581,
+      "outlier_count_3sigma": 9670,
+      "outlier_fraction_3sigma": 0.00230551,
+      "max_abs": 0.12744141,
+      "min": -0.12744141,
+      "max": 0.1262207,
+      "range_sigma_ratio": 8.442713,
+      "scores": {
+        "kurtosis": 0.22868,
+        "outlier_fraction": 0.239855,
+        "range_sigma": 0.226783
+      },
+      "ranks": {
+        "kurtosis": 84,
+        "outlier_fraction": 86,
+        "range_sigma": 79
+      }
+    },
+    "model.decoder.layers.15.fc2": {
+      "num_params": 4194304,
+      "mean": -1.3e-06,
+      "std": 0.02265121,
+      "variance": 0.0005130772,
+      "kurtosis": 3.602156,
+      "excess_kurtosis": 0.602156,
+      "outlier_count_3sigma": 17895,
+      "outlier_fraction_3sigma": 0.0042665,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.12731934,
+      "range_sigma_ratio": 16.657803,
+      "scores": {
+        "kurtosis": 0.31642,
+        "outlier_fraction": 0.443869,
+        "range_sigma": 0.584315
+      },
+      "ranks": {
+        "kurtosis": 20,
+        "outlier_fraction": 30,
+        "range_sigma": 6
+      }
+    },
+    "model.decoder.layers.16.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -1.634e-05,
+      "std": 0.03570449,
+      "variance": 0.0012748104,
+      "kurtosis": 2.777811,
+      "excess_kurtosis": -0.222189,
+      "outlier_count_3sigma": 1670,
+      "outlier_fraction_3sigma": 0.00159264,
+      "max_abs": 0.12695312,
+      "min": -0.12646484,
+      "max": 0.12695312,
+      "range_sigma_ratio": 7.097651,
+      "scores": {
+        "kurtosis": 0.192904,
+        "outlier_fraction": 0.165692,
+        "range_sigma": 0.168244
+      },
+      "ranks": {
+        "kurtosis": 134,
+        "outlier_fraction": 119,
+        "range_sigma": 123
+      }
+    },
+    "model.decoder.layers.16.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -9.28e-05,
+      "std": 0.03099046,
+      "variance": 0.0009604088,
+      "kurtosis": 2.864908,
+      "excess_kurtosis": -0.135092,
+      "outlier_count_3sigma": 1576,
+      "outlier_fraction_3sigma": 0.00150299,
+      "max_abs": 0.12585449,
+      "min": -0.12585449,
+      "max": 0.12573242,
+      "range_sigma_ratio": 8.118204,
+      "scores": {
+        "kurtosis": 0.205954,
+        "outlier_fraction": 0.156365,
+        "range_sigma": 0.21266
+      },
+      "ranks": {
+        "kurtosis": 119,
+        "outlier_fraction": 128,
+        "range_sigma": 88
+      }
+    },
+    "model.decoder.layers.16.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 2.79e-06,
+      "std": 0.03651084,
+      "variance": 0.0013330411,
+      "kurtosis": 2.768724,
+      "excess_kurtosis": -0.231276,
+      "outlier_count_3sigma": 1584,
+      "outlier_fraction_3sigma": 0.00151062,
+      "max_abs": 0.12780762,
+      "min": -0.12780762,
+      "max": 0.12609863,
+      "range_sigma_ratio": 6.954271,
+      "scores": {
+        "kurtosis": 0.191543,
+        "outlier_fraction": 0.157158,
+        "range_sigma": 0.162004
+      },
+      "ranks": {
+        "kurtosis": 137,
+        "outlier_fraction": 126,
+        "range_sigma": 131
+      }
+    },
+    "model.decoder.layers.16.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -3.5e-06,
+      "std": 0.02911535,
+      "variance": 0.0008477035,
+      "kurtosis": 3.384536,
+      "excess_kurtosis": 0.384536,
+      "outlier_count_3sigma": 4154,
+      "outlier_fraction_3sigma": 0.00396156,
+      "max_abs": 0.16259766,
+      "min": -0.16259766,
+      "max": 0.15527344,
+      "range_sigma_ratio": 10.917647,
+      "scores": {
+        "kurtosis": 0.283813,
+        "outlier_fraction": 0.412144,
+        "range_sigma": 0.334496
+      },
+      "ranks": {
+        "kurtosis": 38,
+        "outlier_fraction": 41,
+        "range_sigma": 42
+      }
+    },
+    "model.decoder.layers.16.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00017306,
+      "std": 0.02991136,
+      "variance": 0.0008946897,
+      "kurtosis": 3.030653,
+      "excess_kurtosis": 0.030653,
+      "outlier_count_3sigma": 10085,
+      "outlier_fraction_3sigma": 0.00240445,
+      "max_abs": 0.12634277,
+      "min": -0.12634277,
+      "max": 0.12609863,
+      "range_sigma_ratio": 8.439649,
+      "scores": {
+        "kurtosis": 0.230789,
+        "outlier_fraction": 0.250149,
+        "range_sigma": 0.22665
+      },
+      "ranks": {
+        "kurtosis": 78,
+        "outlier_fraction": 79,
+        "range_sigma": 80
+      }
+    },
+    "model.decoder.layers.16.fc2": {
+      "num_params": 4194304,
+      "mean": -4.51e-06,
+      "std": 0.02246296,
+      "variance": 0.0005045848,
+      "kurtosis": 3.62712,
+      "excess_kurtosis": 0.62712,
+      "outlier_count_3sigma": 18602,
+      "outlier_fraction_3sigma": 0.00443506,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.13867188,
+      "range_sigma_ratio": 17.302787,
+      "scores": {
+        "kurtosis": 0.320161,
+        "outlier_fraction": 0.461405,
+        "range_sigma": 0.612386
+      },
+      "ranks": {
+        "kurtosis": 18,
+        "outlier_fraction": 26,
+        "range_sigma": 4
+      }
+    },
+    "model.decoder.layers.17.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -6.27e-06,
+      "std": 0.0354578,
+      "variance": 0.0012572557,
+      "kurtosis": 2.79745,
+      "excess_kurtosis": -0.20255,
+      "outlier_count_3sigma": 1669,
+      "outlier_fraction_3sigma": 0.00159168,
+      "max_abs": 0.12683105,
+      "min": -0.12683105,
+      "max": 0.12573242,
+      "range_sigma_ratio": 7.122931,
+      "scores": {
+        "kurtosis": 0.195847,
+        "outlier_fraction": 0.165592,
+        "range_sigma": 0.169345
+      },
+      "ranks": {
+        "kurtosis": 132,
+        "outlier_fraction": 120,
+        "range_sigma": 121
+      }
+    },
+    "model.decoder.layers.17.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -1.06e-05,
+      "std": 0.03074848,
+      "variance": 0.0009454692,
+      "kurtosis": 2.883281,
+      "excess_kurtosis": -0.116719,
+      "outlier_count_3sigma": 1521,
+      "outlier_fraction_3sigma": 0.00145054,
+      "max_abs": 0.12536621,
+      "min": -0.125,
+      "max": 0.12536621,
+      "range_sigma_ratio": 8.142392,
+      "scores": {
+        "kurtosis": 0.208707,
+        "outlier_fraction": 0.150908,
+        "range_sigma": 0.213713
+      },
+      "ranks": {
+        "kurtosis": 113,
+        "outlier_fraction": 131,
+        "range_sigma": 87
+      }
+    },
+    "model.decoder.layers.17.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -1.448e-05,
+      "std": 0.03646798,
+      "variance": 0.001329914,
+      "kurtosis": 2.794464,
+      "excess_kurtosis": -0.205536,
+      "outlier_count_3sigma": 1665,
+      "outlier_fraction_3sigma": 0.00158787,
+      "max_abs": 0.12646484,
+      "min": -0.1262207,
+      "max": 0.12646484,
+      "range_sigma_ratio": 6.928969,
+      "scores": {
+        "kurtosis": 0.195399,
+        "outlier_fraction": 0.165195,
+        "range_sigma": 0.160903
+      },
+      "ranks": {
+        "kurtosis": 133,
+        "outlier_fraction": 121,
+        "range_sigma": 132
+      }
+    },
+    "model.decoder.layers.17.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1.08e-05,
+      "std": 0.02846485,
+      "variance": 0.0008102477,
+      "kurtosis": 3.45377,
+      "excess_kurtosis": 0.45377,
+      "outlier_count_3sigma": 3988,
+      "outlier_fraction_3sigma": 0.00380325,
+      "max_abs": 0.16821289,
+      "min": -0.15905762,
+      "max": 0.16821289,
+      "range_sigma_ratio": 11.497356,
+      "scores": {
+        "kurtosis": 0.294187,
+        "outlier_fraction": 0.395674,
+        "range_sigma": 0.359726
+      },
+      "ranks": {
+        "kurtosis": 34,
+        "outlier_fraction": 45,
+        "range_sigma": 37
+      }
+    },
+    "model.decoder.layers.17.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00011762,
+      "std": 0.0298924,
+      "variance": 0.0008935558,
+      "kurtosis": 3.03013,
+      "excess_kurtosis": 0.03013,
+      "outlier_count_3sigma": 10100,
+      "outlier_fraction_3sigma": 0.00240803,
+      "max_abs": 0.12695312,
+      "min": -0.12658691,
+      "max": 0.12695312,
+      "range_sigma_ratio": 8.481755,
+      "scores": {
+        "kurtosis": 0.23071,
+        "outlier_fraction": 0.250521,
+        "range_sigma": 0.228483
+      },
+      "ranks": {
+        "kurtosis": 79,
+        "outlier_fraction": 77,
+        "range_sigma": 76
+      }
+    },
+    "model.decoder.layers.17.fc2": {
+      "num_params": 4194304,
+      "mean": -1.92e-06,
+      "std": 0.02215357,
+      "variance": 0.0004907807,
+      "kurtosis": 3.617888,
+      "excess_kurtosis": 0.617888,
+      "outlier_count_3sigma": 18681,
+      "outlier_fraction_3sigma": 0.0044539,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.14306641,
+      "range_sigma_ratio": 17.742802,
+      "scores": {
+        "kurtosis": 0.318777,
+        "outlier_fraction": 0.463365,
+        "range_sigma": 0.631536
+      },
+      "ranks": {
+        "kurtosis": 19,
+        "outlier_fraction": 24,
+        "range_sigma": 3
+      }
+    },
+    "model.decoder.layers.18.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 1.154e-05,
+      "std": 0.03562798,
+      "variance": 0.0012693532,
+      "kurtosis": 2.828687,
+      "excess_kurtosis": -0.171313,
+      "outlier_count_3sigma": 1764,
+      "outlier_fraction_3sigma": 0.00168228,
+      "max_abs": 0.12695312,
+      "min": -0.12695312,
+      "max": 0.12597656,
+      "range_sigma_ratio": 7.099186,
+      "scores": {
+        "kurtosis": 0.200527,
+        "outlier_fraction": 0.175017,
+        "range_sigma": 0.168311
+      },
+      "ranks": {
+        "kurtosis": 125,
+        "outlier_fraction": 111,
+        "range_sigma": 122
+      }
+    },
+    "model.decoder.layers.18.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -5.472e-05,
+      "std": 0.03101078,
+      "variance": 0.0009616684,
+      "kurtosis": 2.801896,
+      "excess_kurtosis": -0.198104,
+      "outlier_count_3sigma": 1221,
+      "outlier_fraction_3sigma": 0.00116444,
+      "max_abs": 0.125,
+      "min": -0.125,
+      "max": 0.12487793,
+      "range_sigma_ratio": 8.057777,
+      "scores": {
+        "kurtosis": 0.196513,
+        "outlier_fraction": 0.121143,
+        "range_sigma": 0.21003
+      },
+      "ranks": {
+        "kurtosis": 131,
+        "outlier_fraction": 141,
+        "range_sigma": 90
+      }
+    },
+    "model.decoder.layers.18.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -2.129e-05,
+      "std": 0.03685894,
+      "variance": 0.0013585815,
+      "kurtosis": 2.831994,
+      "excess_kurtosis": -0.168006,
+      "outlier_count_3sigma": 1841,
+      "outlier_fraction_3sigma": 0.00175571,
+      "max_abs": 0.12744141,
+      "min": -0.12695312,
+      "max": 0.12744141,
+      "range_sigma_ratio": 6.901841,
+      "scores": {
+        "kurtosis": 0.201023,
+        "outlier_fraction": 0.182657,
+        "range_sigma": 0.159722
+      },
+      "ranks": {
+        "kurtosis": 124,
+        "outlier_fraction": 108,
+        "range_sigma": 133
+      }
+    },
+    "model.decoder.layers.18.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -6.18e-06,
+      "std": 0.02826469,
+      "variance": 0.0007988928,
+      "kurtosis": 3.301726,
+      "excess_kurtosis": 0.301726,
+      "outlier_count_3sigma": 3275,
+      "outlier_fraction_3sigma": 0.00312328,
+      "max_abs": 0.15539551,
+      "min": -0.15539551,
+      "max": 0.14526367,
+      "range_sigma_ratio": 10.637271,
+      "scores": {
+        "kurtosis": 0.271405,
+        "outlier_fraction": 0.324933,
+        "range_sigma": 0.322294
+      },
+      "ranks": {
+        "kurtosis": 42,
+        "outlier_fraction": 56,
+        "range_sigma": 44
+      }
+    },
+    "model.decoder.layers.18.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00017187,
+      "std": 0.02968107,
+      "variance": 0.0008809661,
+      "kurtosis": 3.04685,
+      "excess_kurtosis": 0.04685,
+      "outlier_count_3sigma": 10258,
+      "outlier_fraction_3sigma": 0.0024457,
+      "max_abs": 0.12658691,
+      "min": -0.12561035,
+      "max": 0.12658691,
+      "range_sigma_ratio": 8.496905,
+      "scores": {
+        "kurtosis": 0.233216,
+        "outlier_fraction": 0.25444,
+        "range_sigma": 0.229142
+      },
+      "ranks": {
+        "kurtosis": 77,
+        "outlier_fraction": 76,
+        "range_sigma": 74
+      }
+    },
+    "model.decoder.layers.18.fc2": {
+      "num_params": 4194304,
+      "mean": 2.11e-06,
+      "std": 0.02186609,
+      "variance": 0.0004781261,
+      "kurtosis": 3.569542,
+      "excess_kurtosis": 0.569542,
+      "outlier_count_3sigma": 18629,
+      "outlier_fraction_3sigma": 0.0044415,
+      "max_abs": 0.18847656,
+      "min": -0.18847656,
+      "max": 0.1270752,
+      "range_sigma_ratio": 14.431098,
+      "scores": {
+        "kurtosis": 0.311534,
+        "outlier_fraction": 0.462075,
+        "range_sigma": 0.487406
+      },
+      "ranks": {
+        "kurtosis": 24,
+        "outlier_fraction": 25,
+        "range_sigma": 23
+      }
+    },
+    "model.decoder.layers.19.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -2.187e-05,
+      "std": 0.03612794,
+      "variance": 0.0013052283,
+      "kurtosis": 2.899227,
+      "excess_kurtosis": -0.100773,
+      "outlier_count_3sigma": 2266,
+      "outlier_fraction_3sigma": 0.00216103,
+      "max_abs": 0.12646484,
+      "min": -0.12646484,
+      "max": 0.12646484,
+      "range_sigma_ratio": 7.000943,
+      "scores": {
+        "kurtosis": 0.211097,
+        "outlier_fraction": 0.224824,
+        "range_sigma": 0.164036
+      },
+      "ranks": {
+        "kurtosis": 110,
+        "outlier_fraction": 95,
+        "range_sigma": 128
+      }
+    },
+    "model.decoder.layers.19.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -6.37e-05,
+      "std": 0.02876274,
+      "variance": 0.0008272955,
+      "kurtosis": 2.970593,
+      "excess_kurtosis": -0.029407,
+      "outlier_count_3sigma": 1794,
+      "outlier_fraction_3sigma": 0.00171089,
+      "max_abs": 0.12493896,
+      "min": -0.12487793,
+      "max": 0.12493896,
+      "range_sigma_ratio": 8.685433,
+      "scores": {
+        "kurtosis": 0.22179,
+        "outlier_fraction": 0.177994,
+        "range_sigma": 0.237347
+      },
+      "ranks": {
+        "kurtosis": 96,
+        "outlier_fraction": 110,
+        "range_sigma": 69
+      }
+    },
+    "model.decoder.layers.19.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 8.971e-05,
+      "std": 0.03721699,
+      "variance": 0.0013851043,
+      "kurtosis": 2.910152,
+      "excess_kurtosis": -0.089848,
+      "outlier_count_3sigma": 2386,
+      "outlier_fraction_3sigma": 0.00227547,
+      "max_abs": 0.12805176,
+      "min": -0.12805176,
+      "max": 0.12756348,
+      "range_sigma_ratio": 6.868241,
+      "scores": {
+        "kurtosis": 0.212733,
+        "outlier_fraction": 0.23673,
+        "range_sigma": 0.15826
+      },
+      "ranks": {
+        "kurtosis": 108,
+        "outlier_fraction": 91,
+        "range_sigma": 135
+      }
+    },
+    "model.decoder.layers.19.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -6e-08,
+      "std": 0.02539389,
+      "variance": 0.0006448498,
+      "kurtosis": 3.544838,
+      "excess_kurtosis": 0.544838,
+      "outlier_count_3sigma": 3495,
+      "outlier_fraction_3sigma": 0.00333309,
+      "max_abs": 0.14538574,
+      "min": -0.14306641,
+      "max": 0.14538574,
+      "range_sigma_ratio": 11.359114,
+      "scores": {
+        "kurtosis": 0.307832,
+        "outlier_fraction": 0.346761,
+        "range_sigma": 0.353709
+      },
+      "ranks": {
+        "kurtosis": 26,
+        "outlier_fraction": 52,
+        "range_sigma": 38
+      }
+    },
+    "model.decoder.layers.19.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00018159,
+      "std": 0.02942956,
+      "variance": 0.0008660992,
+      "kurtosis": 3.057622,
+      "excess_kurtosis": 0.057622,
+      "outlier_count_3sigma": 10634,
+      "outlier_fraction_3sigma": 0.00253534,
+      "max_abs": 0.12756348,
+      "min": -0.12658691,
+      "max": 0.12756348,
+      "range_sigma_ratio": 8.635888,
+      "scores": {
+        "kurtosis": 0.23483,
+        "outlier_fraction": 0.263766,
+        "range_sigma": 0.235191
+      },
+      "ranks": {
+        "kurtosis": 75,
+        "outlier_fraction": 70,
+        "range_sigma": 72
+      }
+    },
+    "model.decoder.layers.19.fc2": {
+      "num_params": 4194304,
+      "mean": 6.64e-06,
+      "std": 0.0218208,
+      "variance": 0.0004761475,
+      "kurtosis": 3.586619,
+      "excess_kurtosis": 0.586619,
+      "outlier_count_3sigma": 19419,
+      "outlier_fraction_3sigma": 0.00462985,
+      "max_abs": 0.17822266,
+      "min": -0.17822266,
+      "max": 0.12731934,
+      "range_sigma_ratio": 14.002325,
+      "scores": {
+        "kurtosis": 0.314092,
+        "outlier_fraction": 0.48167,
+        "range_sigma": 0.468745
+      },
+      "ranks": {
+        "kurtosis": 22,
+        "outlier_fraction": 22,
+        "range_sigma": 27
+      }
+    },
+    "model.decoder.layers.20.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": 4.825e-05,
+      "std": 0.03368017,
+      "variance": 0.001134354,
+      "kurtosis": 3.34141,
+      "excess_kurtosis": 0.34141,
+      "outlier_count_3sigma": 5507,
+      "outlier_fraction_3sigma": 0.00525188,
+      "max_abs": 0.13562012,
+      "min": -0.13330078,
+      "max": 0.13562012,
+      "range_sigma_ratio": 7.984547,
+      "scores": {
+        "kurtosis": 0.277351,
+        "outlier_fraction": 0.546383,
+        "range_sigma": 0.206843
+      },
+      "ranks": {
+        "kurtosis": 40,
+        "outlier_fraction": 15,
+        "range_sigma": 91
+      }
+    },
+    "model.decoder.layers.20.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 1.68e-06,
+      "std": 0.027591,
+      "variance": 0.0007612631,
+      "kurtosis": 3.057158,
+      "excess_kurtosis": 0.057158,
+      "outlier_count_3sigma": 2214,
+      "outlier_fraction_3sigma": 0.00211143,
+      "max_abs": 0.12493896,
+      "min": -0.12493896,
+      "max": 0.12457275,
+      "range_sigma_ratio": 9.043229,
+      "scores": {
+        "kurtosis": 0.23476,
+        "outlier_fraction": 0.219664,
+        "range_sigma": 0.252919
+      },
+      "ranks": {
+        "kurtosis": 76,
+        "outlier_fraction": 96,
+        "range_sigma": 61
+      }
+    },
+    "model.decoder.layers.20.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 1.2e-07,
+      "std": 0.0365684,
+      "variance": 0.0013372479,
+      "kurtosis": 3.092978,
+      "excess_kurtosis": 0.092978,
+      "outlier_count_3sigma": 3841,
+      "outlier_fraction_3sigma": 0.00366306,
+      "max_abs": 0.12792969,
+      "min": -0.12792969,
+      "max": 0.12780762,
+      "range_sigma_ratio": 6.993396,
+      "scores": {
+        "kurtosis": 0.240127,
+        "outlier_fraction": 0.381089,
+        "range_sigma": 0.163707
+      },
+      "ranks": {
+        "kurtosis": 69,
+        "outlier_fraction": 47,
+        "range_sigma": 129
+      }
+    },
+    "model.decoder.layers.20.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 8.32e-06,
+      "std": 0.02421634,
+      "variance": 0.0005864309,
+      "kurtosis": 3.636512,
+      "excess_kurtosis": 0.636512,
+      "outlier_count_3sigma": 4008,
+      "outlier_fraction_3sigma": 0.00382233,
+      "max_abs": 0.13342285,
+      "min": -0.13110352,
+      "max": 0.13342285,
+      "range_sigma_ratio": 10.923468,
+      "scores": {
+        "kurtosis": 0.321568,
+        "outlier_fraction": 0.397659,
+        "range_sigma": 0.334749
+      },
+      "ranks": {
+        "kurtosis": 16,
+        "outlier_fraction": 44,
+        "range_sigma": 41
+      }
+    },
+    "model.decoder.layers.20.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00018525,
+      "std": 0.02949222,
+      "variance": 0.000869791,
+      "kurtosis": 3.077382,
+      "excess_kurtosis": 0.077382,
+      "outlier_count_3sigma": 11497,
+      "outlier_fraction_3sigma": 0.0027411,
+      "max_abs": 0.12768555,
+      "min": -0.1270752,
+      "max": 0.12768555,
+      "range_sigma_ratio": 8.638236,
+      "scores": {
+        "kurtosis": 0.23779,
+        "outlier_fraction": 0.285172,
+        "range_sigma": 0.235293
+      },
+      "ranks": {
+        "kurtosis": 72,
+        "outlier_fraction": 62,
+        "range_sigma": 71
+      }
+    },
+    "model.decoder.layers.20.fc2": {
+      "num_params": 4194304,
+      "mean": 6.37e-06,
+      "std": 0.02251572,
+      "variance": 0.0005069575,
+      "kurtosis": 3.580601,
+      "excess_kurtosis": 0.580601,
+      "outlier_count_3sigma": 19757,
+      "outlier_fraction_3sigma": 0.00471044,
+      "max_abs": 0.23925781,
+      "min": -0.23925781,
+      "max": 0.12695312,
+      "range_sigma_ratio": 16.264681,
+      "scores": {
+        "kurtosis": 0.313191,
+        "outlier_fraction": 0.490054,
+        "range_sigma": 0.567206
+      },
+      "ranks": {
+        "kurtosis": 23,
+        "outlier_fraction": 21,
+        "range_sigma": 9
+      }
+    },
+    "model.decoder.layers.21.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -2.337e-05,
+      "std": 0.03330708,
+      "variance": 0.0011093616,
+      "kurtosis": 3.450013,
+      "excess_kurtosis": 0.450013,
+      "outlier_count_3sigma": 6166,
+      "outlier_fraction_3sigma": 0.00588036,
+      "max_abs": 0.14538574,
+      "min": -0.14538574,
+      "max": 0.14245605,
+      "range_sigma_ratio": 8.642061,
+      "scores": {
+        "kurtosis": 0.293624,
+        "outlier_fraction": 0.611768,
+        "range_sigma": 0.235459
+      },
+      "ranks": {
+        "kurtosis": 36,
+        "outlier_fraction": 10,
+        "range_sigma": 70
+      }
+    },
+    "model.decoder.layers.21.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -7.892e-05,
+      "std": 0.02743623,
+      "variance": 0.0007527467,
+      "kurtosis": 3.093433,
+      "excess_kurtosis": 0.093433,
+      "outlier_count_3sigma": 2456,
+      "outlier_fraction_3sigma": 0.00234222,
+      "max_abs": 0.125,
+      "min": -0.12487793,
+      "max": 0.125,
+      "range_sigma_ratio": 9.10759,
+      "scores": {
+        "kurtosis": 0.240195,
+        "outlier_fraction": 0.243675,
+        "range_sigma": 0.25572
+      },
+      "ranks": {
+        "kurtosis": 68,
+        "outlier_fraction": 82,
+        "range_sigma": 57
+      }
+    },
+    "model.decoder.layers.21.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -1.882e-05,
+      "std": 0.03786063,
+      "variance": 0.0014334271,
+      "kurtosis": 3.117241,
+      "excess_kurtosis": 0.117241,
+      "outlier_count_3sigma": 4634,
+      "outlier_fraction_3sigma": 0.00441933,
+      "max_abs": 0.13269043,
+      "min": -0.13098145,
+      "max": 0.13269043,
+      "range_sigma_ratio": 6.964276,
+      "scores": {
+        "kurtosis": 0.243763,
+        "outlier_fraction": 0.459768,
+        "range_sigma": 0.16244
+      },
+      "ranks": {
+        "kurtosis": 65,
+        "outlier_fraction": 27,
+        "range_sigma": 130
+      }
+    },
+    "model.decoder.layers.21.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": 1.76e-06,
+      "std": 0.02333903,
+      "variance": 0.0005447103,
+      "kurtosis": 3.671225,
+      "excess_kurtosis": 0.671225,
+      "outlier_count_3sigma": 3822,
+      "outlier_fraction_3sigma": 0.00364494,
+      "max_abs": 0.12939453,
+      "min": -0.12854004,
+      "max": 0.12939453,
+      "range_sigma_ratio": 11.051641,
+      "scores": {
+        "kurtosis": 0.326769,
+        "outlier_fraction": 0.379204,
+        "range_sigma": 0.340327
+      },
+      "ranks": {
+        "kurtosis": 15,
+        "outlier_fraction": 49,
+        "range_sigma": 40
+      }
+    },
+    "model.decoder.layers.21.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00018145,
+      "std": 0.02965783,
+      "variance": 0.0008795869,
+      "kurtosis": 3.145468,
+      "excess_kurtosis": 0.145468,
+      "outlier_count_3sigma": 13288,
+      "outlier_fraction_3sigma": 0.00316811,
+      "max_abs": 0.12988281,
+      "min": -0.12988281,
+      "max": 0.12890625,
+      "range_sigma_ratio": 8.725826,
+      "scores": {
+        "kurtosis": 0.247992,
+        "outlier_fraction": 0.329597,
+        "range_sigma": 0.239105
+      },
+      "ranks": {
+        "kurtosis": 59,
+        "outlier_fraction": 55,
+        "range_sigma": 67
+      }
+    },
+    "model.decoder.layers.21.fc2": {
+      "num_params": 4194304,
+      "mean": 3.6e-07,
+      "std": 0.0231137,
+      "variance": 0.0005342431,
+      "kurtosis": 3.79253,
+      "excess_kurtosis": 0.79253,
+      "outlier_count_3sigma": 23710,
+      "outlier_fraction_3sigma": 0.0056529,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.13220215,
+      "range_sigma_ratio": 16.535741,
+      "scores": {
+        "kurtosis": 0.344945,
+        "outlier_fraction": 0.588104,
+        "range_sigma": 0.579003
+      },
+      "ranks": {
+        "kurtosis": 11,
+        "outlier_fraction": 11,
+        "range_sigma": 7
+      }
+    },
+    "model.decoder.layers.22.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -8.57e-06,
+      "std": 0.03486766,
+      "variance": 0.0012157535,
+      "kurtosis": 3.739606,
+      "excess_kurtosis": 0.739606,
+      "outlier_count_3sigma": 9645,
+      "outlier_fraction_3sigma": 0.00919819,
+      "max_abs": 0.14086914,
+      "min": -0.14086914,
+      "max": 0.14013672,
+      "range_sigma_ratio": 8.059212,
+      "scores": {
+        "kurtosis": 0.337015,
+        "outlier_fraction": 0.956941,
+        "range_sigma": 0.210093
+      },
+      "ranks": {
+        "kurtosis": 14,
+        "outlier_fraction": 3,
+        "range_sigma": 89
+      }
+    },
+    "model.decoder.layers.22.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": -2.981e-05,
+      "std": 0.02806954,
+      "variance": 0.0007878988,
+      "kurtosis": 3.064854,
+      "excess_kurtosis": 0.064854,
+      "outlier_count_3sigma": 2620,
+      "outlier_fraction_3sigma": 0.00249863,
+      "max_abs": 0.12573242,
+      "min": -0.125,
+      "max": 0.12573242,
+      "range_sigma_ratio": 8.932546,
+      "scores": {
+        "kurtosis": 0.235913,
+        "outlier_fraction": 0.259947,
+        "range_sigma": 0.248102
+      },
+      "ranks": {
+        "kurtosis": 73,
+        "outlier_fraction": 73,
+        "range_sigma": 63
+      }
+    },
+    "model.decoder.layers.22.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": -2.958e-05,
+      "std": 0.04207922,
+      "variance": 0.0017706609,
+      "kurtosis": 2.909028,
+      "excess_kurtosis": -0.090972,
+      "outlier_count_3sigma": 781,
+      "outlier_fraction_3sigma": 0.00074482,
+      "max_abs": 0.13378906,
+      "min": -0.13378906,
+      "max": 0.13305664,
+      "range_sigma_ratio": 6.341508,
+      "scores": {
+        "kurtosis": 0.212565,
+        "outlier_fraction": 0.077488,
+        "range_sigma": 0.135336
+      },
+      "ranks": {
+        "kurtosis": 109,
+        "outlier_fraction": 142,
+        "range_sigma": 143
+      }
+    },
+    "model.decoder.layers.22.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.09e-06,
+      "std": 0.02578246,
+      "variance": 0.000664735,
+      "kurtosis": 3.632639,
+      "excess_kurtosis": 0.632639,
+      "outlier_count_3sigma": 5458,
+      "outlier_fraction_3sigma": 0.00520515,
+      "max_abs": 0.13024902,
+      "min": -0.12927246,
+      "max": 0.13024902,
+      "range_sigma_ratio": 10.065817,
+      "scores": {
+        "kurtosis": 0.320988,
+        "outlier_fraction": 0.541522,
+        "range_sigma": 0.297423
+      },
+      "ranks": {
+        "kurtosis": 17,
+        "outlier_fraction": 16,
+        "range_sigma": 46
+      }
+    },
+    "model.decoder.layers.22.fc1": {
+      "num_params": 4194304,
+      "mean": -0.00015675,
+      "std": 0.02817571,
+      "variance": 0.0007938705,
+      "kurtosis": 3.20654,
+      "excess_kurtosis": 0.20654,
+      "outlier_count_3sigma": 14701,
+      "outlier_fraction_3sigma": 0.00350499,
+      "max_abs": 0.12780762,
+      "min": -0.12768555,
+      "max": 0.12780762,
+      "range_sigma_ratio": 9.067853,
+      "scores": {
+        "kurtosis": 0.257143,
+        "outlier_fraction": 0.364644,
+        "range_sigma": 0.25399
+      },
+      "ranks": {
+        "kurtosis": 48,
+        "outlier_fraction": 50,
+        "range_sigma": 59
+      }
+    },
+    "model.decoder.layers.22.fc2": {
+      "num_params": 4194304,
+      "mean": 1.74e-06,
+      "std": 0.02136254,
+      "variance": 0.0004563582,
+      "kurtosis": 3.820342,
+      "excess_kurtosis": 0.820342,
+      "outlier_count_3sigma": 27024,
+      "outlier_fraction_3sigma": 0.00644302,
+      "max_abs": 0.12878418,
+      "min": -0.12878418,
+      "max": 0.12792969,
+      "range_sigma_ratio": 12.01701,
+      "scores": {
+        "kurtosis": 0.349112,
+        "outlier_fraction": 0.670304,
+        "range_sigma": 0.382342
+      },
+      "ranks": {
+        "kurtosis": 9,
+        "outlier_fraction": 6,
+        "range_sigma": 36
+      }
+    },
+    "model.decoder.layers.23.self_attn.k_proj": {
+      "num_params": 1048576,
+      "mean": -1.63e-05,
+      "std": 0.03467921,
+      "variance": 0.0012026478,
+      "kurtosis": 3.141575,
+      "excess_kurtosis": 0.141575,
+      "outlier_count_3sigma": 4430,
+      "outlier_fraction_3sigma": 0.00422478,
+      "max_abs": 0.13037109,
+      "min": -0.13037109,
+      "max": 0.12939453,
+      "range_sigma_ratio": 7.490529,
+      "scores": {
+        "kurtosis": 0.247409,
+        "outlier_fraction": 0.439528,
+        "range_sigma": 0.185343
+      },
+      "ranks": {
+        "kurtosis": 60,
+        "outlier_fraction": 32,
+        "range_sigma": 108
+      }
+    },
+    "model.decoder.layers.23.self_attn.v_proj": {
+      "num_params": 1048576,
+      "mean": 6.273e-05,
+      "std": 0.03252495,
+      "variance": 0.0010578722,
+      "kurtosis": 2.943604,
+      "excess_kurtosis": -0.056396,
+      "outlier_count_3sigma": 2404,
+      "outlier_fraction_3sigma": 0.00229263,
+      "max_abs": 0.12670898,
+      "min": -0.12561035,
+      "max": 0.12670898,
+      "range_sigma_ratio": 7.757717,
+      "scores": {
+        "kurtosis": 0.217746,
+        "outlier_fraction": 0.238515,
+        "range_sigma": 0.196971
+      },
+      "ranks": {
+        "kurtosis": 98,
+        "outlier_fraction": 87,
+        "range_sigma": 101
+      }
+    },
+    "model.decoder.layers.23.self_attn.q_proj": {
+      "num_params": 1048576,
+      "mean": 2.096e-05,
+      "std": 0.03694722,
+      "variance": 0.001365097,
+      "kurtosis": 2.933871,
+      "excess_kurtosis": -0.066129,
+      "outlier_count_3sigma": 2633,
+      "outlier_fraction_3sigma": 0.00251102,
+      "max_abs": 0.13378906,
+      "min": -0.13366699,
+      "max": 0.13378906,
+      "range_sigma_ratio": 7.238868,
+      "scores": {
+        "kurtosis": 0.216287,
+        "outlier_fraction": 0.261236,
+        "range_sigma": 0.17439
+      },
+      "ranks": {
+        "kurtosis": 102,
+        "outlier_fraction": 72,
+        "range_sigma": 117
+      }
+    },
+    "model.decoder.layers.23.self_attn.out_proj": {
+      "num_params": 1048576,
+      "mean": -1.078e-05,
+      "std": 0.03340258,
+      "variance": 0.0011157322,
+      "kurtosis": 3.454723,
+      "excess_kurtosis": 0.454723,
+      "outlier_count_3sigma": 5732,
+      "outlier_fraction_3sigma": 0.00546646,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.25,
+      "range_sigma_ratio": 14.968905,
+      "scores": {
+        "kurtosis": 0.29433,
+        "outlier_fraction": 0.568707,
+        "range_sigma": 0.510812
+      },
+      "ranks": {
+        "kurtosis": 33,
+        "outlier_fraction": 13,
+        "range_sigma": 16
+      }
+    },
+    "model.decoder.layers.23.fc1": {
+      "num_params": 4194304,
+      "mean": 8.4e-05,
+      "std": 0.02669031,
+      "variance": 0.0007123729,
+      "kurtosis": 3.470463,
+      "excess_kurtosis": 0.470463,
+      "outlier_count_3sigma": 19249,
+      "outlier_fraction_3sigma": 0.00458932,
+      "max_abs": 0.21459961,
+      "min": -0.21459961,
+      "max": 0.21069336,
+      "range_sigma_ratio": 15.934356,
+      "scores": {
+        "kurtosis": 0.296688,
+        "outlier_fraction": 0.477453,
+        "range_sigma": 0.55283
+      },
+      "ranks": {
+        "kurtosis": 31,
+        "outlier_fraction": 23,
+        "range_sigma": 13
+      }
+    },
+    "model.decoder.layers.23.fc2": {
+      "num_params": 4194304,
+      "mean": 1.024e-05,
+      "std": 0.01907736,
+      "variance": 0.0003639457,
+      "kurtosis": 4.594418,
+      "excess_kurtosis": 1.594418,
+      "outlier_count_3sigma": 39565,
+      "outlier_fraction_3sigma": 0.00943303,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.25,
+      "range_sigma_ratio": 26.209076,
+      "scores": {
+        "kurtosis": 0.465096,
+        "outlier_fraction": 0.981372,
+        "range_sigma": 1.0
+      },
+      "ranks": {
+        "kurtosis": 2,
+        "outlier_fraction": 2,
+        "range_sigma": 1
+      }
+    },
+    "lm_head": {
+      "num_params": 25739264,
+      "mean": -0.00120777,
+      "std": 0.05119911,
+      "variance": 0.0026213487,
+      "kurtosis": 2.91924,
+      "excess_kurtosis": -0.08076,
+      "outlier_count_3sigma": 10300,
+      "outlier_fraction_3sigma": 0.00040017,
+      "max_abs": 0.25,
+      "min": -0.25,
+      "max": 0.23718262,
+      "range_sigma_ratio": 9.515451,
+      "scores": {
+        "kurtosis": 0.214095,
+        "outlier_fraction": 0.041632,
+        "range_sigma": 0.27347
+      },
+      "ranks": {
+        "kurtosis": 105,
+        "outlier_fraction": 143,
+        "range_sigma": 50
+      }
+    }
+  }
+}
