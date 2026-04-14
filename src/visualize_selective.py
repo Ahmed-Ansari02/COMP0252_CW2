@@ -1,18 +1,20 @@
 """
 Visualization for Selective Layer-Level Outlier Protection
 
-Generates four key figures:
-  1. Layer sensitivity heatmap (per-layer stats across metrics)
-  2. Perplexity vs top-k curve (per scoring method)
-  3. Perplexity vs model size Pareto plot
-  4. Scoring method comparison (which metric best identifies critical layers)
+Auto-discovers all model results and profiles under results/ and generates
+per-model figures into figures/{MODEL}/ sub-directories.
 
-Also generates profile distribution plots (histograms of per-layer statistics).
+Generates up to five figures per model:
+  1. Layer sensitivity heatmap (per-layer stats across metrics)
+  2. Profile distribution histograms (per-layer statistic distributions)
+  3. Perplexity vs top-k curve (per scoring method)
+  4. Perplexity vs model size Pareto plot
+  5. Scoring method comparison (which metric best identifies critical layers)
 
 Usage:
-    python -m src.visualize_selective                                    # defaults
-    python -m src.visualize_selective --profile results/opt-125m_profile.json
-    python -m src.visualize_selective --results results/selective_results.json
+    python -m src.visualize_selective                          # auto-discover all
+    python -m src.visualize_selective --results_dir results    # custom results dir
+    python -m src.visualize_selective --figures_dir figures    # custom output dir
 """
 
 import argparse
@@ -357,63 +359,86 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 def main():
     parser = argparse.ArgumentParser(
         description="Visualize selective outlier protection results")
-    parser.add_argument("--profile", type=str, default=None,
-                        help="Path to profile JSON (for heatmap / distribution plots)")
-    parser.add_argument("--results", type=str,
-                        default="results/selective_results.json",
-                        help="Path to selective results JSON")
-    parser.add_argument("--model", type=str, default="facebook/opt-125m",
-                        help="Model to plot for (used when results contain multiple)")
+    parser.add_argument("--results_dir", type=str, default="results",
+                        help="Directory containing result and profile JSONs")
     parser.add_argument("--figures_dir", type=str, default="figures",
-                        help="Directory to save figures")
+                        help="Root directory to save figures (sub-dirs per model)")
     args = parser.parse_args()
 
     base_dir = os.path.join(os.path.dirname(__file__), "..")
-    figures_dir = os.path.join(base_dir, args.figures_dir)
+    results_dir = os.path.join(base_dir, args.results_dir)
+    figures_root = os.path.join(base_dir, args.figures_dir)
 
-    # Profile plots
-    if args.profile:
-        profile_path = args.profile
-        if not os.path.isabs(profile_path):
-            profile_path = os.path.join(base_dir, profile_path)
-        if os.path.exists(profile_path):
-            with open(profile_path) as f:
-                profile = json.load(f)
-            plot_layer_heatmap(profile, save_dir=figures_dir)
-            plot_profile_distributions(profile, save_dir=figures_dir)
+    if not os.path.isdir(results_dir):
+        print(f"Results directory not found: {results_dir}")
+        return
+
+    # ── 1. Discover all result JSON files and collect model names ────────
+    all_results = {}  # model_name -> result entries
+    result_files = [f for f in os.listdir(results_dir)
+                    if f.endswith(".json") and not f.endswith("_profile.json")]
+
+    for fname in result_files:
+        path = os.path.join(results_dir, fname)
+        with open(path) as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            # Each top-level key is expected to be a model name
+            for model_name, entries in data.items():
+                if isinstance(entries, dict):
+                    all_results.setdefault(model_name, {}).update(entries)
+
+    # ── 2. Discover all profile JSONs ───────────────────────────────────
+    all_profiles = {}  # model_short -> profile dict
+    profile_files = [f for f in os.listdir(results_dir)
+                     if f.endswith("_profile.json")]
+
+    for fname in profile_files:
+        path = os.path.join(results_dir, fname)
+        with open(path) as f:
+            profile = json.load(f)
+        model_short = profile.get("model_name", fname.replace("_profile.json", "")).split("/")[-1]
+        all_profiles[model_short] = profile
+
+    # ── 3. Build the union of model short-names to process ──────────────
+    model_shorts_from_results = {m.split("/")[-1]: m for m in all_results}
+    all_model_shorts = set(model_shorts_from_results.keys()) | set(all_profiles.keys())
+
+    if not all_model_shorts:
+        print("No models found in results directory.")
+        return
+
+    print(f"Found {len(all_model_shorts)} model(s): {', '.join(sorted(all_model_shorts))}")
+
+    # ── 4. Iterate over every model and generate figures ────────────────
+    for model_short in sorted(all_model_shorts):
+        model_fig_dir = os.path.join(figures_root, model_short)
+        os.makedirs(model_fig_dir, exist_ok=True)
+        print(f"\n{'='*60}")
+        print(f"  Generating figures for: {model_short}")
+        print(f"  Saving to: {model_fig_dir}")
+        print(f"{'='*60}")
+
+        # Profile plots (heatmap + distributions)
+        if model_short in all_profiles:
+            profile = all_profiles[model_short]
+            plot_layer_heatmap(profile, save_dir=model_fig_dir)
+            plot_profile_distributions(profile, save_dir=model_fig_dir)
         else:
-            print(f"Profile not found: {profile_path}")
-    else:
-        # Try to find profile for the requested model
-        model_short = args.model.split("/")[-1]
-        profile_path = os.path.join(base_dir, "results", f"{model_short}_profile.json")
-        if os.path.exists(profile_path):
-            with open(profile_path) as f:
-                profile = json.load(f)
-            plot_layer_heatmap(profile, save_dir=figures_dir)
-            plot_profile_distributions(profile, save_dir=figures_dir)
+            print(f"  [skip] No profile found for {model_short}")
+
+        # Results plots (ppl-vs-topk, pareto, scoring comparison)
+        full_model_name = model_shorts_from_results.get(model_short)
+        if full_model_name and full_model_name in all_results:
+            # Wrap back into the format the plot functions expect
+            results_wrapped = {full_model_name: all_results[full_model_name]}
+            plot_ppl_vs_topk(results_wrapped, full_model_name, save_dir=model_fig_dir)
+            plot_pareto(results_wrapped, full_model_name, save_dir=model_fig_dir)
+            plot_scoring_comparison(results_wrapped, full_model_name, save_dir=model_fig_dir)
         else:
-            print(f"No profile found at {profile_path}. Run profiler first or pass --profile.")
+            print(f"  [skip] No selective results found for {model_short}")
 
-    # Results plots
-    results_path = args.results
-    if not os.path.isabs(results_path):
-        results_path = os.path.join(base_dir, results_path)
-
-    if os.path.exists(results_path):
-        with open(results_path) as f:
-            results = json.load(f)
-
-        for model_name in results.keys():
-            if args.model and model_name != args.model:
-                continue
-            plot_ppl_vs_topk(results, model_name, save_dir=figures_dir)
-            plot_pareto(results, model_name, save_dir=figures_dir)
-            plot_scoring_comparison(results, model_name, save_dir=figures_dir)
-    else:
-        print(f"No results found at {results_path}. Run experiments first.")
-
-    print(f"\nAll figures saved to {figures_dir}/")
+    print(f"\nAll figures saved under {figures_root}/")
 
 
 if __name__ == "__main__":
