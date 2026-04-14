@@ -57,6 +57,7 @@ def load_results(path):
 
 
 def save_results(results, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         json.dump(results, f, indent=2)
 
@@ -70,7 +71,7 @@ def main():
                         help="Run hybrid+outlier protection sweep from 1%% to 10%%")
     parser.add_argument("--gamma", type=float, default=0.15,
                         help="Gamma for outlier sweep (default 0.15)")
-    parser.add_argument("--output", type=str, default="results.json")
+    parser.add_argument("--output", type=str, default="results_quantization_methods/results.json")
     args = parser.parse_args()
 
     results = load_results(args.output)

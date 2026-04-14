@@ -15,13 +15,14 @@ Usage:
 import argparse
 import json
 import os
+import time
 import torch
 from transformers import OPTForCausalLM, AutoTokenizer
 from datasets import load_dataset
 
 from cdf_grid import (build_uniform_grid, build_cdf_grid, build_hybrid_grid,
                        quantize_to_grid, quantize_row_with_outlier_protection,
-                       quantize_standard_rtn_row)
+                       quantize_standard_rtn_row, quantize_matrix_batched)
 
 
 def load_model(model_name: str):
@@ -57,6 +58,8 @@ def tokenize_dataset(tokenizer, dataset_name="wikitext",
 def quantize_model_rtn(model_name: str, bits: int, grid_type: str = "uniform",
                         gamma: float = 0.15, protect_outliers: bool = False,
                         outlier_percentile: float = 1.0,
+                        pin_endpoints: bool = True,
+                        decoder_only: bool = False,
                         model=None, original_weights=None):
     """
     Quantize all linear layers of a model using round-to-nearest
@@ -92,36 +95,42 @@ def quantize_model_rtn(model_name: str, bits: int, grid_type: str = "uniform",
     total_outlier_weights = 0
     total_unquantized_weights = 0  # biases, embeddings, layernorms
 
+    torch.cuda.synchronize() if torch.cuda.is_available() else None
+    quant_start = time.time()
+
     for name, module in model.named_modules():
         if isinstance(module, torch.nn.Linear):
-            W = module.weight.data.clone()
+            if decoder_only and not name.startswith("model.decoder.layers."):
+                continue
 
-            for row_idx in range(W.shape[0]):
-                row = W[row_idx]
+            W = module.weight.data
 
-                if protect_outliers:
-                    quantized_row, num_outliers = quantize_row_with_outlier_protection(
-                        row, num_levels, grid_type=grid_type,
-                        gamma=gamma, outlier_percentile=outlier_percentile
-                    )
-                    W[row_idx] = quantized_row
-                    total_outlier_weights += num_outliers
-                    total_quantized_weights += row.numel() - num_outliers
-                elif grid_type == "uniform":
-                    W[row_idx] = quantize_standard_rtn_row(row, bits)
-                    total_quantized_weights += row.numel()
-                else:
-                    row_f32 = row.float()
-                    if grid_type == "cdf":
-                        grid = build_cdf_grid(row_f32, num_levels)
-                    elif grid_type == "hybrid":
-                        grid = build_hybrid_grid(row_f32, num_levels, gamma)
-                    else:
-                        raise ValueError(f"Unknown grid_type: {grid_type}")
-                    W[row_idx] = quantize_to_grid(row_f32, grid).to(W.dtype)
-                    total_quantized_weights += row.numel()
+            if grid_type == "uniform" and not protect_outliers:
+                # Vectorized uniform RTN for the whole matrix
+                W_f32 = W.float()
+                maxq = 2 ** bits - 1
+                xmin = W_f32.min(dim=1, keepdim=True).values
+                xmax = W_f32.max(dim=1, keepdim=True).values
+                scale = (xmax - xmin) / maxq
+                scale[scale == 0] = 1.0
+                zero = torch.round(-xmin / scale)
+                q = torch.clamp(torch.round(W_f32 / scale) + zero, 0, maxq)
+                W = (scale * (q - zero)).to(W.dtype)
+                total_quantized_weights += W.numel()
+            else:
+                # Batched CDF/hybrid/uniform with optional outlier protection
+                W, num_outliers = quantize_matrix_batched(
+                    W, num_levels, grid_type=grid_type, gamma=gamma,
+                    pin_endpoints=pin_endpoints,
+                    protect_outliers=protect_outliers,
+                    outlier_percentile=outlier_percentile)
+                total_outlier_weights += num_outliers
+                total_quantized_weights += W.numel() - num_outliers
 
             module.weight.data = W
+
+    torch.cuda.synchronize() if torch.cuda.is_available() else None
+    quant_time = time.time() - quant_start
 
     # Count unquantized params (biases, embeddings, layernorms, etc.)
     total_params = sum(p.numel() for p in model.parameters())
@@ -142,11 +151,13 @@ def quantize_model_rtn(model_name: str, bits: int, grid_type: str = "uniform",
         "effective_bits_per_param": round(effective_avg_bits, 3),
         "effective_size_mb": round(effective_size_mb, 2),
         "fp16_size_mb": round(total_params * 16 / 8 / 1024**2, 2),
+        "quantization_time_s": round(quant_time, 3),
     }
 
     print(f"  Model size: {size_stats['effective_size_mb']} MB "
           f"(FP16: {size_stats['fp16_size_mb']} MB, "
           f"avg {size_stats['effective_bits_per_param']} bits/param)")
+    print(f"  Quantization time: {quant_time:.3f}s")
 
     return model, size_stats
 
@@ -183,13 +194,19 @@ def evaluate_perplexity(model, tokenizer=None, input_ids=None,
 
 
 def make_key(grid_type: str, bits: int, gamma: float,
-              protect_outliers: bool, outlier_percentile: float) -> str:
+              protect_outliers: bool, outlier_percentile: float,
+              pin_endpoints: bool = True,
+              decoder_only: bool = False) -> str:
     if grid_type == "hybrid":
         base = f"hybrid_gamma{gamma}_{bits}bit_rtn"
     else:
         base = f"{grid_type}_{bits}bit_rtn"
     if protect_outliers:
         base += f"_op{outlier_percentile}"
+    if not pin_endpoints:
+        base += "_nopin"
+    if decoder_only:
+        base += "_deconly"
     return base
 
 
@@ -197,6 +214,8 @@ def run_single_experiment(model_name: str, bits: int, grid_type: str,
                            gamma: float, tokenizer=None,
                            protect_outliers: bool = False,
                            outlier_percentile: float = 1.0,
+                           pin_endpoints: bool = True,
+                           decoder_only: bool = False,
                            model=None, original_weights=None,
                            input_ids=None):
     """Run a single quantization + evaluation experiment.
@@ -208,6 +227,8 @@ def run_single_experiment(model_name: str, bits: int, grid_type: str,
     model, size_stats = quantize_model_rtn(
         model_name, bits, grid_type, gamma,
         protect_outliers, outlier_percentile,
+        pin_endpoints=pin_endpoints,
+        decoder_only=decoder_only,
         model=model, original_weights=original_weights)
     ppl = evaluate_perplexity(model, tokenizer=tokenizer, input_ids=input_ids)
     if not cached:
@@ -231,8 +252,12 @@ def main():
                         help="Keep outlier weights at FP16 (LLM.int8()-style)")
     parser.add_argument("--outlier_percentile", type=float, default=1.0,
                         help="Percentage of weights at each tail to keep in FP16 (default 1.0%%)")
-    parser.add_argument("--output", type=str, default="results.json",
+    parser.add_argument("--output", type=str, default="results_quantization_methods/results.json",
                         help="Path to save/append results JSON")
+    parser.add_argument("--no_pin_endpoints", action="store_true",
+                        help="Don't pin CDF grid endpoints to min/max (pure quantile grid)")
+    parser.add_argument("--decoder_only", action="store_true",
+                        help="Only quantize decoder layer linears (skip lm_head, matching GPTQ paper)")
     parser.add_argument("--fp16_only", action="store_true",
                         help="Only run FP16 baseline (no quantization)")
     args = parser.parse_args()
@@ -258,19 +283,25 @@ def main():
         results[args.model]["fp16"] = ppl
         print(f"  FP16 perplexity: {ppl:.2f}")
     else:
+        pin_endpoints = not args.no_pin_endpoints
         key = make_key(args.grid_type, args.bits, args.gamma,
-                       args.protect_outliers, args.outlier_percentile)
+                       args.protect_outliers, args.outlier_percentile,
+                       pin_endpoints=pin_endpoints,
+                       decoder_only=args.decoder_only)
 
         print(f"\n[{key}] {args.model}")
         ppl, size_stats = run_single_experiment(args.model, args.bits, args.grid_type,
                                                 args.gamma, tokenizer,
-                                                args.protect_outliers, args.outlier_percentile)
+                                                args.protect_outliers, args.outlier_percentile,
+                                                pin_endpoints=pin_endpoints,
+                                                decoder_only=args.decoder_only)
         results[args.model][key] = {
             "perplexity": ppl,
             "size": size_stats,
         }
         print(f"  Perplexity: {ppl:.2f}")
 
+    os.makedirs(os.path.dirname(args.output), exist_ok=True)
     with open(args.output, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nResults saved to {args.output}")

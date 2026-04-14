@@ -1,0 +1,13 @@
+{
+  "facebook/opt-125m": {
+    "fp16": 27.6558837890625,
+    "hybrid_gamma0.15_4bit_all": 44.664363861083984,
+    "hybrid_gamma0.15_4bit_early": 33.62486267089844,
+    "hybrid_gamma0.15_4bit_middle": 29.864830017089844,
+    "hybrid_gamma0.15_4bit_late": 29.744220733642578,
+    "hybrid_gamma0.15_3bit_all": 667.99365234375,
+    "hybrid_gamma0.15_4bit_early_bg3bit": 157.02073669433594,
+    "hybrid_gamma0.15_4bit_middle_bg3bit": 264.02545166015625,
+    "hybrid_gamma0.15_4bit_late_bg3bit": 384.73553466796875
+  }
+}

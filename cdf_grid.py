@@ -6,7 +6,8 @@ Implements uniform, CDF, and hybrid quantization grids.
 import torch
 
 
-def build_cdf_grid(weight_row: torch.Tensor, num_levels: int) -> torch.Tensor:
+def build_cdf_grid(weight_row: torch.Tensor, num_levels: int,
+                    pin_endpoints: bool = True) -> torch.Tensor:
     """
     Build a non-uniform quantization grid based on the empirical CDF
     of a weight row (or group of weights).
@@ -18,6 +19,9 @@ def build_cdf_grid(weight_row: torch.Tensor, num_levels: int) -> torch.Tensor:
     Args:
         weight_row: 1D tensor of weight values (one row or one group)
         num_levels: number of quantization levels (e.g., 16 for 4-bit)
+        pin_endpoints: if True, force grid endpoints to cover the full
+                       weight range (min/max). If False, keep pure quantile
+                       positions, concentrating all levels in the high-density region.
 
     Returns:
         grid: 1D tensor of `num_levels` quantization values
@@ -43,9 +47,10 @@ def build_cdf_grid(weight_row: torch.Tensor, num_levels: int) -> torch.Tensor:
 
     grid = sorted_weights[indices].clone()
 
-    # Ensure grid endpoints cover the full range
-    grid[0] = sorted_weights[0]
-    grid[-1] = sorted_weights[-1]
+    if pin_endpoints:
+        # Ensure grid endpoints cover the full range
+        grid[0] = sorted_weights[0]
+        grid[-1] = sorted_weights[-1]
 
     return grid
 
@@ -62,7 +67,8 @@ def build_uniform_grid(weight_row: torch.Tensor, num_levels: int) -> torch.Tenso
 
 def build_hybrid_grid(weight_row: torch.Tensor,
                        num_levels: int,
-                       gamma: float = 0.15) -> torch.Tensor:
+                       gamma: float = 0.15,
+                       pin_endpoints: bool = True) -> torch.Tensor:
     """
     Hybrid grid: mix CDF-based levels with uniform levels.
 
@@ -79,7 +85,7 @@ def build_hybrid_grid(weight_row: torch.Tensor,
     Returns:
         grid: 1D tensor of `num_levels` quantization values
     """
-    cdf_grid = build_cdf_grid(weight_row, num_levels)
+    cdf_grid = build_cdf_grid(weight_row, num_levels, pin_endpoints=pin_endpoints)
     uniform_grid = build_uniform_grid(weight_row, num_levels)
 
     hybrid_grid = (1 - gamma) * cdf_grid + gamma * uniform_grid
@@ -196,6 +202,223 @@ def quantize_standard_rtn_row(row: torch.Tensor, bits: int) -> torch.Tensor:
 
     q = torch.clamp(torch.round(row_f32 / scale) + zero, 0, maxq)
     return (scale * (q - zero)).to(row.dtype)
+
+
+def build_cdf_grids_batched(W: torch.Tensor, num_levels: int,
+                             pin_endpoints: bool = True) -> torch.Tensor:
+    """
+    Build per-row CDF grids for an entire weight matrix at once.
+
+    Args:
+        W: 2D tensor (nrows, ncols) of weight values
+        num_levels: number of quantization levels
+
+    Returns:
+        grids: (nrows, num_levels) tensor of grid values per row
+    """
+    W_f32 = W.float()
+    sorted_W = torch.sort(W_f32, dim=1).values  # (nrows, ncols)
+    n = sorted_W.shape[1]
+
+    quantile_positions = torch.linspace(
+        0.5 / num_levels, 1.0 - 0.5 / num_levels,
+        num_levels, device=W.device)
+    indices = (quantile_positions * (n - 1)).long().clamp(0, n - 1)
+
+    grids = sorted_W[:, indices]  # (nrows, num_levels)
+
+    if pin_endpoints:
+        grids[:, 0] = sorted_W[:, 0]
+        grids[:, -1] = sorted_W[:, -1]
+
+    return grids
+
+
+def build_uniform_grids_batched(W: torch.Tensor, num_levels: int) -> torch.Tensor:
+    """
+    Build per-row uniform grids for an entire weight matrix at once.
+
+    Args:
+        W: 2D tensor (nrows, ncols)
+        num_levels: number of quantization levels
+
+    Returns:
+        grids: (nrows, num_levels) tensor
+    """
+    W_f32 = W.float()
+    wmin = W_f32.min(dim=1, keepdim=True).values  # (nrows, 1)
+    wmax = W_f32.max(dim=1, keepdim=True).values  # (nrows, 1)
+    # linspace per row: min + (max-min) * t, t in [0, 1]
+    t = torch.linspace(0, 1, num_levels, device=W.device).unsqueeze(0)  # (1, num_levels)
+    grids = wmin + (wmax - wmin) * t  # (nrows, num_levels)
+    return grids
+
+
+def build_hybrid_grids_batched(W: torch.Tensor, num_levels: int,
+                                gamma: float = 0.15,
+                                pin_endpoints: bool = True) -> torch.Tensor:
+    """
+    Build per-row hybrid grids for an entire weight matrix at once.
+    Computes uniform levels inline from min/max — no separate grid build.
+
+    Args:
+        W: 2D tensor (nrows, ncols)
+        num_levels: number of quantization levels
+        gamma: mixing coefficient
+        pin_endpoints: pin CDF endpoints to min/max
+
+    Returns:
+        grids: (nrows, num_levels) tensor
+    """
+    cdf_grids = build_cdf_grids_batched(W, num_levels, pin_endpoints=pin_endpoints)
+
+    # Uniform levels inline: min + (max - min) * t for t in [0, 1]
+    W_f32 = W.float()
+    wmin = W_f32.min(dim=1, keepdim=True).values  # (nrows, 1)
+    wmax = W_f32.max(dim=1, keepdim=True).values  # (nrows, 1)
+    t = torch.linspace(0, 1, num_levels, device=W.device).unsqueeze(0)  # (1, num_levels)
+
+    # Blend: shift each CDF level by gamma * (uniform_level - cdf_level)
+    hybrid_grids = cdf_grids + gamma * (wmin + (wmax - wmin) * t - cdf_grids)
+
+    hybrid_grids = torch.sort(hybrid_grids, dim=1).values
+    return hybrid_grids
+
+
+def quantize_to_grids_batched(W: torch.Tensor, grids: torch.Tensor) -> torch.Tensor:
+    """
+    Quantize each row of W to its corresponding row grid.
+    Uses binary search (searchsorted) instead of brute-force distance matrix.
+
+    Args:
+        W: (nrows, ncols) weight matrix
+        grids: (nrows, num_levels) per-row grid values (must be sorted)
+
+    Returns:
+        quantized: (nrows, ncols) quantized weights
+    """
+    W_f32 = W.float()
+    num_levels = grids.shape[1]
+
+    # Binary search: find insertion point for each weight in its row's grid
+    idx_right = torch.searchsorted(grids, W_f32)  # (nrows, ncols)
+    idx_right = idx_right.clamp(1, num_levels - 1)
+    idx_left = idx_right - 1
+
+    # Get the two candidate grid values
+    val_left = torch.gather(grids, 1, idx_left)
+    val_right = torch.gather(grids, 1, idx_right)
+
+    # Pick the closer one
+    use_right = (torch.abs(W_f32 - val_right) < torch.abs(W_f32 - val_left))
+    quantized = torch.where(use_right, val_right, val_left)
+    return quantized
+
+
+def quantize_matrix_batched(W: torch.Tensor, num_levels: int,
+                             grid_type: str = "hybrid", gamma: float = 0.15,
+                             pin_endpoints: bool = True,
+                             protect_outliers: bool = False,
+                             outlier_percentile: float = 1.0):
+    """
+    Quantize an entire weight matrix with no Python row loops.
+
+    Args:
+        W: 2D tensor (nrows, ncols)
+        num_levels: quantization levels
+        grid_type: "uniform", "cdf", or "hybrid"
+        gamma: mixing coefficient for hybrid
+        pin_endpoints: pin CDF endpoints
+        protect_outliers: keep outlier weights in FP16
+        outlier_percentile: percentile for outlier detection
+
+    Returns:
+        (quantized_W, num_outliers)
+    """
+    W_f32 = W.float()
+    nrows, ncols = W.shape
+
+    if protect_outliers:
+        # Batch quantile computation
+        lo = torch.quantile(W_f32, outlier_percentile / 100.0, dim=1, keepdim=True)
+        hi = torch.quantile(W_f32, 1.0 - outlier_percentile / 100.0, dim=1, keepdim=True)
+        outlier_mask = (W_f32 < lo) | (W_f32 > hi)
+        inlier_mask = ~outlier_mask
+
+        # For grid building, we need inliers only per row.
+        # Approximate: sort full rows, slice out the outlier percentile from both ends.
+        sorted_W = torch.sort(W_f32, dim=1).values
+        k = max(1, int(round(ncols * outlier_percentile / 100.0)))
+        inlier_sorted = sorted_W[:, k:ncols - k]  # trim outlier tails
+
+        # Build grids from inlier-trimmed sorted weights
+        n_inlier = inlier_sorted.shape[1]
+        quantile_positions = torch.linspace(
+            0.5 / num_levels, 1.0 - 0.5 / num_levels,
+            num_levels, device=W.device)
+        indices = (quantile_positions * (n_inlier - 1)).long().clamp(0, n_inlier - 1)
+
+        if grid_type == "cdf":
+            grids = inlier_sorted[:, indices]
+            if pin_endpoints:
+                grids[:, 0] = inlier_sorted[:, 0]
+                grids[:, -1] = inlier_sorted[:, -1]
+        elif grid_type == "hybrid":
+            cdf_grids = inlier_sorted[:, indices]
+            if pin_endpoints:
+                cdf_grids[:, 0] = inlier_sorted[:, 0]
+                cdf_grids[:, -1] = inlier_sorted[:, -1]
+            inlier_min = inlier_sorted[:, 0].unsqueeze(1)
+            inlier_max = inlier_sorted[:, -1].unsqueeze(1)
+            t = torch.linspace(0, 1, num_levels, device=W.device).unsqueeze(0)
+            # Blend inline: cdf + gamma * (uniform - cdf)
+            grids = cdf_grids + gamma * (inlier_min + (inlier_max - inlier_min) * t - cdf_grids)
+            grids = torch.sort(grids, dim=1).values
+        elif grid_type == "uniform":
+            # Direct scale/zero formula — no grid search needed
+            maxq = num_levels - 1
+            inlier_min = inlier_sorted[:, 0].unsqueeze(1)   # (nrows, 1)
+            inlier_max = inlier_sorted[:, -1].unsqueeze(1)   # (nrows, 1)
+            scale = (inlier_max - inlier_min) / maxq
+            scale[scale == 0] = 1.0
+            zero = torch.round(-inlier_min / scale)
+            Q = torch.clamp(torch.round(W_f32 / scale) + zero, 0, maxq)
+            Q = scale * (Q - zero)
+            Q[outlier_mask] = W_f32[outlier_mask]
+            num_outliers = outlier_mask.sum().item()
+            return Q.to(W.dtype), num_outliers
+        else:
+            raise ValueError(f"Unknown grid_type: {grid_type}")
+
+        # Quantize all weights to their row grids
+        Q = quantize_to_grids_batched(W_f32, grids)
+        # Restore outliers to original FP16 values
+        Q[outlier_mask] = W_f32[outlier_mask]
+        num_outliers = outlier_mask.sum().item()
+        return Q.to(W.dtype), num_outliers
+
+    else:
+        if grid_type == "uniform":
+            # Direct scale/zero formula — no grid search needed
+            maxq = num_levels - 1
+            xmin = W_f32.min(dim=1, keepdim=True).values
+            xmax = W_f32.max(dim=1, keepdim=True).values
+            scale = (xmax - xmin) / maxq
+            scale[scale == 0] = 1.0
+            zero = torch.round(-xmin / scale)
+            Q = torch.clamp(torch.round(W_f32 / scale) + zero, 0, maxq)
+            Q = scale * (Q - zero)
+            return Q.to(W.dtype), 0
+
+        if grid_type == "cdf":
+            grids = build_cdf_grids_batched(W_f32, num_levels, pin_endpoints=pin_endpoints)
+        elif grid_type == "hybrid":
+            grids = build_hybrid_grids_batched(W_f32, num_levels, gamma, pin_endpoints=pin_endpoints)
+        else:
+            raise ValueError(f"Unknown grid_type: {grid_type}")
+
+        Q = quantize_to_grids_batched(W_f32, grids)
+        return Q.to(W.dtype), 0
 
 
 def quantize_cdf(w: torch.Tensor, grid: torch.Tensor) -> torch.Tensor:

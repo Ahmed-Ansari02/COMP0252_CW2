@@ -84,4 +84,4 @@ echo "=== Results summary ==="
 python run_experiments.py --models facebook/opt-125m facebook/opt-350m facebook/opt-1.3b \
     --skip_fp16  # already computed, just print summary
 
-echo "Done. Results in results.json"
+echo "Done. Results in results_quantization_methods/results.json"
