@@ -38,7 +38,7 @@ MODELS = [
     "facebook/opt-1.3b",
 ]
 
-SCORING_METHODS = ["kurtosis", "outlier_fraction", "range_sigma"]
+SCORING_METHODS = ["kurtosis", "outlier_fraction", "range_sigma", "variance"]
 
 # Default quantization config (best from prior experiments)
 BITS = 4
@@ -53,7 +53,7 @@ def get_topk_values(total_layers: int) -> list:
     Includes 0%, 10%, 25%, 50%, 75%, 100% of layers as well as a few
     fine-grained values near the low end.
     """
-    fractions = [0.0, 0.25, 0.50, 1.0]
+    fractions = [0.25, 0.50, 0.75]
     topk_set = set()
 
     for f in fractions:
@@ -257,6 +257,7 @@ def main():
         from transformers import AutoTokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model, original_weights = load_model(model_name)
+        # print(f'Model device: {next(model.parameters()).device}')
         input_ids = tokenize_dataset(tokenizer)
 
         if model_name not in results:

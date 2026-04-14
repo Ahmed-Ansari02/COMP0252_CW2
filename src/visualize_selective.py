@@ -35,6 +35,7 @@ COLORS = {
     "kurtosis": "#E63946",
     "outlier_fraction": "#457B9D",
     "range_sigma": "#2A9D8F",
+    "variance": "#9B59B6",
     "fp16": "#264653",
     "all_protection": "#E9C46A",
     "no_protection": "#F4A261",
@@ -44,6 +45,7 @@ SCORING_LABELS = {
     "kurtosis": "Kurtosis",
     "outlier_fraction": "Outlier Fraction",
     "range_sigma": "Range / σ",
+    "variance": "Variance",
 }
 
 
@@ -187,7 +189,7 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
                    linewidth=1.5, label=f"No protection ({no_prot_ppl:.1f})")
 
     # Plot selective results per scoring method
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma"]:
+    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
         # Find all selective keys with this scoring method
         selective_keys = [k for k in model_results
                           if k.startswith(f"selective_{scoring}_")]
@@ -239,7 +241,7 @@ def plot_pareto(results: dict, model_name: str, save_dir: str = "figures"):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Collect all points
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma"]:
+    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
         selective_keys = [k for k in model_results
                           if k.startswith(f"selective_{scoring}_")]
         if not selective_keys:
@@ -308,7 +310,7 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 
     # Find common top-k fractions across scoring methods
     scoring_data = {}
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma"]:
+    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
         selective_keys = [k for k in model_results
                           if k.startswith(f"selective_{scoring}_")]
         fracs = {}
@@ -332,7 +334,7 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
     x = np.arange(len(common_fracs))
     width = 0.25
 
-    for i, scoring in enumerate(["kurtosis", "outlier_fraction", "range_sigma"]):
+    for i, scoring in enumerate(["kurtosis", "outlier_fraction", "range_sigma", "variance"]):
         vals = [scoring_data[scoring].get(f, float("nan")) for f in common_fracs]
         ax.bar(x + i * width, vals, width,
                label=SCORING_LABELS[scoring],
