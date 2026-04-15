@@ -1,0 +1,432 @@
+{
+  "facebook/opt-125m": {
+    "hybrid_gamma0.1_4bit_rtn_op1.0_deconly": {
+      "perplexity": 30.14491844177246,
+      "gamma": 0.1,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 3.67
+      }
+    },
+    "hybrid_gamma0.2_4bit_rtn_op1.0_deconly": {
+      "perplexity": 30.042373657226562,
+      "gamma": 0.2,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 0.15
+      }
+    },
+    "hybrid_gamma0.3_4bit_rtn_op1.0_deconly": {
+      "perplexity": 30.2376651763916,
+      "gamma": 0.3,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 0.575
+      }
+    },
+    "hybrid_gamma0.4_4bit_rtn_op1.0_deconly": {
+      "perplexity": 30.831287384033203,
+      "gamma": 0.4,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 0.571
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 30.851177215576172,
+      "gamma": 0.5,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 0.37
+      }
+    },
+    "hybrid_gamma0.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 31.292917251586914,
+      "gamma": 0.0,
+      "size": {
+        "total_params": 125239296,
+        "quantized_weights": 83187119,
+        "outlier_weights": 1747537,
+        "unquantized_weights": 40304640,
+        "effective_bits_per_param": 8.029,
+        "effective_size_mb": 119.87,
+        "fp16_size_mb": 238.88,
+        "quantization_time_s": 0.157
+      }
+    }
+  },
+  "facebook/opt-350m": {
+    "hybrid_gamma0.1_4bit_rtn_op1.0_deconly": {
+      "perplexity": 24.49130630493164,
+      "gamma": 0.1,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 1.222
+      }
+    },
+    "hybrid_gamma0.2_4bit_rtn_op1.0_deconly": {
+      "perplexity": 24.349233627319336,
+      "gamma": 0.2,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 1.222
+      }
+    },
+    "hybrid_gamma0.3_4bit_rtn_op1.0_deconly": {
+      "perplexity": 23.998741149902344,
+      "gamma": 0.3,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 0.97
+      }
+    },
+    "hybrid_gamma0.4_4bit_rtn_op1.0_deconly": {
+      "perplexity": 23.767553329467773,
+      "gamma": 0.4,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 0.845
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 23.199748992919922,
+      "gamma": 0.5,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 1.156
+      }
+    },
+    "hybrid_gamma0.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 25.096418380737305,
+      "gamma": 0.0,
+      "size": {
+        "total_params": 331196416,
+        "quantized_weights": 295680656,
+        "outlier_weights": 6309232,
+        "unquantized_weights": 29206528,
+        "effective_bits_per_param": 5.287,
+        "effective_size_mb": 208.73,
+        "fp16_size_mb": 631.71,
+        "quantization_time_s": 0.226
+      }
+    }
+  },
+  "facebook/opt-1.3b": {
+    "hybrid_gamma0.1_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.683328628540039,
+      "gamma": 0.1,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 2.797
+      }
+    },
+    "hybrid_gamma0.2_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.646536827087402,
+      "gamma": 0.2,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 0.915
+      }
+    },
+    "hybrid_gamma0.3_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.379974365234375,
+      "gamma": 0.3,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 0.914
+      }
+    },
+    "hybrid_gamma0.4_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.3287935256958,
+      "gamma": 0.4,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 0.915
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.531120300292969,
+      "gamma": 0.5,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 0.917
+      }
+    },
+    "hybrid_gamma0.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 15.94039249420166,
+      "gamma": 0.0,
+      "size": {
+        "total_params": 1315758080,
+        "quantized_weights": 1183430452,
+        "outlier_weights": 24529100,
+        "unquantized_weights": 107798528,
+        "effective_bits_per_param": 5.207,
+        "effective_size_mb": 816.7,
+        "fp16_size_mb": 2509.61,
+        "quantization_time_s": 0.916
+      }
+    }
+  },
+  "facebook/opt-2.7b": {
+    "hybrid_gamma0.1_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.16094970703125,
+      "gamma": 0.1,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.977
+      }
+    },
+    "hybrid_gamma0.2_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.012421607971191,
+      "gamma": 0.2,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.978
+      }
+    },
+    "hybrid_gamma0.3_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.352720260620117,
+      "gamma": 0.3,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.978
+      }
+    },
+    "hybrid_gamma0.4_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.601218223571777,
+      "gamma": 0.4,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.981
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.619874000549316,
+      "gamma": 0.5,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.981
+      }
+    },
+    "hybrid_gamma0.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 13.233137130737305,
+      "gamma": 0.0,
+      "size": {
+        "total_params": 2651596800,
+        "quantized_weights": 2465724284,
+        "outlier_weights": 50858116,
+        "unquantized_weights": 135014400,
+        "effective_bits_per_param": 4.841,
+        "effective_size_mb": 1530.27,
+        "fp16_size_mb": 5057.52,
+        "quantization_time_s": 1.979
+      }
+    }
+  },
+  "facebook/opt-6.7b": {
+    "hybrid_gamma0.1_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.678417205810547,
+      "gamma": 0.1,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.718
+      }
+    },
+    "hybrid_gamma0.2_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.711235046386719,
+      "gamma": 0.2,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.724
+      }
+    },
+    "hybrid_gamma0.3_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.822393417358398,
+      "gamma": 0.3,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.74
+      }
+    },
+    "hybrid_gamma0.4_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.922460556030273,
+      "gamma": 0.4,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.744
+      }
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.885176658630371,
+      "gamma": 0.5,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.743
+      }
+    },
+    "hybrid_gamma0.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.702947616577148,
+      "gamma": 0.0,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.72
+      }
+    }
+  }
+}

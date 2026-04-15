@@ -12,10 +12,9 @@ in the broader discourse.
 
 Homepage: https://zenodo.org/record/2630551#.X4Xzn5NKjUI
 """
-import inspect
+import datasets
 from .tasks_utils import Task, rf
 from .tasks_utils  import mean, perplexity
-from .local_datasets import lambada
 
 _CITATION = """
 @misc{
@@ -40,7 +39,18 @@ def preprocess(text):
 
 class LAMBADA(Task):
     VERSION = 0
-    DATASET_PATH = inspect.getfile(lambada.Lambada)
+    DATASET_PATH = "EleutherAI/lambada_openai"
+    DATASET_NAME = "default"
+
+    def download(self, data_dir=None, cache_dir=None, download_mode=None):
+        """Load LAMBADA from HuggingFace Hub."""
+        ds = datasets.load_dataset(
+            self.DATASET_PATH, self.DATASET_NAME,
+            cache_dir=cache_dir,
+        )
+        # The HF dataset has a 'test' split; we expose it as 'validation'
+        # to match the original harness interface
+        self.dataset = {"validation": ds["test"]}
 
 
     def has_training_docs(self):

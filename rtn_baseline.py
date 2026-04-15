@@ -278,10 +278,26 @@ def main():
         print(f"\n[FP16 baseline] {args.model}")
         model = OPTForCausalLM.from_pretrained(args.model, dtype=torch.float16).cuda()
         ppl = evaluate_perplexity(model, tokenizer)
+
+        total_params = sum(p.numel() for p in model.parameters())
+        fp16_size_mb = round(total_params * 16 / 8 / 1024**2, 2)
+
         del model
         torch.cuda.empty_cache()
-        results[args.model]["fp16"] = ppl
+        results[args.model]["fp16"] = {
+            "perplexity": ppl,
+            "size": {
+                "total_params": total_params,
+                "quantized_weights": 0,
+                "outlier_weights": 0,
+                "unquantized_weights": total_params,
+                "effective_bits_per_param": 16.0,
+                "effective_size_mb": fp16_size_mb,
+                "fp16_size_mb": fp16_size_mb,
+            },
+        }
         print(f"  FP16 perplexity: {ppl:.2f}")
+        print(f"  Model size: {fp16_size_mb} MB ({total_params:,} params)")
     else:
         pin_endpoints = not args.no_pin_endpoints
         key = make_key(args.grid_type, args.bits, args.gamma,

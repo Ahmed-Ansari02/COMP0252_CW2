@@ -60,11 +60,15 @@ COMP0252_CW2/
 │
 ├── cdf_grid.py                   # Grid construction (uniform, CDF, hybrid)
 ├── rtn_baseline.py               # RTN quantization + perplexity evaluation
+├── zeroshot_eval.py              # Zero-shot downstream evaluation
+├── gptq_quantize.py              # GPTQ quantization + optional checkpoint saving
 ├── run_experiments.py             # Original grid sweep runner (Part 1)
 ├── visualize.py                   # Original visualization (Part 1)
 ├── gptq_cdf_patch.py             # GPTQ integration patch (Part 1)
 │
 ├── results/                      # Output: profile JSONs + experiment results
+├── results_zeroshot/             # Output: zero-shot benchmark results
+├── saved_models/                 # Saved quantized checkpoints for reuse
 ├── figures/                      # Output: generated plots
 ├── results.json                  # Part 1 experiment results
 ├── 4bits_outlier*.json           # Part 1 outlier sweep results
@@ -193,6 +197,71 @@ python gptq_quantize.py --model facebook/opt-125m --wbits 4
 python rtn_baseline.py --model facebook/opt-125m --bits 4 --grid_type hybrid --gamma 0.5 \
     --protect_outliers --outlier_percentile 1.0 --decoder_only
 ```
+
+## Zero-Shot Evaluation
+
+We also evaluate quantized models on zero-shot downstream tasks using `zeroshot_eval.py`.
+
+Tasks used:
+- **LAMBADA:** long-context next-word prediction
+- **ARC-Easy / ARC-Challenge:** science multiple-choice QA
+- **PIQA:** physical commonsense reasoning
+
+Results are stored in `results_zeroshot/zeroshot_results.json`.
+
+### Zero-Shot Results
+
+| Model | Method | LAMBADA acc | LAMBADA ppl | ARC-Easy | ARC-Challenge | PIQA |
+|-------|--------|-------------|-------------|----------|---------------|------|
+| OPT-125M | FP16 | 0.3823 | 24.3722 | 0.3859 | 0.2227 | 0.6202 |
+| OPT-125M | Hybrid RTN | 0.3078 | 39.4451 | 0.3746 | 0.2133 | 0.6192 |
+| OPT-125M | GPTQ | 0.3474 | 34.3699 | 0.3965 | 0.2167 | 0.6175 |
+| OPT-350M | Hybrid RTN | 0.4463 | 16.7976 | 0.3834 | 0.2406 | 0.6442 |
+| OPT-350M | GPTQ | 0.4386 | 17.0626 | 0.3708 | 0.2312 | 0.6349 |
+| OPT-1.3B | Hybrid RTN | 0.5764 | 6.9348 | 0.4798 | 0.2594 | 0.7116 |
+| OPT-1.3B | GPTQ | 0.5643 | 7.1945 | 0.4832 | 0.2739 | 0.7100 |
+| OPT-2.7B | Hybrid RTN | 0.6041 | 5.9711 | 0.5189 | 0.2918 | 0.7416 |
+| OPT-2.7B | GPTQ | 0.6169 | 5.5953 | 0.5299 | 0.2995 | 0.7323 |
+| OPT-6.7B | Hybrid RTN | 0.6433 | 4.6621 | 0.5779 | 0.3166 | 0.7530 |
+| OPT-6.7B | GPTQ | 0.6625 | 4.6803 | 0.5711 | 0.3328 | 0.7699 |
+
+### Zero-Shot Takeaways
+
+- At **125M**, FP16 is still strongest overall, and GPTQ is clearly better than Hybrid RTN on LAMBADA.
+- At **350M**, Hybrid RTN slightly outperforms GPTQ on all four tasks in this benchmark.
+- At **1.3B**, the two methods are very close: Hybrid RTN is better on LAMBADA and PIQA, while GPTQ is slightly better on ARC.
+- At **2.7B** and **6.7B**, GPTQ is generally stronger on LAMBADA and the harder reasoning tasks, while Hybrid RTN remains competitive and occasionally wins on ARC-Easy or PIQA.
+
+### Running `zeroshot_eval.py`
+
+```bash
+# FP16 baseline
+python zeroshot_eval.py --model facebook/opt-125m --method fp16 \
+    --tasks lambada,arc_easy,arc_challenge,piqa
+
+# Hybrid RTN zero-shot evaluation
+python zeroshot_eval.py --model facebook/opt-125m --method hybrid_rtn \
+    --bits 4 --gamma 0.5 --outlier_percentile 1.0 \
+    --tasks lambada,arc_easy,arc_challenge,piqa
+
+# GPTQ: quantize and save a reusable checkpoint first
+python gptq_quantize.py --model facebook/opt-125m --wbits 4 \
+    --save_quantized_dir saved_models/opt-125m-gptq-4bit
+
+# GPTQ zero-shot evaluation from a saved checkpoint
+python zeroshot_eval.py --model facebook/opt-125m --method gptq \
+    --load_quantized_dir saved_models/opt-125m-gptq-4bit \
+    --tasks lambada,arc_easy,arc_challenge,piqa
+```
+
+Useful flags:
+
+| Flag | Effect |
+|------|--------|
+| `--tasks lambada,arc_easy,arc_challenge,piqa` | Select which zero-shot tasks to run |
+| `--output results_zeroshot/zeroshot_results.json` | Save to a custom results file |
+| `--load_quantized_dir path/` | Evaluate a previously saved GPTQ checkpoint |
+| `--save_quantized_dir path/` | Save a quantized checkpoint for later reuse |
 
 ## Prior Results (Part 1)
 

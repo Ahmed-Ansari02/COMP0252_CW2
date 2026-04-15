@@ -1,0 +1,254 @@
+{
+  "facebook/opt-125m": {
+    "fp16": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.3823,
+          "ppl": 24.3722,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3859,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2227,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6202,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.3078,
+          "ppl": 39.4451,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3746,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2133,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6192,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0.788
+    },
+    "uniform_4bit_gptq": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.3474,
+          "ppl": 34.3699,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3965,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2167,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6175,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    }
+  },
+  "facebook/opt-350m": {
+    "uniform_4bit_gptq": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.4386,
+          "ppl": 17.0626,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3708,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2312,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6349,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.4463,
+          "ppl": 16.7976,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3834,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2406,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6442,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0.397
+    }
+  },
+  "facebook/opt-1.3b": {
+    "uniform_4bit_gptq": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.5643,
+          "ppl": 7.1945,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.4832,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2739,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.71,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.5764,
+          "ppl": 6.9348,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.4798,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2594,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7116,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 1.336
+    }
+  },
+  "facebook/opt-2.7b": {
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6041,
+          "ppl": 5.9711,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5189,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2918,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7416,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 2.251
+    },
+    "uniform_4bit_gptq": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6169,
+          "ppl": 5.5953,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5299,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2995,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7323,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    }
+  },
+  "facebook/opt-6.7b": {
+    "hybrid_gamma0.5_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6433,
+          "ppl": 4.6621,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5779,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.3166,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.753,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 5.175
+    },
+    "uniform_4bit_gptq": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6625,
+          "ppl": 4.6803,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5711,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.3328,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7699,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    }
+  }
+}

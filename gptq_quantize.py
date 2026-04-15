@@ -16,6 +16,10 @@ Usage:
     # Standard GPTQ (uniform, matching paper exactly):
     python gptq_quantize.py --model facebook/opt-125m --wbits 4
 
+    # Save a quantized checkpoint for later zero-shot evaluation:
+    python gptq_quantize.py --model facebook/opt-125m --wbits 4 \
+        --save_quantized_dir saved_models/opt-125m-gptq-4bit
+
     # GPTQ with hybrid CDF grid:
     python gptq_quantize.py --model facebook/opt-125m --wbits 4 --grid_type hybrid --gamma 0.5
 
@@ -502,6 +506,17 @@ def make_key(args):
     return key
 
 
+def save_quantized_artifacts(model, model_name, output_dir):
+    """Save a quantized model/tokenizer for reuse in zero-shot evaluation."""
+    os.makedirs(output_dir, exist_ok=True)
+    tokenizer = transformers.AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    model = model.cpu()
+    torch.cuda.empty_cache()
+    model.save_pretrained(output_dir)
+    tokenizer.save_pretrained(output_dir)
+    print(f'Saved quantized model to {output_dir}')
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="GPTQ quantization using official repo infrastructure")
@@ -543,6 +558,8 @@ def main():
 
     parser.add_argument('--output', type=str, default='results_quantization_methods/results.json',
                         help='Path to save/append results')
+    parser.add_argument('--save_quantized_dir', type=str, default=None,
+                        help='Directory to save quantized model/tokenizer for later evaluation')
 
     args = parser.parse_args()
 
@@ -625,6 +642,9 @@ def main():
     with open(args.output, 'w') as f:
         json.dump(results, f, indent=2)
     print(f'\nResults saved to {args.output}')
+
+    if args.save_quantized_dir:
+        save_quantized_artifacts(model, args.model, args.save_quantized_dir)
 
     del model
     torch.cuda.empty_cache()

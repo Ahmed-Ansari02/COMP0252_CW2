@@ -2,3 +2,5 @@ __pycache__/
 VIRTUAL_ENV/
 .claude
 .venv
+.codex
+saved_models/
