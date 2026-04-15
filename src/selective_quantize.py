@@ -16,6 +16,8 @@ Usage:
 
 import argparse
 import json
+import random
+import re
 import os
 import sys
 import torch
@@ -45,7 +47,27 @@ def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
     layer_stats = profile["layer_stats"]
     layer_names = profile["layer_names"]
 
-    # Map scoring name to the raw stat key used for ranking
+    # ── Random baseline: deterministic shuffle (null hypothesis) ──
+    if scoring == "random":
+        rng = random.Random(42)
+        shuffled = list(layer_names)
+        rng.shuffle(shuffled)
+        return set(shuffled[:k])
+
+    # ── Bookend: protect first N/2 + last N/2 layers ──
+    if scoring == "bookend":
+        if k == 0:
+            return set()
+        first_n = (k + 1) // 2
+        last_n = k - first_n
+        
+        protected = set()
+        protected.update(layer_names[:first_n])
+        if last_n > 0:
+            protected.update(layer_names[-last_n:])
+        return protected
+
+    # ── Statistical metrics ──
     metric_map = {
         "kurtosis": "kurtosis",
         "outlier_fraction": "outlier_fraction_3sigma",
@@ -220,7 +242,8 @@ def main():
     parser.add_argument("--topk", type=int, required=True,
                         help="Number of layers to protect")
     parser.add_argument("--scoring", type=str, default="kurtosis",
-                        choices=["kurtosis", "outlier_fraction", "range_sigma", "variance"])
+                        choices=["kurtosis", "outlier_fraction", "range_sigma",
+                                 "variance", "bookend", "random"])
     parser.add_argument("--outlier_percentile", type=float, default=1.0)
     parser.add_argument("--output", type=str, default="results/selective_results.json")
     args = parser.parse_args()

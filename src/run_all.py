@@ -38,12 +38,13 @@ MODELS = [
     "facebook/opt-1.3b",
 ]
 
-SCORING_METHODS = ["kurtosis", "outlier_fraction", "range_sigma", "variance"]
+SCORING_METHODS = ["kurtosis", "outlier_fraction", "range_sigma", "variance",
+                   "bookend", "random"]
 
 # Default quantization config (best from prior experiments)
 BITS = 4
 GRID_TYPE = "hybrid"
-GAMMA = 0.15
+GAMMA = 0.5
 OUTLIER_PCT = 1.0
 
 
@@ -59,9 +60,6 @@ def get_topk_values(total_layers: int) -> list:
     for f in fractions:
         k = int(round(f * total_layers))
         topk_set.add(min(k, total_layers))
-    # Always include 0 and total
-    topk_set.add(0)
-    topk_set.add(total_layers)
     return sorted(topk_set)
 
 

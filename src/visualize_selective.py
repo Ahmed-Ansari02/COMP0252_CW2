@@ -30,15 +30,26 @@ from matplotlib import cm
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-# Consistent styling
+# Consistent styling (High-contrast vibrant palette)
 COLORS = {
-    "kurtosis": "#E63946",
-    "outlier_fraction": "#457B9D",
-    "range_sigma": "#2A9D8F",
-    "variance": "#9B59B6",
-    "fp16": "#264653",
-    "all_protection": "#E9C46A",
-    "no_protection": "#F4A261",
+    "kurtosis": "#E6194B",         # Vivid Red
+    "outlier_fraction": "#4363D8", # Vivid Blue
+    "range_sigma": "#3CB44B",      # Vivid Green
+    "variance": "#911EB4",         # Vivid Purple
+    "random": "#42D4F4",           # Vibrant Cyan
+    "bookend": "#F58231",          # Vibrant Orange
+    "fp16": "#000000",             # Black
+    "all_protection": "#117733",   # Dark Green
+    "no_protection": "#AA4499",    # Dark Pink
+}
+
+LINESTYLES = {
+    "kurtosis": "-",
+    "outlier_fraction": "-",
+    "range_sigma": "-",
+    "variance": "-",
+    "random": "--",
+    "bookend": "--",
 }
 
 SCORING_LABELS = {
@@ -46,6 +57,8 @@ SCORING_LABELS = {
     "outlier_fraction": "Outlier Fraction",
     "range_sigma": "Range / σ",
     "variance": "Variance",
+    "random": "Random",
+    "bookend": "Bookend",
 }
 
 
@@ -172,8 +185,8 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
     if isinstance(fp16_ppl, dict):
         fp16_ppl = fp16_ppl.get("perplexity")
 
-    all_prot_key = [k for k in model_results if k.startswith("all_protection_")]
-    no_prot_key = [k for k in model_results if k.startswith("no_protection_")]
+    all_prot_key = [k for k in model_results if k.startswith("all_protection_") and "_g0.5_" in k]
+    no_prot_key = [k for k in model_results if k.startswith("no_protection_") and "_g0.5_" in k]
     all_prot_ppl = model_results[all_prot_key[0]]["perplexity"] if all_prot_key else None
     no_prot_ppl = model_results[no_prot_key[0]]["perplexity"] if no_prot_key else None
 
@@ -189,10 +202,10 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
                    linewidth=1.5, label=f"No protection ({no_prot_ppl:.1f})")
 
     # Plot selective results per scoring method
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
-        # Find all selective keys with this scoring method
+    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance", "random", "bookend"]:
+        # Find all selective keys with this scoring method and gamma=0.5
         selective_keys = [k for k in model_results
-                          if k.startswith(f"selective_{scoring}_")]
+                          if k.startswith(f"selective_{scoring}_") and "_g0.5_" in k]
         if not selective_keys:
             continue
 
@@ -205,10 +218,18 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
             ppl = entry["perplexity"]
             points.append((frac, ppl))
 
+        # Mathematically attach the boundaries to the selective lines
+        if no_prot_ppl is not None:
+            points.append((0.0, no_prot_ppl))
+        if all_prot_ppl is not None:
+            points.append((1.0, all_prot_ppl))
+
         points.sort()
         fracs, ppls = zip(*points)
 
-        ax.plot(fracs, ppls, marker="o", markersize=5, linewidth=2,
+        ax.plot(fracs, ppls, marker="o",
+                linestyle=LINESTYLES.get(scoring, "-"),
+                markersize=6, linewidth=2, alpha=0.9,
                 color=COLORS.get(scoring, "gray"),
                 label=SCORING_LABELS.get(scoring, scoring))
 
@@ -241,9 +262,9 @@ def plot_pareto(results: dict, model_name: str, save_dir: str = "figures"):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Collect all points
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
+    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance", "random", "bookend"]:
         selective_keys = [k for k in model_results
-                          if k.startswith(f"selective_{scoring}_")]
+                          if k.startswith(f"selective_{scoring}_") and "_g0.5_" in k]
         if not selective_keys:
             continue
 
@@ -257,8 +278,10 @@ def plot_pareto(results: dict, model_name: str, save_dir: str = "figures"):
                 bits_per_param.append(bpp)
                 ppls.append(ppl)
 
-        ax.scatter(bits_per_param, ppls, s=40, alpha=0.7,
+        ax.scatter(bits_per_param, ppls, s=60, alpha=0.9,
+                   marker="o",
                    color=COLORS.get(scoring, "gray"),
+                   edgecolors="white", linewidths=0.5, zorder=6,
                    label=SCORING_LABELS.get(scoring, scoring))
 
     # Add baselines as special markers
@@ -266,7 +289,7 @@ def plot_pareto(results: dict, model_name: str, save_dir: str = "figures"):
         ("all_protection_", "All Protected", "D", COLORS["all_protection"]),
         ("no_protection_", "No Protection", "s", COLORS["no_protection"]),
     ]:
-        matching = [k for k in model_results if k.startswith(key_prefix)]
+        matching = [k for k in model_results if k.startswith(key_prefix) and "_g0.5_" in k]
         if matching:
             entry = model_results[matching[0]]
             bpp = entry.get("size", {}).get("effective_bits_per_param")
@@ -310,15 +333,30 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 
     # Find common top-k fractions across scoring methods
     scoring_data = {}
-    for scoring in ["kurtosis", "outlier_fraction", "range_sigma", "variance"]:
+    present_metrics = []
+    metrics_to_plot = ["kurtosis", "outlier_fraction", "range_sigma", "variance", "random", "bookend"]
+    
+    for scoring in metrics_to_plot:
         selective_keys = [k for k in model_results
-                          if k.startswith(f"selective_{scoring}_")]
+                          if k.startswith(f"selective_{scoring}_") and "_g0.5_" in k]
+        if not selective_keys:
+            continue
+            
         fracs = {}
         for key in selective_keys:
             entry = model_results[key]
             frac = entry.get("topk_fraction", 0)
-            fracs[round(frac, 2)] = entry["perplexity"]
-        scoring_data[scoring] = fracs
+            
+            # Snap to closest 25/50/75% cleanly to fix rounding artifacts (e.g., 49%)
+            if 0.1 < frac < 0.9:
+                target_fracs = [0.25, 0.50, 0.75]
+                closest = min(target_fracs, key=lambda x: abs(x - frac))
+                if abs(closest - frac) < 0.05:
+                    fracs[closest] = entry["perplexity"]
+        
+        if fracs:
+            scoring_data[scoring] = fracs
+            present_metrics.append(scoring)
 
     if not scoring_data:
         return
@@ -332,19 +370,20 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 
     fig, ax = plt.subplots(figsize=(10, 6))
     x = np.arange(len(common_fracs))
-    width = 0.25
+    width = 0.8 / len(present_metrics)
 
-    for i, scoring in enumerate(["kurtosis", "outlier_fraction", "range_sigma", "variance"]):
+    for i, scoring in enumerate(present_metrics):
         vals = [scoring_data[scoring].get(f, float("nan")) for f in common_fracs]
         ax.bar(x + i * width, vals, width,
                label=SCORING_LABELS[scoring],
-               color=COLORS[scoring], alpha=0.85)
+               color=COLORS[scoring], alpha=0.95,
+               edgecolor="black", linewidth=0.5)
 
     ax.set_xlabel("Fraction of Layers Protected", fontsize=11)
     ax.set_ylabel("Perplexity (WikiText-2)", fontsize=11)
     ax.set_title(f"Scoring Method Comparison — {model_name.split('/')[-1]}",
                  fontsize=13, fontweight="bold")
-    ax.set_xticks(x + width)
+    ax.set_xticks(x + width * (len(present_metrics) - 1) / 2)
     ax.set_xticklabels([f"{f:.0%}" for f in common_fracs])
     ax.legend(fontsize=9)
     ax.grid(True, alpha=0.3, axis="y")
