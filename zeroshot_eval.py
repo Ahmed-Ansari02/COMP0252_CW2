@@ -206,8 +206,8 @@ def eval_multiple_choice(model, tokenizer, device, data, task_name):
 # Quantization methods (reuse existing code)
 # ---------------------------------------------------------------------------
 
-def quantize_hybrid_rtn(model, bits, gamma, outlier_percentile, decoder_only):
-    """Quantize model in-place using hybrid RTN + outlier protection."""
+def quantize_rtn(model, bits, grid_type, gamma, outlier_percentile, decoder_only):
+    """Quantize model in-place using RTN with a given grid type + outlier protection."""
     from cdf_grid import quantize_matrix_batched
 
     num_levels = 2 ** bits
@@ -217,7 +217,7 @@ def quantize_hybrid_rtn(model, bits, gamma, outlier_percentile, decoder_only):
                 continue
             W = module.weight.data
             W, _ = quantize_matrix_batched(
-                W, num_levels, grid_type="hybrid", gamma=gamma,
+                W, num_levels, grid_type=grid_type, gamma=gamma,
                 pin_endpoints=True,
                 protect_outliers=True,
                 outlier_percentile=outlier_percentile)
@@ -336,6 +336,8 @@ def make_result_key(args):
         return "fp16"
     elif args.method == "gptq":
         return f"uniform_{args.bits}bit_gptq"
+    elif args.method == "uniform_rtn":
+        return f"uniform_{args.bits}bit_rtn_op{args.outlier_percentile}_deconly"
     else:
         return f"hybrid_gamma{args.gamma}_{args.bits}bit_rtn_op{args.outlier_percentile}_deconly"
 
@@ -356,7 +358,7 @@ def main():
 
     parser.add_argument('--model', type=str, default='facebook/opt-125m')
     parser.add_argument('--method', type=str, default='hybrid_rtn',
-                        choices=['hybrid_rtn', 'gptq', 'fp16'])
+                        choices=['hybrid_rtn', 'uniform_rtn', 'gptq', 'fp16'])
     parser.add_argument('--tasks', type=str, default='lambada,arc_easy,arc_challenge,piqa',
                         help='Comma-separated tasks: lambada,arc_easy,arc_challenge,piqa,boolq')
     parser.add_argument('--bits', type=int, default=4, choices=[3, 4])
@@ -405,12 +407,23 @@ def main():
         model = model.to(device)
         quant_time = 0
 
+    elif args.method == "uniform_rtn":
+        print(f'Quantizing with uniform RTN (OP={args.outlier_percentile}%, decoder_only)...')
+        tick = time.time()
+        model = model.to(device)
+        quantize_rtn(model, args.bits, grid_type="uniform", gamma=0.0,
+                     outlier_percentile=args.outlier_percentile,
+                     decoder_only=args.decoder_only)
+        quant_time = time.time() - tick
+        print(f'Quantization time: {quant_time:.2f}s')
+
     elif args.method == "hybrid_rtn":
         print(f'Quantizing with hybrid RTN (γ={args.gamma}, OP={args.outlier_percentile}%)...')
         tick = time.time()
         model = model.to(device)
-        quantize_hybrid_rtn(model, args.bits, args.gamma,
-                            args.outlier_percentile, args.decoder_only)
+        quantize_rtn(model, args.bits, grid_type="hybrid", gamma=args.gamma,
+                     outlier_percentile=args.outlier_percentile,
+                     decoder_only=args.decoder_only)
         quant_time = time.time() - tick
         print(f'Quantization time: {quant_time:.2f}s')
 

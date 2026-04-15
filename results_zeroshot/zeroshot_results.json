@@ -65,6 +65,28 @@
         }
       },
       "quantization_time_s": 0
+    },
+    "uniform_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.3794,
+          "ppl": 25.597,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3729,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2261,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6219,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0.279
     }
   },
   "facebook/opt-350m": {
@@ -111,6 +133,50 @@
         }
       },
       "quantization_time_s": 0.397
+    },
+    "fp16": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.4605,
+          "ppl": 15.2585,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3897,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2329,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6507,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "uniform_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.4289,
+          "ppl": 17.8388,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.3763,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2321,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.6409,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0.378
     }
   },
   "facebook/opt-1.3b": {
@@ -157,6 +223,50 @@
         }
       },
       "quantization_time_s": 1.336
+    },
+    "fp16": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.5816,
+          "ppl": 6.4918,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.4924,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2747,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7252,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "uniform_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.5614,
+          "ppl": 7.1731,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.4895,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2782,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7182,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 1.079
     }
   },
   "facebook/opt-2.7b": {
@@ -203,6 +313,50 @@
         }
       },
       "quantization_time_s": 0
+    },
+    "fp16": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6361,
+          "ppl": 5.0632,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5429,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.2978,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7486,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "uniform_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6212,
+          "ppl": 5.567,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5412,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.302,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7437,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 2.076
     }
   },
   "facebook/opt-6.7b": {
@@ -249,6 +403,50 @@
         }
       },
       "quantization_time_s": 0
+    },
+    "fp16": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6779,
+          "ppl": 4.2097,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5896,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.337,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7704,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 0
+    },
+    "uniform_4bit_rtn_op1.0_deconly": {
+      "tasks": {
+        "lambada": {
+          "acc": 0.6672,
+          "ppl": 4.5443,
+          "n": 5153
+        },
+        "arc_easy": {
+          "acc": 0.5888,
+          "n": 2376
+        },
+        "arc_challenge": {
+          "acc": 0.3285,
+          "n": 1172
+        },
+        "piqa": {
+          "acc": 0.7655,
+          "n": 1838
+        }
+      },
+      "quantization_time_s": 4.604
     }
   }
 }
