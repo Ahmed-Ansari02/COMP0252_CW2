@@ -4,3 +4,4 @@ VIRTUAL_ENV/
 .venv
 .codex
 saved_models/
+packed_models/
