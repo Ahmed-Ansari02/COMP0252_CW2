@@ -209,20 +209,32 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
         if not selective_keys:
             continue
 
-        points = []
+        from collections import defaultdict
+        frac_groups = defaultdict(list)
         for key in selective_keys:
             entry = model_results[key]
             topk = entry.get("topk", 0)
             total = entry.get("total_layers", 1)
             frac = topk / total
             ppl = entry["perplexity"]
-            points.append((frac, ppl))
+            rounded_frac = round(frac, 4)
+            frac_groups[rounded_frac].append(ppl)
+
+        points = []
+        std_devs = {}
+        for frac, ppls in frac_groups.items():
+            mean_ppl = np.mean(ppls)
+            std_ppl = np.std(ppls) if len(ppls) > 1 else 0.0
+            points.append((frac, mean_ppl))
+            std_devs[frac] = std_ppl
 
         # Mathematically attach the boundaries to the selective lines
         if no_prot_ppl is not None:
             points.append((0.0, no_prot_ppl))
+            std_devs[0.0] = 0.0
         if all_prot_ppl is not None:
             points.append((1.0, all_prot_ppl))
+            std_devs[1.0] = 0.0
 
         points.sort()
         fracs, ppls = zip(*points)
@@ -232,6 +244,12 @@ def plot_ppl_vs_topk(results: dict, model_name: str, save_dir: str = "figures"):
                 markersize=6, linewidth=2, alpha=0.9,
                 color=COLORS.get(scoring, "gray"),
                 label=SCORING_LABELS.get(scoring, scoring))
+        
+        if any(v > 0 for v in std_devs.values()):
+            stds = np.array([std_devs[f] for f in fracs])
+            np_ppls = np.array(ppls)
+            ax.fill_between(fracs, np_ppls - stds, np_ppls + stds,
+                            color=COLORS.get(scoring, "gray"), alpha=0.2)
 
     ax.set_xlabel("Fraction of Layers Protected (top-k / total)", fontsize=11)
     ax.set_ylabel("Perplexity (WikiText-2)", fontsize=11)
@@ -333,16 +351,18 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 
     # Find common top-k fractions across scoring methods
     scoring_data = {}
+    scoring_errs = {}
     present_metrics = []
     metrics_to_plot = ["kurtosis", "outlier_fraction", "range_sigma", "variance", "random", "bookend"]
     
+    from collections import defaultdict
     for scoring in metrics_to_plot:
         selective_keys = [k for k in model_results
                           if k.startswith(f"selective_{scoring}_") and "_g0.5_" in k]
         if not selective_keys:
             continue
             
-        fracs = {}
+        frac_groups = defaultdict(list)
         for key in selective_keys:
             entry = model_results[key]
             frac = entry.get("topk_fraction", 0)
@@ -352,10 +372,17 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
                 target_fracs = [0.25, 0.50, 0.75]
                 closest = min(target_fracs, key=lambda x: abs(x - frac))
                 if abs(closest - frac) < 0.05:
-                    fracs[closest] = entry["perplexity"]
+                    frac_groups[closest].append(entry["perplexity"])
         
-        if fracs:
+        if frac_groups:
+            fracs = {}
+            errs = {}
+            for closest, ppls in frac_groups.items():
+                fracs[closest] = np.mean(ppls)
+                errs[closest] = np.std(ppls) if len(ppls) > 1 else 0.0
+            
             scoring_data[scoring] = fracs
+            scoring_errs[scoring] = errs
             present_metrics.append(scoring)
 
     if not scoring_data:
@@ -374,10 +401,16 @@ def plot_scoring_comparison(results: dict, model_name: str, save_dir: str = "fig
 
     for i, scoring in enumerate(present_metrics):
         vals = [scoring_data[scoring].get(f, float("nan")) for f in common_fracs]
+        errs = [scoring_errs[scoring].get(f, 0.0) for f in common_fracs]
+        
+        # Only pass yerr if there are actually errors to plot (>0) 
+        has_errs = any(e > 0 for e in errs)
+        kwargs = {"yerr": errs, "capsize": 3} if has_errs else {}
+        
         ax.bar(x + i * width, vals, width,
                label=SCORING_LABELS[scoring],
                color=COLORS[scoring], alpha=0.95,
-               edgecolor="black", linewidth=0.5)
+               edgecolor="black", linewidth=0.5, **kwargs)
 
     ax.set_xlabel("Fraction of Layers Protected", fontsize=11)
     ax.set_ylabel("Perplexity (WikiText-2)", fontsize=11)

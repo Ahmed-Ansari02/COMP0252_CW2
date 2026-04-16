@@ -30,7 +30,7 @@ from cdf_grid import (build_uniform_grid, build_cdf_grid, build_hybrid_grid,
 from rtn_baseline import load_model, restore_weights, tokenize_dataset, evaluate_perplexity
 
 
-def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
+def get_topk_layers(profile: dict, k: int, scoring: str, seed: int = 42) -> set:
     """
     Select the top-k layers that should receive outlier protection,
     ranked by the given scoring metric.
@@ -40,6 +40,8 @@ def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
         k: number of layers to protect (0 = none, len(layers) = all)
         scoring: scoring metric name — one of:
                  'kurtosis', 'outlier_fraction', 'range_sigma'
+                 'variance', 'bookend', 'random'
+        seed: an integer for breaking random determinism
 
     Returns:
         set of layer names to protect
@@ -49,7 +51,7 @@ def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
 
     # ── Random baseline: deterministic shuffle (null hypothesis) ──
     if scoring == "random":
-        rng = random.Random(42)
+        rng = random.Random(seed)
         shuffled = list(layer_names)
         rng.shuffle(shuffled)
         return set(shuffled[:k])
@@ -91,7 +93,7 @@ def get_topk_layers(profile: dict, k: int, scoring: str) -> set:
 def quantize_model_selective(model, original_weights, profile: dict,
                               bits: int, grid_type: str, gamma: float,
                               topk: int, scoring: str,
-                              outlier_percentile: float = 1.0):
+                              outlier_percentile: float = 1.0, seed: int = 42):
     """
     Quantize a model with outlier protection applied selectively.
 
@@ -113,7 +115,7 @@ def quantize_model_selective(model, original_weights, profile: dict,
     restore_weights(model, original_weights)
 
     num_levels = 2 ** bits
-    protected_set = get_topk_layers(profile, topk, scoring)
+    protected_set = get_topk_layers(profile, topk, scoring, seed=seed)
 
     total_layers = len(profile["layer_names"])
     print(f"  Selective quantization: {bits}-bit {grid_type}, "
@@ -201,7 +203,7 @@ def run_single_selective(model_name: str, profile: dict,
                           topk: int, scoring: str,
                           outlier_percentile: float = 1.0,
                           model=None, original_weights=None,
-                          input_ids=None, tokenizer=None):
+                          input_ids=None, tokenizer=None, seed: int = 42):
     """
     Run a single selective quantization + perplexity evaluation.
 
@@ -211,7 +213,7 @@ def run_single_selective(model_name: str, profile: dict,
     model, size_stats, protected_info = quantize_model_selective(
         model, original_weights, profile,
         bits, grid_type, gamma,
-        topk, scoring, outlier_percentile
+        topk, scoring, outlier_percentile, seed=seed
     )
     ppl = evaluate_perplexity(model, tokenizer=tokenizer, input_ids=input_ids)
     print(f"  Perplexity: {ppl:.2f}")
@@ -220,12 +222,14 @@ def run_single_selective(model_name: str, profile: dict,
 
 def make_selective_key(scoring: str, topk: int, bits: int,
                         grid_type: str, gamma: float,
-                        outlier_percentile: float) -> str:
+                        outlier_percentile: float, seed: int = 42) -> str:
     """Generate a unique key for a selective experiment."""
+    scoring_id = f"random_seed{seed}" if scoring == "random" else scoring
+
     if grid_type == "hybrid":
-        base = f"selective_{scoring}_top{topk}_hybrid_g{gamma}_{bits}bit_op{outlier_percentile}"
+        base = f"selective_{scoring_id}_top{topk}_hybrid_g{gamma}_{bits}bit_op{outlier_percentile}"
     else:
-        base = f"selective_{scoring}_top{topk}_{grid_type}_{bits}bit_op{outlier_percentile}"
+        base = f"selective_{scoring_id}_top{topk}_{grid_type}_{bits}bit_op{outlier_percentile}"
     return base
 
 

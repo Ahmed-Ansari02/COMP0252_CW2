@@ -161,39 +161,42 @@ def run_selective_sweep(model, original_weights, input_ids, model_name,
         print(f"SCORING METHOD: {scoring}")
         print(f"{'='*60}")
 
-        for topk in topk_values:
-            key = make_selective_key(scoring, topk, BITS,
-                                     GRID_TYPE, GAMMA, OUTLIER_PCT)
+        seeds = [42, 43, 44, 45, 46] if scoring == "random" else [42]
 
-            if key in results.get(model_name, {}):
-                existing = results[model_name][key]
-                ppl_val = existing["perplexity"]
-                print(f"  [skip] {key} already computed ({ppl_val:.2f})")
-                continue
+        for seed in seeds:
+            for topk in topk_values:
+                key = make_selective_key(scoring, topk, BITS,
+                                         GRID_TYPE, GAMMA, OUTLIER_PCT, seed=seed)
 
-            print(f"\n--- {key} ---")
+                if key in results.get(model_name, {}):
+                    existing = results[model_name][key]
+                    ppl_val = existing["perplexity"]
+                    print(f"  [skip] {key} already computed ({ppl_val:.2f})")
+                    continue
 
-            model_q, size_stats, protected_info = quantize_model_selective(
-                model, original_weights, profile,
-                BITS, GRID_TYPE, GAMMA,
-                topk, scoring, OUTLIER_PCT
-            )
-            ppl = evaluate_perplexity(model, input_ids=input_ids)
+                print(f"\n--- {key} ---")
 
-            if model_name not in results:
-                results[model_name] = {}
+                model_q, size_stats, protected_info = quantize_model_selective(
+                    model, original_weights, profile,
+                    BITS, GRID_TYPE, GAMMA,
+                    topk, scoring, OUTLIER_PCT, seed=seed
+                )
+                ppl = evaluate_perplexity(model, input_ids=input_ids)
 
-            results[model_name][key] = {
-                "perplexity": ppl,
-                "size": size_stats,
-                "topk": topk,
-                "total_layers": total_layers,
-                "topk_fraction": round(topk / total_layers, 4),
-                "scoring": scoring,
-                "protected_layers": [p["name"] for p in protected_info],
-            }
-            print(f"  Perplexity: {ppl:.2f}")
-            save_results(results, results_path)
+                if model_name not in results:
+                    results[model_name] = {}
+
+                results[model_name][key] = {
+                    "perplexity": ppl,
+                    "size": size_stats,
+                    "topk": topk,
+                    "total_layers": total_layers,
+                    "topk_fraction": round(topk / total_layers, 4),
+                    "scoring": scoring,
+                    "protected_layers": [p["name"] for p in protected_info],
+                }
+                print(f"  Perplexity: {ppl:.2f}")
+                save_results(results, results_path)
 
 
 def print_summary(results: dict):
