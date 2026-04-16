@@ -1,0 +1,427 @@
+{
+  "facebook/opt-125m": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 250.48,
+      "packed_size_mb": 130.61,
+      "compression_ratio": 1.92
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 2631.56,
+      "packed_size_mb": 811.86,
+      "compression_ratio": 3.24
+    },
+    "hf_fp16": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "hf_fp16",
+      "packed_checkpoint_dir": "packed_models/opt-125m-gptq-4bit",
+      "packed_checkpoint_size_mb": 120.11,
+      "load_metrics": {
+        "load_time_s": 0.756493,
+        "peak_gpu_memory_mb": 257.41,
+        "host_rss_mb": 1194.91
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.002519,
+            "mean_latency_ms": 2.519,
+            "mean_peak_gpu_memory_mb": 284.37
+          },
+          "decode": {
+            "mean_total_time_s": 0.066047,
+            "mean_decode_ms_per_token": 2.064,
+            "mean_peak_gpu_memory_mb": 284.38
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.003583,
+            "mean_latency_ms": 3.583,
+            "mean_peak_gpu_memory_mb": 338.68
+          },
+          "decode": {
+            "mean_total_time_s": 0.068373,
+            "mean_decode_ms_per_token": 2.137,
+            "mean_peak_gpu_memory_mb": 338.69
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "eager_unpacked": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "eager_unpacked",
+      "packed_checkpoint_dir": "packed_models/opt-125m-gptq-4bit",
+      "packed_checkpoint_size_mb": 120.11,
+      "load_metrics": {
+        "load_time_s": 0.920461,
+        "peak_gpu_memory_mb": 268.56,
+        "host_rss_mb": 1785.05
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.002505,
+            "mean_latency_ms": 2.505,
+            "mean_peak_gpu_memory_mb": 285.16
+          },
+          "decode": {
+            "mean_total_time_s": 0.070575,
+            "mean_decode_ms_per_token": 2.205,
+            "mean_peak_gpu_memory_mb": 285.17
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.003621,
+            "mean_latency_ms": 3.621,
+            "mean_peak_gpu_memory_mb": 339.47
+          },
+          "decode": {
+            "mean_total_time_s": 0.069269,
+            "mean_decode_ms_per_token": 2.165,
+            "mean_peak_gpu_memory_mb": 339.48
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "lazy_layerwise": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "lazy_layerwise",
+      "packed_checkpoint_dir": "packed_models/opt-125m-gptq-4bit",
+      "packed_checkpoint_size_mb": 120.11,
+      "load_metrics": {
+        "load_time_s": 0.909228,
+        "peak_gpu_memory_mb": 134.28,
+        "host_rss_mb": 1958.17
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.014566,
+            "mean_latency_ms": 14.566,
+            "mean_peak_gpu_memory_mb": 170.06
+          },
+          "decode": {
+            "mean_total_time_s": 0.452111,
+            "mean_decode_ms_per_token": 14.128,
+            "mean_peak_gpu_memory_mb": 170.06
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.014889,
+            "mean_latency_ms": 14.889,
+            "mean_peak_gpu_memory_mb": 206.37
+          },
+          "decode": {
+            "mean_total_time_s": 0.45526,
+            "mean_decode_ms_per_token": 14.227,
+            "mean_peak_gpu_memory_mb": 206.38
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "sanity_checks": {
+      "lazy_lower_post_load_rss_than_eager": false,
+      "lazy_slower_decode_than_eager": true
+    }
+  },
+  "facebook/opt-350m": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 662.39,
+      "packed_size_mb": 243.52,
+      "compression_ratio": 2.72
+    },
+    "hf_fp16": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "hf_fp16",
+      "packed_checkpoint_dir": "packed_models/opt-350m-gptq-4bit",
+      "packed_checkpoint_size_mb": 205.65,
+      "load_metrics": {
+        "load_time_s": 0.941047,
+        "peak_gpu_memory_mb": 663.34,
+        "host_rss_mb": 1128.85
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.004408,
+            "mean_latency_ms": 4.408,
+            "mean_peak_gpu_memory_mb": 697.45
+          },
+          "decode": {
+            "mean_total_time_s": 0.115914,
+            "mean_decode_ms_per_token": 3.622,
+            "mean_peak_gpu_memory_mb": 697.53
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.007659,
+            "mean_latency_ms": 7.659,
+            "mean_peak_gpu_memory_mb": 775.16
+          },
+          "decode": {
+            "mean_total_time_s": 0.121683,
+            "mean_decode_ms_per_token": 3.803,
+            "mean_peak_gpu_memory_mb": 775.17
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "eager_unpacked": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "eager_unpacked",
+      "packed_checkpoint_dir": "packed_models/opt-350m-gptq-4bit",
+      "packed_checkpoint_size_mb": 205.65,
+      "load_metrics": {
+        "load_time_s": 1.117759,
+        "peak_gpu_memory_mb": 673.97,
+        "host_rss_mb": 1856.1
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.004443,
+            "mean_latency_ms": 4.443,
+            "mean_peak_gpu_memory_mb": 697.45
+          },
+          "decode": {
+            "mean_total_time_s": 0.117483,
+            "mean_decode_ms_per_token": 3.671,
+            "mean_peak_gpu_memory_mb": 697.53
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.007662,
+            "mean_latency_ms": 7.662,
+            "mean_peak_gpu_memory_mb": 775.16
+          },
+          "decode": {
+            "mean_total_time_s": 0.122172,
+            "mean_decode_ms_per_token": 3.818,
+            "mean_peak_gpu_memory_mb": 775.17
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "lazy_layerwise": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "lazy_layerwise",
+      "packed_checkpoint_dir": "packed_models/opt-350m-gptq-4bit",
+      "packed_checkpoint_size_mb": 205.65,
+      "load_metrics": {
+        "load_time_s": 1.054409,
+        "peak_gpu_memory_mb": 219.77,
+        "host_rss_mb": 1903.19
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.038104,
+            "mean_latency_ms": 38.104,
+            "mean_peak_gpu_memory_mb": 286.88
+          },
+          "decode": {
+            "mean_total_time_s": 1.183992,
+            "mean_decode_ms_per_token": 37.0,
+            "mean_peak_gpu_memory_mb": 288.07
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.042464,
+            "mean_latency_ms": 42.464,
+            "mean_peak_gpu_memory_mb": 330.94
+          },
+          "decode": {
+            "mean_total_time_s": 1.204869,
+            "mean_decode_ms_per_token": 37.652,
+            "mean_peak_gpu_memory_mb": 346.89
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "sanity_checks": {
+      "lazy_lower_post_load_rss_than_eager": false,
+      "lazy_slower_decode_than_eager": true
+    }
+  },
+  "facebook/opt-1.3b": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 2631.52,
+      "packed_size_mb": 959.05,
+      "compression_ratio": 2.74
+    },
+    "hf_fp16": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "hf_fp16",
+      "packed_checkpoint_dir": "packed_models/opt-1.3b-gptq-4bit",
+      "packed_checkpoint_size_mb": 811.85,
+      "load_metrics": {
+        "load_time_s": 1.446742,
+        "peak_gpu_memory_mb": 2631.52,
+        "host_rss_mb": 1333.95
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.007181,
+            "mean_latency_ms": 7.181,
+            "mean_peak_gpu_memory_mb": 2678.6
+          },
+          "decode": {
+            "mean_total_time_s": 0.152834,
+            "mean_decode_ms_per_token": 4.776,
+            "mean_peak_gpu_memory_mb": 2678.6
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.026093,
+            "mean_latency_ms": 26.093,
+            "mean_peak_gpu_memory_mb": 2795.23
+          },
+          "decode": {
+            "mean_total_time_s": 0.181125,
+            "mean_decode_ms_per_token": 5.66,
+            "mean_peak_gpu_memory_mb": 2795.25
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "eager_unpacked": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "eager_unpacked",
+      "packed_checkpoint_dir": "packed_models/opt-1.3b-gptq-4bit",
+      "packed_checkpoint_size_mb": 811.85,
+      "load_metrics": {
+        "load_time_s": 1.680796,
+        "peak_gpu_memory_mb": 2648.44,
+        "host_rss_mb": 2448.19
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.007121,
+            "mean_latency_ms": 7.121,
+            "mean_peak_gpu_memory_mb": 2678.6
+          },
+          "decode": {
+            "mean_total_time_s": 0.15249,
+            "mean_decode_ms_per_token": 4.765,
+            "mean_peak_gpu_memory_mb": 2678.6
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.026099,
+            "mean_latency_ms": 26.099,
+            "mean_peak_gpu_memory_mb": 2795.23
+          },
+          "decode": {
+            "mean_total_time_s": 0.181975,
+            "mean_decode_ms_per_token": 5.687,
+            "mean_peak_gpu_memory_mb": 2795.25
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "lazy_layerwise": {
+      "environment": {
+        "torch_version": "2.8.0+cu128",
+        "cuda_available": true,
+        "gpu_name": "NVIDIA GeForce RTX 3090 Ti",
+        "transformers_version": "4.57.6"
+      },
+      "runtime_mode": "lazy_layerwise",
+      "packed_checkpoint_dir": "packed_models/opt-1.3b-gptq-4bit",
+      "packed_checkpoint_size_mb": 811.85,
+      "load_metrics": {
+        "load_time_s": 1.524774,
+        "peak_gpu_memory_mb": 829.87,
+        "host_rss_mb": 2985.5
+      },
+      "prompt_lengths": {
+        "128": {
+          "prefill": {
+            "mean_time_s": 0.139071,
+            "mean_latency_ms": 139.071,
+            "mean_peak_gpu_memory_mb": 1068.96
+          },
+          "decode": {
+            "mean_total_time_s": 4.371978,
+            "mean_decode_ms_per_token": 136.624,
+            "mean_peak_gpu_memory_mb": 1071.14
+          }
+        },
+        "512": {
+          "prefill": {
+            "mean_time_s": 0.158377,
+            "mean_latency_ms": 158.377,
+            "mean_peak_gpu_memory_mb": 1157.05
+          },
+          "decode": {
+            "mean_total_time_s": 4.404267,
+            "mean_decode_ms_per_token": 137.633,
+            "mean_peak_gpu_memory_mb": 1157.06
+          }
+        }
+      },
+      "note": "Upper-bound runtime: dequantize packed weights inside each layer forward and run standard FP16/BF16/FP32 GEMM. This is not fused int4 inference."
+    },
+    "sanity_checks": {
+      "lazy_lower_post_load_rss_than_eager": false,
+      "lazy_slower_decode_than_eager": true
+    }
+  }
+}

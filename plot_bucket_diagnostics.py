@@ -11,6 +11,7 @@ Usage:
 """
 
 import argparse
+import json
 import os
 
 import matplotlib
@@ -83,6 +84,7 @@ def plot_bucket_population(W, num_levels, gamma, outlier_pct, output_dir):
     """Bar chart showing how many weights land in each bucket per grid type."""
     row = W[0]  # sample first row for grid building
     fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
+    stats = {}
 
     for ax, grid_type in zip(axes, GRID_TYPES):
         grid = build_grid_with_op(row, num_levels, grid_type, gamma, outlier_pct)
@@ -106,6 +108,12 @@ def plot_bucket_population(W, num_levels, gamma, outlier_pct, output_dir):
             normalized = counts / counts.sum()
             ideal = 1.0 / num_levels
             imbalance = np.std(normalized) / ideal
+            stats[grid_type] = {
+                "bucket_counts": counts.tolist(),
+                "imbalance": round(float(imbalance), 4),
+                "min_bucket": int(counts.min()),
+                "max_bucket": int(counts.max()),
+            }
             ax.text(0.98, 0.95, f"Imbalance: {imbalance:.2f}",
                     transform=ax.transAxes, ha="right", va="top", fontsize=9,
                     bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.5))
@@ -117,6 +125,7 @@ def plot_bucket_population(W, num_levels, gamma, outlier_pct, output_dir):
     fig.savefig(path, dpi=150)
     print(f"Saved {path}")
     plt.close()
+    return stats
 
 
 # ---------------------------------------------------------------------------
@@ -126,6 +135,7 @@ def plot_bucket_population(W, num_levels, gamma, outlier_pct, output_dir):
 def plot_error_distribution(W, num_levels, gamma, outlier_pct, output_dir):
     """Overlaid histograms of |original - quantized| per grid type."""
     fig, ax = plt.subplots(figsize=(10, 6))
+    stats = {}
 
     for grid_type in GRID_TYPES:
         all_errors = []
@@ -138,6 +148,12 @@ def plot_error_distribution(W, num_levels, gamma, outlier_pct, output_dir):
         all_errors = np.concatenate(all_errors)
         mae = np.mean(all_errors)
         max_err = np.max(all_errors)
+
+        stats[grid_type] = {
+            "mae": round(float(mae), 6),
+            "max_error": round(float(max_err), 6),
+            "median_error": round(float(np.median(all_errors)), 6),
+        }
 
         ax.hist(all_errors, bins=100, alpha=0.5, color=GRID_COLORS[grid_type],
                 label=f"{grid_type.upper()} (MAE={mae:.5f}, max={max_err:.4f})",
@@ -154,6 +170,7 @@ def plot_error_distribution(W, num_levels, gamma, outlier_pct, output_dir):
     fig.savefig(path, dpi=150)
     print(f"Saved {path}")
     plt.close()
+    return stats
 
 
 # ---------------------------------------------------------------------------
@@ -174,8 +191,10 @@ def plot_weight_dist_with_grids(W, num_levels, gamma, outlier_pct, output_dir):
     for ax, grid_type in zip(axes, GRID_TYPES):
         ax.hist(w_np, bins=200, density=True, alpha=0.4, color="gray")
         # Shade outlier regions
-        ax.axvspan(w_np.min(), lo, alpha=0.1, color="red")
-        ax.axvspan(hi, w_np.max(), alpha=0.1, color="red")
+        ax.axvspan(w_np.min(), lo, alpha=0.3, color="red", label="Outlier region" if grid_type == GRID_TYPES[0] else None)
+        ax.axvspan(hi, w_np.max(), alpha=0.3, color="red")
+        ax.axvline(lo, color="red", linestyle="--", linewidth=1.2, alpha=0.8)
+        ax.axvline(hi, color="red", linestyle="--", linewidth=1.2, alpha=0.8)
 
         grid = build_grid_with_op(row, num_levels, grid_type, gamma, outlier_pct)
         for val in grid:
@@ -190,6 +209,35 @@ def plot_weight_dist_with_grids(W, num_levels, gamma, outlier_pct, output_dir):
     path = os.path.join(output_dir, "3_weight_dist_grid_lines.png")
     fig.savefig(path, dpi=150)
     print(f"Saved {path}")
+    plt.close()
+
+    # --- No-OP version ---
+    fig2, axes2 = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
+
+    for ax, grid_type in zip(axes2, GRID_TYPES):
+        ax.hist(w_np, bins=200, density=True, alpha=0.4, color="gray")
+
+        # Build grid from ALL weights (no outlier trimming)
+        w_full = row.float()
+        if grid_type == "uniform":
+            grid = build_uniform_grid(w_full, num_levels)
+        elif grid_type == "cdf":
+            grid = build_cdf_grid(w_full, num_levels, pin_endpoints=True)
+        elif grid_type == "hybrid":
+            grid = build_hybrid_grid(w_full, num_levels, gamma=gamma)
+
+        for val in grid:
+            ax.axvline(val.item(), color=GRID_COLORS[grid_type], alpha=0.7, linewidth=1.5)
+
+        ax.set_title(f"{grid_type.upper()} (no OP)", fontsize=12)
+        ax.set_xlabel("Weight Value")
+
+    axes2[0].set_ylabel("Density")
+    fig2.suptitle("Weight Distribution with Quantization Grid Levels (no Outlier Protection)", fontsize=13)
+    fig2.tight_layout()
+    path2 = os.path.join(output_dir, "3b_weight_dist_grid_lines_no_op.png")
+    fig2.savefig(path2, dpi=150)
+    print(f"Saved {path2}")
     plt.close()
 
 
@@ -272,6 +320,12 @@ def plot_layer_error_heatmap(model, num_levels, gamma, outlier_pct, output_dir):
     print(f"Saved {path}")
     plt.close()
 
+    # Build per-layer stats
+    stats = {}
+    for i, lname in enumerate(layer_names):
+        stats[lname] = {gt: round(mae_data[gt][i], 6) for gt in GRID_TYPES}
+    return stats
+
 
 # ---------------------------------------------------------------------------
 # Main
@@ -304,13 +358,21 @@ def main():
     W = get_layer_weight(model, args.layer).to(device)
     print(f"  Shape: {W.shape}")
 
+    results = {
+        "model": args.model,
+        "bits": args.bits,
+        "gamma": args.gamma,
+        "outlier_percentile": args.outlier_percentile,
+        "sample_layer": args.layer,
+    }
+
     print("\n--- Figure 1: Bucket Population ---")
-    plot_bucket_population(W, num_levels, args.gamma, args.outlier_percentile,
-                           args.output_dir)
+    results["bucket_population"] = plot_bucket_population(
+        W, num_levels, args.gamma, args.outlier_percentile, args.output_dir)
 
     print("--- Figure 2: Quantization Error Distribution ---")
-    plot_error_distribution(W, num_levels, args.gamma, args.outlier_percentile,
-                            args.output_dir)
+    results["quantization_error"] = plot_error_distribution(
+        W, num_levels, args.gamma, args.outlier_percentile, args.output_dir)
 
     print("--- Figure 3: Weight Distribution + Grid Lines ---")
     plot_weight_dist_with_grids(W, num_levels, args.gamma, args.outlier_percentile,
@@ -321,10 +383,15 @@ def main():
                         args.output_dir)
 
     print("--- Figure 5: Per-Layer MAE Heatmap ---")
-    plot_layer_error_heatmap(model, num_levels, args.gamma, args.outlier_percentile,
-                             args.output_dir)
+    results["per_layer_mae"] = plot_layer_error_heatmap(
+        model, num_levels, args.gamma, args.outlier_percentile, args.output_dir)
 
-    print(f"\nAll figures saved to {args.output_dir}/")
+    # Save results JSON
+    json_path = os.path.join(args.output_dir, "bucket_diagnostics.json")
+    with open(json_path, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"\nResults saved to {json_path}")
+    print(f"All figures saved to {args.output_dir}/")
 
 
 if __name__ == "__main__":

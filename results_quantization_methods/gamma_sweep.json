@@ -707,6 +707,76 @@
         "fp16_size_mb": 12700.03,
         "quantization_time_s": 4.72
       }
+    },
+    "hybrid_gamma0.6_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.787900924682617,
+      "gamma": 0.6,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.767
+      }
+    },
+    "hybrid_gamma0.7_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.821874618530273,
+      "gamma": 0.7,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.773
+      }
+    },
+    "hybrid_gamma0.8_4bit_rtn_op1.0_deconly": {
+      "perplexity": 11.912879943847656,
+      "gamma": 0.8,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 5.142
+      }
+    },
+    "hybrid_gamma0.9_4bit_rtn_op1.0_deconly": {
+      "perplexity": 12.099421501159668,
+      "gamma": 0.9,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.797
+      }
+    },
+    "hybrid_gamma1.0_4bit_rtn_op1.0_deconly": {
+      "perplexity": 12.157746315002441,
+      "gamma": 1.0,
+      "size": {
+        "total_params": 6658473984,
+        "quantized_weights": 6313755332,
+        "outlier_weights": 128695612,
+        "unquantized_weights": 216023040,
+        "effective_bits_per_param": 4.621,
+        "effective_size_mb": 3668.13,
+        "fp16_size_mb": 12700.03,
+        "quantization_time_s": 4.778
+      }
     }
   }
 }

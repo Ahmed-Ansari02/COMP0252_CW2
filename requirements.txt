@@ -7,3 +7,4 @@ numpy==1.24.0
 pyarrow==12.0.1
 huggingface_hub==0.36.2
 scipy==1.10.0
+psutil==7.0.0
