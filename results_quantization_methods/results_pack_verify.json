@@ -1,0 +1,72 @@
+{
+  "facebook/opt-125m": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 250.48,
+      "packed_size_mb": 130.6,
+      "compression_ratio": 1.92,
+      "perplexity_after_unpack": 29.7102
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 250.5,
+      "packed_size_mb": 120.11,
+      "compression_ratio": 2.09,
+      "perplexity_after_unpack": 30.5623
+    }
+  },
+  "facebook/opt-350m": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 662.39,
+      "packed_size_mb": 243.51,
+      "compression_ratio": 2.72,
+      "perplexity_after_unpack": 23.9447
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 662.44,
+      "packed_size_mb": 205.65,
+      "compression_ratio": 3.22,
+      "perplexity_after_unpack": 24.194
+    }
+  },
+  "facebook/opt-1.3b": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 2631.52,
+      "packed_size_mb": 959.04,
+      "compression_ratio": 2.74,
+      "perplexity_after_unpack": 15.0812
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 2631.56,
+      "packed_size_mb": 811.85,
+      "compression_ratio": 3.24,
+      "perplexity_after_unpack": 15.4355
+    }
+  },
+  "facebook/opt-2.7b": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 5303.19,
+      "packed_size_mb": 1824.05,
+      "compression_ratio": 2.91,
+      "perplexity_after_unpack": 12.8591
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 5303.25,
+      "packed_size_mb": 1518.89,
+      "compression_ratio": 3.49,
+      "perplexity_after_unpack": 13.1525
+    }
+  },
+  "facebook/opt-6.7b": {
+    "uniform_4bit_rtn_op1.0_packed": {
+      "fp16_size_mb": 13316.95,
+      "packed_size_mb": 4410.22,
+      "compression_ratio": 3.02,
+      "perplexity_after_unpack": 11.0238
+    },
+    "uniform_4bit_gptq_packed": {
+      "fp16_size_mb": 13317.01,
+      "packed_size_mb": 3638.03,
+      "compression_ratio": 3.66,
+      "perplexity_after_unpack": 11.2834
+    }
+  }
+}

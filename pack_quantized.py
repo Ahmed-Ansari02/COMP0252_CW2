@@ -263,6 +263,35 @@ def evaluate_perplexity(model, model_name, device="cuda"):
 # Main
 # ---------------------------------------------------------------------------
 
+def save_verification_result(results_file, model_name, method_key,
+                             fp16_size_mb, packed_size_mb, compression,
+                             ppl=None):
+    """Append a verification result to the results JSON file."""
+    if os.path.exists(results_file):
+        with open(results_file) as f:
+            results = json.load(f)
+    else:
+        results = {}
+
+    if model_name not in results:
+        results[model_name] = {}
+
+    entry = {
+        "fp16_size_mb": round(fp16_size_mb, 2),
+        "packed_size_mb": round(packed_size_mb, 2),
+        "compression_ratio": round(compression, 2),
+    }
+    if ppl is not None:
+        entry["perplexity_after_unpack"] = round(ppl, 4)
+
+    results[model_name][method_key] = entry
+
+    os.makedirs(os.path.dirname(results_file), exist_ok=True)
+    with open(results_file, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"  Result saved to {results_file} [{model_name}][{method_key}]")
+
+
 def pack_pretrained_gptq(saved_dir, bits, device="cuda"):
     """
     Pack an already-quantized GPTQ model (saved as FP16 safetensors) into int4.
@@ -341,6 +370,9 @@ def main():
                         help="Unpack and compare perplexity to simulated quantization")
     parser.add_argument("--eval", action="store_true",
                         help="Evaluate perplexity of a loaded packed model")
+    parser.add_argument("--results_file", type=str,
+                        default="results_quantization_methods/results_pack_verify.json",
+                        help="JSON file to append verification results to")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -376,14 +408,21 @@ def main():
             packed_layers, unquantized_layers, args.model, args.bits,
             0.0, output_dir)
 
+        fp16_size_mb = fp16_size / 1e6
+        packed_size_mb = total_disk / 1e6
         compression = fp16_size / total_disk
         print(f"  Compression ratio:     {compression:.2f}x")
 
+        ppl = None
         if args.verify:
             print("\nVerifying: unpacking and evaluating perplexity...")
             model, meta = load_packed_model(output_dir, device)
             ppl = evaluate_perplexity(model, args.model, device)
             print(f"Perplexity (pack -> unpack): {ppl:.2f}")
+
+        save_verification_result(
+            args.results_file, args.model, f"uniform_{args.bits}bit_gptq_packed",
+            fp16_size_mb, packed_size_mb, compression, ppl)
         return
 
     # Pack a fresh model with uniform RTN + OP
@@ -411,10 +450,12 @@ def main():
         packed_layers, unquantized_layers, args.model, args.bits,
         args.outlier_percentile, output_dir)
 
-    compression = fp16_size_mb / (total_disk / 1e6)
+    packed_size_mb = total_disk / 1e6
+    compression = fp16_size_mb / packed_size_mb
     print(f"  FP16 size:             {fp16_size_mb:.1f} MB")
     print(f"  Compression ratio:     {compression:.2f}x")
 
+    ppl = None
     if args.verify:
         print("\nVerifying: unpacking and evaluating perplexity...")
         del model
@@ -423,6 +464,11 @@ def main():
         model, meta = load_packed_model(output_dir, device)
         ppl = evaluate_perplexity(model, args.model, device)
         print(f"Perplexity (pack -> unpack): {ppl:.2f}")
+
+    save_verification_result(
+        args.results_file, args.model,
+        f"uniform_{args.bits}bit_rtn_op{args.outlier_percentile}_packed",
+        fp16_size_mb, packed_size_mb, compression, ppl)
 
 
 if __name__ == "__main__":
