@@ -1,0 +1,817 @@
+{
+  "model": "facebook/opt-350m",
+  "bits": 4,
+  "gamma": 0.5,
+  "outlier_percentile": 1.0,
+  "sample_layer": "model.decoder.layers.0.self_attn.q_proj",
+  "bucket_population": {
+    "uniform": {
+      "bucket_counts": [
+        235.0,
+        23.0,
+        78.0,
+        488.0,
+        101.0,
+        1322.0,
+        689.0,
+        521.0,
+        582.0,
+        498.0,
+        956.0,
+        296.0,
+        372.0,
+        34.0,
+        41.0,
+        356.0
+      ],
+      "imbalance": 0.8461,
+      "min_bucket": 23,
+      "max_bucket": 1322
+    },
+    "cdf": {
+      "bucket_counts": [
+        591.0,
+        140.0,
+        454.0,
+        157.0,
+        98.0,
+        206.0,
+        140.0,
+        61.0,
+        58.0,
+        61.0,
+        558.0,
+        164.0,
+        342.0,
+        923.0,
+        403.0,
+        930.0
+      ],
+      "imbalance": 0.8528,
+      "min_bucket": 58,
+      "max_bucket": 930
+    },
+    "hybrid": {
+      "bucket_counts": [
+        355.0,
+        41.0,
+        117.0,
+        101.0,
+        66.0,
+        66.0,
+        136.0,
+        247.0,
+        68.0,
+        74.0,
+        80.0,
+        66.0,
+        105.0,
+        37.0,
+        40.0,
+        578.0
+      ],
+      "imbalance": 1.0272,
+      "min_bucket": 37,
+      "max_bucket": 578
+    }
+  },
+  "quantization_error": {
+    "uniform": {
+      "mae": 0.003925,
+      "max_error": 0.008341,
+      "median_error": 0.003991
+    },
+    "cdf": {
+      "mae": 0.003903,
+      "max_error": 0.045975,
+      "median_error": 0.002707
+    },
+    "hybrid": {
+      "mae": 0.003613,
+      "max_error": 0.026981,
+      "median_error": 0.003339
+    }
+  },
+  "per_layer_mae": {
+    "L0.self_attn.k_proj": {
+      "uniform": 0.00401,
+      "cdf": 0.003307,
+      "hybrid": 0.003014
+    },
+    "L0.self_attn.v_proj": {
+      "uniform": 0.001415,
+      "cdf": 0.001557,
+      "hybrid": 0.001271
+    },
+    "L0.self_attn.q_proj": {
+      "uniform": 0.00404,
+      "cdf": 0.003852,
+      "hybrid": 0.003567
+    },
+    "L0.self_attn.out_proj": {
+      "uniform": 0.000948,
+      "cdf": 0.001041,
+      "hybrid": 0.000806
+    },
+    "L0.fc1": {
+      "uniform": 0.002333,
+      "cdf": 0.002582,
+      "hybrid": 0.00217
+    },
+    "L0.fc2": {
+      "uniform": 0.002008,
+      "cdf": 0.002232,
+      "hybrid": 0.001846
+    },
+    "L1.self_attn.k_proj": {
+      "uniform": 0.002343,
+      "cdf": 0.002602,
+      "hybrid": 0.002169
+    },
+    "L1.self_attn.v_proj": {
+      "uniform": 0.001725,
+      "cdf": 0.00192,
+      "hybrid": 0.001556
+    },
+    "L1.self_attn.q_proj": {
+      "uniform": 0.002333,
+      "cdf": 0.002601,
+      "hybrid": 0.002218
+    },
+    "L1.self_attn.out_proj": {
+      "uniform": 0.001344,
+      "cdf": 0.001499,
+      "hybrid": 0.001218
+    },
+    "L1.fc1": {
+      "uniform": 0.002371,
+      "cdf": 0.00262,
+      "hybrid": 0.002221
+    },
+    "L1.fc2": {
+      "uniform": 0.002007,
+      "cdf": 0.002236,
+      "hybrid": 0.001844
+    },
+    "L2.self_attn.k_proj": {
+      "uniform": 0.002605,
+      "cdf": 0.002894,
+      "hybrid": 0.00245
+    },
+    "L2.self_attn.v_proj": {
+      "uniform": 0.001954,
+      "cdf": 0.002155,
+      "hybrid": 0.001776
+    },
+    "L2.self_attn.q_proj": {
+      "uniform": 0.002654,
+      "cdf": 0.002929,
+      "hybrid": 0.002498
+    },
+    "L2.self_attn.out_proj": {
+      "uniform": 0.001486,
+      "cdf": 0.001668,
+      "hybrid": 0.001337
+    },
+    "L2.fc1": {
+      "uniform": 0.002376,
+      "cdf": 0.002617,
+      "hybrid": 0.002221
+    },
+    "L2.fc2": {
+      "uniform": 0.001961,
+      "cdf": 0.00218,
+      "hybrid": 0.001791
+    },
+    "L3.self_attn.k_proj": {
+      "uniform": 0.002644,
+      "cdf": 0.002943,
+      "hybrid": 0.002464
+    },
+    "L3.self_attn.v_proj": {
+      "uniform": 0.002056,
+      "cdf": 0.002256,
+      "hybrid": 0.00188
+    },
+    "L3.self_attn.q_proj": {
+      "uniform": 0.002738,
+      "cdf": 0.003016,
+      "hybrid": 0.002535
+    },
+    "L3.self_attn.out_proj": {
+      "uniform": 0.001599,
+      "cdf": 0.001764,
+      "hybrid": 0.001437
+    },
+    "L3.fc1": {
+      "uniform": 0.00237,
+      "cdf": 0.002604,
+      "hybrid": 0.002203
+    },
+    "L3.fc2": {
+      "uniform": 0.001941,
+      "cdf": 0.002156,
+      "hybrid": 0.001766
+    },
+    "L4.self_attn.k_proj": {
+      "uniform": 0.002662,
+      "cdf": 0.00295,
+      "hybrid": 0.002486
+    },
+    "L4.self_attn.v_proj": {
+      "uniform": 0.001973,
+      "cdf": 0.002166,
+      "hybrid": 0.001802
+    },
+    "L4.self_attn.q_proj": {
+      "uniform": 0.002734,
+      "cdf": 0.003013,
+      "hybrid": 0.002557
+    },
+    "L4.self_attn.out_proj": {
+      "uniform": 0.001597,
+      "cdf": 0.001771,
+      "hybrid": 0.001431
+    },
+    "L4.fc1": {
+      "uniform": 0.002365,
+      "cdf": 0.002596,
+      "hybrid": 0.002198
+    },
+    "L4.fc2": {
+      "uniform": 0.001928,
+      "cdf": 0.002139,
+      "hybrid": 0.001752
+    },
+    "L5.self_attn.k_proj": {
+      "uniform": 0.002327,
+      "cdf": 0.002567,
+      "hybrid": 0.002163
+    },
+    "L5.self_attn.v_proj": {
+      "uniform": 0.001928,
+      "cdf": 0.002117,
+      "hybrid": 0.00176
+    },
+    "L5.self_attn.q_proj": {
+      "uniform": 0.002402,
+      "cdf": 0.002626,
+      "hybrid": 0.002234
+    },
+    "L5.self_attn.out_proj": {
+      "uniform": 0.001487,
+      "cdf": 0.001665,
+      "hybrid": 0.00133
+    },
+    "L5.fc1": {
+      "uniform": 0.00237,
+      "cdf": 0.002603,
+      "hybrid": 0.002204
+    },
+    "L5.fc2": {
+      "uniform": 0.001965,
+      "cdf": 0.002185,
+      "hybrid": 0.001786
+    },
+    "L6.self_attn.k_proj": {
+      "uniform": 0.002394,
+      "cdf": 0.002629,
+      "hybrid": 0.002173
+    },
+    "L6.self_attn.v_proj": {
+      "uniform": 0.001792,
+      "cdf": 0.001974,
+      "hybrid": 0.001625
+    },
+    "L6.self_attn.q_proj": {
+      "uniform": 0.00247,
+      "cdf": 0.002668,
+      "hybrid": 0.002287
+    },
+    "L6.self_attn.out_proj": {
+      "uniform": 0.001408,
+      "cdf": 0.001584,
+      "hybrid": 0.001271
+    },
+    "L6.fc1": {
+      "uniform": 0.002383,
+      "cdf": 0.002624,
+      "hybrid": 0.002219
+    },
+    "L6.fc2": {
+      "uniform": 0.002008,
+      "cdf": 0.002227,
+      "hybrid": 0.00182
+    },
+    "L7.self_attn.k_proj": {
+      "uniform": 0.002473,
+      "cdf": 0.002728,
+      "hybrid": 0.002277
+    },
+    "L7.self_attn.v_proj": {
+      "uniform": 0.001848,
+      "cdf": 0.002028,
+      "hybrid": 0.00168
+    },
+    "L7.self_attn.q_proj": {
+      "uniform": 0.002561,
+      "cdf": 0.002799,
+      "hybrid": 0.002396
+    },
+    "L7.self_attn.out_proj": {
+      "uniform": 0.001543,
+      "cdf": 0.001726,
+      "hybrid": 0.001373
+    },
+    "L7.fc1": {
+      "uniform": 0.002399,
+      "cdf": 0.002648,
+      "hybrid": 0.002233
+    },
+    "L7.fc2": {
+      "uniform": 0.002066,
+      "cdf": 0.002282,
+      "hybrid": 0.001861
+    },
+    "L8.self_attn.k_proj": {
+      "uniform": 0.002675,
+      "cdf": 0.002996,
+      "hybrid": 0.002459
+    },
+    "L8.self_attn.v_proj": {
+      "uniform": 0.00185,
+      "cdf": 0.002035,
+      "hybrid": 0.00168
+    },
+    "L8.self_attn.q_proj": {
+      "uniform": 0.002765,
+      "cdf": 0.003081,
+      "hybrid": 0.002575
+    },
+    "L8.self_attn.out_proj": {
+      "uniform": 0.001585,
+      "cdf": 0.00177,
+      "hybrid": 0.001412
+    },
+    "L8.fc1": {
+      "uniform": 0.002309,
+      "cdf": 0.00254,
+      "hybrid": 0.002124
+    },
+    "L8.fc2": {
+      "uniform": 0.001941,
+      "cdf": 0.002147,
+      "hybrid": 0.001728
+    },
+    "L9.self_attn.k_proj": {
+      "uniform": 0.002703,
+      "cdf": 0.003017,
+      "hybrid": 0.002511
+    },
+    "L9.self_attn.v_proj": {
+      "uniform": 0.001837,
+      "cdf": 0.002016,
+      "hybrid": 0.00167
+    },
+    "L9.self_attn.q_proj": {
+      "uniform": 0.00281,
+      "cdf": 0.003116,
+      "hybrid": 0.002649
+    },
+    "L9.self_attn.out_proj": {
+      "uniform": 0.001668,
+      "cdf": 0.001854,
+      "hybrid": 0.001482
+    },
+    "L9.fc1": {
+      "uniform": 0.002227,
+      "cdf": 0.002446,
+      "hybrid": 0.002035
+    },
+    "L9.fc2": {
+      "uniform": 0.001835,
+      "cdf": 0.002037,
+      "hybrid": 0.00161
+    },
+    "L10.self_attn.k_proj": {
+      "uniform": 0.002596,
+      "cdf": 0.002924,
+      "hybrid": 0.002431
+    },
+    "L10.self_attn.v_proj": {
+      "uniform": 0.001931,
+      "cdf": 0.002122,
+      "hybrid": 0.001761
+    },
+    "L10.self_attn.q_proj": {
+      "uniform": 0.002671,
+      "cdf": 0.003002,
+      "hybrid": 0.002501
+    },
+    "L10.self_attn.out_proj": {
+      "uniform": 0.001904,
+      "cdf": 0.00209,
+      "hybrid": 0.0017
+    },
+    "L10.fc1": {
+      "uniform": 0.002244,
+      "cdf": 0.002467,
+      "hybrid": 0.002054
+    },
+    "L10.fc2": {
+      "uniform": 0.001864,
+      "cdf": 0.002062,
+      "hybrid": 0.001641
+    },
+    "L11.self_attn.k_proj": {
+      "uniform": 0.00243,
+      "cdf": 0.002731,
+      "hybrid": 0.002288
+    },
+    "L11.self_attn.v_proj": {
+      "uniform": 0.002033,
+      "cdf": 0.002223,
+      "hybrid": 0.001859
+    },
+    "L11.self_attn.q_proj": {
+      "uniform": 0.002482,
+      "cdf": 0.002803,
+      "hybrid": 0.002354
+    },
+    "L11.self_attn.out_proj": {
+      "uniform": 0.001923,
+      "cdf": 0.002112,
+      "hybrid": 0.001738
+    },
+    "L11.fc1": {
+      "uniform": 0.002224,
+      "cdf": 0.002444,
+      "hybrid": 0.002031
+    },
+    "L11.fc2": {
+      "uniform": 0.001855,
+      "cdf": 0.002057,
+      "hybrid": 0.001627
+    },
+    "L12.self_attn.k_proj": {
+      "uniform": 0.002464,
+      "cdf": 0.002769,
+      "hybrid": 0.002321
+    },
+    "L12.self_attn.v_proj": {
+      "uniform": 0.00215,
+      "cdf": 0.002353,
+      "hybrid": 0.00199
+    },
+    "L12.self_attn.q_proj": {
+      "uniform": 0.002505,
+      "cdf": 0.002835,
+      "hybrid": 0.002374
+    },
+    "L12.self_attn.out_proj": {
+      "uniform": 0.002129,
+      "cdf": 0.002339,
+      "hybrid": 0.001927
+    },
+    "L12.fc1": {
+      "uniform": 0.002244,
+      "cdf": 0.002463,
+      "hybrid": 0.002048
+    },
+    "L12.fc2": {
+      "uniform": 0.001846,
+      "cdf": 0.002043,
+      "hybrid": 0.001624
+    },
+    "L13.self_attn.k_proj": {
+      "uniform": 0.002445,
+      "cdf": 0.002723,
+      "hybrid": 0.002284
+    },
+    "L13.self_attn.v_proj": {
+      "uniform": 0.002122,
+      "cdf": 0.002313,
+      "hybrid": 0.001953
+    },
+    "L13.self_attn.q_proj": {
+      "uniform": 0.002493,
+      "cdf": 0.002794,
+      "hybrid": 0.002347
+    },
+    "L13.self_attn.out_proj": {
+      "uniform": 0.002107,
+      "cdf": 0.00232,
+      "hybrid": 0.001904
+    },
+    "L13.fc1": {
+      "uniform": 0.002228,
+      "cdf": 0.002448,
+      "hybrid": 0.002028
+    },
+    "L13.fc2": {
+      "uniform": 0.001816,
+      "cdf": 0.002019,
+      "hybrid": 0.001596
+    },
+    "L14.self_attn.k_proj": {
+      "uniform": 0.002478,
+      "cdf": 0.002826,
+      "hybrid": 0.002377
+    },
+    "L14.self_attn.v_proj": {
+      "uniform": 0.002195,
+      "cdf": 0.002393,
+      "hybrid": 0.002056
+    },
+    "L14.self_attn.q_proj": {
+      "uniform": 0.002529,
+      "cdf": 0.002912,
+      "hybrid": 0.002432
+    },
+    "L14.self_attn.out_proj": {
+      "uniform": 0.002135,
+      "cdf": 0.002337,
+      "hybrid": 0.00194
+    },
+    "L14.fc1": {
+      "uniform": 0.002241,
+      "cdf": 0.002458,
+      "hybrid": 0.002037
+    },
+    "L14.fc2": {
+      "uniform": 0.00179,
+      "cdf": 0.001994,
+      "hybrid": 0.001581
+    },
+    "L15.self_attn.k_proj": {
+      "uniform": 0.002495,
+      "cdf": 0.002853,
+      "hybrid": 0.00239
+    },
+    "L15.self_attn.v_proj": {
+      "uniform": 0.002137,
+      "cdf": 0.002336,
+      "hybrid": 0.001986
+    },
+    "L15.self_attn.q_proj": {
+      "uniform": 0.002554,
+      "cdf": 0.002954,
+      "hybrid": 0.002448
+    },
+    "L15.self_attn.out_proj": {
+      "uniform": 0.00205,
+      "cdf": 0.002253,
+      "hybrid": 0.001848
+    },
+    "L15.fc1": {
+      "uniform": 0.002249,
+      "cdf": 0.002467,
+      "hybrid": 0.002043
+    },
+    "L15.fc2": {
+      "uniform": 0.001771,
+      "cdf": 0.00198,
+      "hybrid": 0.001567
+    },
+    "L16.self_attn.k_proj": {
+      "uniform": 0.002543,
+      "cdf": 0.002931,
+      "hybrid": 0.00244
+    },
+    "L16.self_attn.v_proj": {
+      "uniform": 0.002246,
+      "cdf": 0.002454,
+      "hybrid": 0.002102
+    },
+    "L16.self_attn.q_proj": {
+      "uniform": 0.002617,
+      "cdf": 0.003027,
+      "hybrid": 0.002482
+    },
+    "L16.self_attn.out_proj": {
+      "uniform": 0.002163,
+      "cdf": 0.002371,
+      "hybrid": 0.001954
+    },
+    "L16.fc1": {
+      "uniform": 0.002246,
+      "cdf": 0.002463,
+      "hybrid": 0.002036
+    },
+    "L16.fc2": {
+      "uniform": 0.001748,
+      "cdf": 0.00196,
+      "hybrid": 0.001551
+    },
+    "L17.self_attn.k_proj": {
+      "uniform": 0.002528,
+      "cdf": 0.002909,
+      "hybrid": 0.002416
+    },
+    "L17.self_attn.v_proj": {
+      "uniform": 0.002219,
+      "cdf": 0.00245,
+      "hybrid": 0.002084
+    },
+    "L17.self_attn.q_proj": {
+      "uniform": 0.002617,
+      "cdf": 0.003021,
+      "hybrid": 0.002468
+    },
+    "L17.self_attn.out_proj": {
+      "uniform": 0.002121,
+      "cdf": 0.002321,
+      "hybrid": 0.001915
+    },
+    "L17.fc1": {
+      "uniform": 0.002249,
+      "cdf": 0.002463,
+      "hybrid": 0.002036
+    },
+    "L17.fc2": {
+      "uniform": 0.001717,
+      "cdf": 0.001933,
+      "hybrid": 0.001529
+    },
+    "L18.self_attn.k_proj": {
+      "uniform": 0.002536,
+      "cdf": 0.002913,
+      "hybrid": 0.002408
+    },
+    "L18.self_attn.v_proj": {
+      "uniform": 0.00224,
+      "cdf": 0.002448,
+      "hybrid": 0.002104
+    },
+    "L18.self_attn.q_proj": {
+      "uniform": 0.002655,
+      "cdf": 0.003054,
+      "hybrid": 0.002481
+    },
+    "L18.self_attn.out_proj": {
+      "uniform": 0.002084,
+      "cdf": 0.002295,
+      "hybrid": 0.001901
+    },
+    "L18.fc1": {
+      "uniform": 0.002236,
+      "cdf": 0.002451,
+      "hybrid": 0.002023
+    },
+    "L18.fc2": {
+      "uniform": 0.001697,
+      "cdf": 0.001914,
+      "hybrid": 0.001512
+    },
+    "L19.self_attn.k_proj": {
+      "uniform": 0.002579,
+      "cdf": 0.00295,
+      "hybrid": 0.002424
+    },
+    "L19.self_attn.v_proj": {
+      "uniform": 0.002107,
+      "cdf": 0.002304,
+      "hybrid": 0.001947
+    },
+    "L19.self_attn.q_proj": {
+      "uniform": 0.002668,
+      "cdf": 0.00304,
+      "hybrid": 0.002471
+    },
+    "L19.self_attn.out_proj": {
+      "uniform": 0.001941,
+      "cdf": 0.002124,
+      "hybrid": 0.00174
+    },
+    "L19.fc1": {
+      "uniform": 0.002216,
+      "cdf": 0.00243,
+      "hybrid": 0.002004
+    },
+    "L19.fc2": {
+      "uniform": 0.001696,
+      "cdf": 0.001908,
+      "hybrid": 0.001506
+    },
+    "L20.self_attn.k_proj": {
+      "uniform": 0.002476,
+      "cdf": 0.002803,
+      "hybrid": 0.002288
+    },
+    "L20.self_attn.v_proj": {
+      "uniform": 0.002014,
+      "cdf": 0.002207,
+      "hybrid": 0.001859
+    },
+    "L20.self_attn.q_proj": {
+      "uniform": 0.002634,
+      "cdf": 0.002966,
+      "hybrid": 0.002449
+    },
+    "L20.self_attn.out_proj": {
+      "uniform": 0.001872,
+      "cdf": 0.002051,
+      "hybrid": 0.00166
+    },
+    "L20.fc1": {
+      "uniform": 0.002214,
+      "cdf": 0.00243,
+      "hybrid": 0.002007
+    },
+    "L20.fc2": {
+      "uniform": 0.001773,
+      "cdf": 0.001976,
+      "hybrid": 0.001557
+    },
+    "L21.self_attn.k_proj": {
+      "uniform": 0.002461,
+      "cdf": 0.002755,
+      "hybrid": 0.00227
+    },
+    "L21.self_attn.v_proj": {
+      "uniform": 0.001998,
+      "cdf": 0.002203,
+      "hybrid": 0.001847
+    },
+    "L21.self_attn.q_proj": {
+      "uniform": 0.002735,
+      "cdf": 0.003041,
+      "hybrid": 0.002541
+    },
+    "L21.self_attn.out_proj": {
+      "uniform": 0.001799,
+      "cdf": 0.001961,
+      "hybrid": 0.001594
+    },
+    "L21.fc1": {
+      "uniform": 0.002216,
+      "cdf": 0.00244,
+      "hybrid": 0.002012
+    },
+    "L21.fc2": {
+      "uniform": 0.001855,
+      "cdf": 0.002068,
+      "hybrid": 0.001608
+    },
+    "L22.self_attn.k_proj": {
+      "uniform": 0.002676,
+      "cdf": 0.003018,
+      "hybrid": 0.002408
+    },
+    "L22.self_attn.v_proj": {
+      "uniform": 0.002051,
+      "cdf": 0.002269,
+      "hybrid": 0.001894
+    },
+    "L22.self_attn.q_proj": {
+      "uniform": 0.003138,
+      "cdf": 0.003498,
+      "hybrid": 0.00286
+    },
+    "L22.self_attn.out_proj": {
+      "uniform": 0.00201,
+      "cdf": 0.002199,
+      "hybrid": 0.001777
+    },
+    "L22.fc1": {
+      "uniform": 0.002122,
+      "cdf": 0.002339,
+      "hybrid": 0.001918
+    },
+    "L22.fc2": {
+      "uniform": 0.001697,
+      "cdf": 0.00191,
+      "hybrid": 0.001484
+    },
+    "L23.self_attn.k_proj": {
+      "uniform": 0.002596,
+      "cdf": 0.00293,
+      "hybrid": 0.002406
+    },
+    "L23.self_attn.v_proj": {
+      "uniform": 0.002352,
+      "cdf": 0.002646,
+      "hybrid": 0.002204
+    },
+    "L23.self_attn.q_proj": {
+      "uniform": 0.002736,
+      "cdf": 0.003134,
+      "hybrid": 0.002531
+    },
+    "L23.self_attn.out_proj": {
+      "uniform": 0.002517,
+      "cdf": 0.002841,
+      "hybrid": 0.002327
+    },
+    "L23.fc1": {
+      "uniform": 0.001983,
+      "cdf": 0.002189,
+      "hybrid": 0.0018
+    },
+    "L23.fc2": {
+      "uniform": 0.001504,
+      "cdf": 0.001689,
+      "hybrid": 0.00131
+    }
+  }
+}
